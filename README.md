@@ -82,6 +82,19 @@ Scoring semantics are explicit:
 The command reports raw numerators and denominators alongside task, output, and
 cell accuracies so results can be audited.
 
+## Research protocol
+
+The proposed NeurIPS-level study design is documented in
+[`docs/NEURIPS_EXPERIMENT_DESIGN.md`](docs/NEURIPS_EXPERIMENT_DESIGN.md). It
+defines evidence tiers, label isolation, compute-matched comparisons, IsoARC
+stress tests, clustered statistics, resource gates, and immutable run records.
+It is a design document rather than an implemented or completed experiment.
+
+The design uses official output-level exact pass@2 as the ARC-AGI-2 primary
+estimand and retains this evaluator's stricter whole-task exact score as a
+required secondary metric. The current CLI behavior described above remains
+unchanged until the scorer migration and compatibility tests are implemented.
+
 ## Per-paper preparation workspaces
 
 The repository tracks 24 independent papers/methods. Each now has a standalone
