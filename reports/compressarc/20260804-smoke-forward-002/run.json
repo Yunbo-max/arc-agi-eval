@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "run_id": "20260804-smoke-forward-002",
+  "created_at_utc": "2026-08-04T05:05:36Z",
+  "baseline_id": "compressarc",
+  "level": "smoke",
+  "comparison_class": "local-5090",
+  "status": "passed",
+  "source": {
+    "repository": "https://github.com/iliao2345/CompressARC",
+    "revision": "83a22218024d46273eb32b769a906340202ffb4d",
+    "local_path": "external/CompressARC",
+    "retained_tree_sha256": "db41685bb9161aa2aa9727dea2a48a601285c04e821ca1b8e9e7d76251d202e7",
+    "dirty": false
+  },
+  "paper_target": null,
+  "hardware": {
+    "gpu": "NVIDIA GeForce RTX 5090",
+    "vram_mib": 32607,
+    "driver": "595.80",
+    "cuda_runtime": "13.2",
+    "gpu_memory_used_by_other_service_mib": 5530
+  },
+  "environment": {
+    "python": "3.12.11",
+    "torch": "2.13.0+cu132",
+    "numpy": "2.3.5",
+    "matplotlib": "3.11.1",
+    "tqdm": "4.70.0",
+    "deviation": "Used the existing Blackwell-compatible environment instead of upstream torch==2.5.1."
+  },
+  "artifacts": {
+    "checkpoint": null,
+    "dataset_task": "ARC-AGI-1 training/007bbfb7",
+    "source_bytes": 4332025
+  },
+  "method": {
+    "operation": "Construct one task-specific ARCCompressor and execute one forward pass.",
+    "training_steps": 0,
+    "seed": null
+  },
+  "attempt_budget": {
+    "tasks": 1,
+    "forward_passes": 1,
+    "optimization_steps": 0
+  },
+  "command": "PYTHONDONTWRITEBYTECODE=1 MPLBACKEND=Agg python -c \"import torch, preprocessing, arc_compressor; task=preprocessing.preprocess_tasks('training', ['007bbfb7'])[0]; model=arc_compressor.ARCCompressor(task); logits,x_mask,y_mask,kl,names=model.forward(); torch.cuda.synchronize(); print(task.task_name, tuple(logits.shape), tuple(x_mask.shape), len(kl), torch.cuda.max_memory_allocated())\"",
+  "resources": {
+    "workspace_available_bytes_after": 41808936960,
+    "peak_process_vram_bytes": 188345856
+  },
+  "results": {
+    "task_id": "007bbfb7",
+    "logits_shape": [6, 4, 9, 9, 2],
+    "x_mask_shape": [6, 9, 2],
+    "kl_term_count": 18,
+    "forward_completed": true
+  },
+  "failures": [],
+  "files": {
+    "stdout": {
+      "path": "stdout.log",
+      "sha256": "298045cea1de14e34c9360855785979ce9aa11190e9f337a215f2b1dd9899b35"
+    }
+  },
+  "notes": "This is a compatibility and forward-pass smoke only. It performs no optimization, prediction, benchmark scoring, or paper reproduction."
+}

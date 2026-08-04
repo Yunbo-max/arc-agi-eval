@@ -1,0 +1,103 @@
+{
+  "artifacts": {
+    "checkpoint": null,
+    "plots": [],
+    "prediction_bytes": 2559,
+    "prediction_sha256": "65484f534e97769ecf671d2a9f0a95c0a394234a724b3834fcb8664afb85b342",
+    "predictions": "predictions.json"
+  },
+  "command": [
+    "scripts/run_compressarc.py",
+    "--split",
+    "training",
+    "--task-id",
+    "007bbfb7",
+    "--steps",
+    "2",
+    "--task-dir",
+    "third_party/arc-agi-1/data/training",
+    "--run-dir",
+    "reports/compressarc/20260804-training-2step",
+    "--log-interval",
+    "1"
+  ],
+  "configuration": {
+    "log_interval": 1,
+    "optimizer": "torch.optim.Adam(lr=0.01, betas=(0.5, 0.9))",
+    "seed": 0,
+    "split": "training",
+    "steps_requested": 2,
+    "task_directory": "/workspace/arc-agi/third_party/arc-agi-1/data/training",
+    "task_id": "007bbfb7",
+    "test_outputs_available_to_optimizer": false,
+    "top_k": 2
+  },
+  "counts": {
+    "attempts_generated": 2,
+    "steps_completed": 2,
+    "tasks_predicted": 1,
+    "tasks_requested": 1,
+    "test_outputs_predicted": 1
+  },
+  "ended_at_utc": "2026-08-04T05:14:39Z",
+  "environment": {
+    "cuda_available": true,
+    "deviations": [
+      "torch 2.13.0+cu132 instead of upstream torch==2.5.1"
+    ],
+    "gpu": {
+      "compute_capability": [
+        12,
+        0
+      ],
+      "device_index": 0,
+      "name": "NVIDIA GeForce RTX 5090"
+    },
+    "packages": {
+      "matplotlib": "3.11.1",
+      "numpy": "2.3.5",
+      "torch": "2.13.0+cu132",
+      "tqdm": "4.70.0"
+    },
+    "platform": "Linux-6.12.35-061235-generic-x86_64-with-glibc2.35",
+    "python": "3.12.11",
+    "python_implementation": "CPython",
+    "torch_cuda_runtime": "13.2",
+    "upstream_torch_version": "2.5.1"
+  },
+  "error_traceback": null,
+  "final_loss": 182730.140625,
+  "metrics": {
+    "cell_accuracy": 0.13580246913580246,
+    "cells_correct": 11,
+    "cells_total": 81,
+    "output_exact_accuracy": 0.0,
+    "outputs_exact": 0,
+    "outputs_total": 1,
+    "task_exact_accuracy": 0.0,
+    "tasks_exact": 0,
+    "tasks_predicted": 1,
+    "tasks_total": 1,
+    "top_k": 2
+  },
+  "peak_process_vram_bytes": 224611840,
+  "run_id": "20260804-training-2step",
+  "runner": "scripts.run_compressarc",
+  "runner_version": 1,
+  "schema_version": 1,
+  "source": {
+    "expected_retained_tree_sha256": "db41685bb9161aa2aa9727dea2a48a601285c04e821ca1b8e9e7d76251d202e7",
+    "local_path": "external/CompressARC",
+    "observed_retained_tree_sha256": "db41685bb9161aa2aa9727dea2a48a601285c04e821ca1b8e9e7d76251d202e7",
+    "repository": "https://github.com/iliao2345/CompressARC",
+    "revision": "83a22218024d46273eb32b769a906340202ffb4d",
+    "verified": true
+  },
+  "started_at_utc": "2026-08-04T05:14:32Z",
+  "status": "passed",
+  "timing": {
+    "prediction_wall_time_seconds": 7.032235,
+    "scoring_wall_time_seconds": 0.000765,
+    "wall_time_seconds": 7.057567
+  }
+}

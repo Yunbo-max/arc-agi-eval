@@ -1,0 +1,36 @@
+{
+  "attempts_total": 838,
+  "dataset_path": "/workspace/arc-agi/third_party/arc-agi-1/data/evaluation",
+  "prediction_path": "/workspace/arc-agi/results/arc-agi-1-evaluation-baseline-predictions.json",
+  "prediction_sha256": "ef75b401d4b54623372dc2746312e807722ffd2cabf52311dd855aa1fc1f05f5",
+  "prediction_wall_time_seconds": 0.253835,
+  "runner": "arc_agi_eval.deterministic_baseline",
+  "runner_version": 1,
+  "schema_version": 1,
+  "score": {
+    "cell_accuracy": 0.743937471451048,
+    "cells_correct": 73289,
+    "cells_total": 98515,
+    "output_exact_accuracy": 0.0,
+    "outputs_exact": 0,
+    "outputs_total": 419,
+    "task_exact_accuracy": 0.0,
+    "tasks_exact": 0,
+    "tasks_predicted": 400,
+    "tasks_total": 400,
+    "top_k": 2
+  },
+  "scoring_wall_time_seconds": 0.149621,
+  "solver_attempt_counts": {
+    "constant_color:0": 1,
+    "constant_color:1": 1,
+    "copy_input": 419,
+    "dominant_color": 417
+  },
+  "split": "evaluation",
+  "started_at_utc": "2026-08-04T04:54:44.842188+00:00",
+  "tasks_total": 400,
+  "test_outputs_total": 419,
+  "top_k": 2,
+  "wall_time_seconds": 0.407453
+}

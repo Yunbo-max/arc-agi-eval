@@ -1,0 +1,929 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-08-04",
+  "scope": "Source audit plus tracked execution status; paper benchmark and full-reproduction claims remain separate.",
+  "target_hardware": {
+    "gpu": "NVIDIA RTX 5090",
+    "vram_gib": 32,
+    "free_disk_gib_at_planning_time": 41,
+    "minimum_free_disk_reserve_gib": 8,
+    "gpu_count": 1
+  },
+  "enums": {
+    "availability": [
+      "public_candidate",
+      "partial_complex",
+      "unavailable_blocked"
+    ],
+    "execution_status": [
+      "not_started",
+      "running",
+      "passed",
+      "failed",
+      "blocked",
+      "not_applicable"
+    ],
+    "feasibility": [
+      "feasible",
+      "likely",
+      "tight",
+      "reduced_only",
+      "unknown",
+      "blocked"
+    ],
+    "artifact_code": [
+      "available",
+      "partial",
+      "unavailable"
+    ],
+    "artifact_checkpoint": [
+      "bundled",
+      "external_available",
+      "partial",
+      "not_advertised",
+      "not_required",
+      "unavailable",
+      "unknown"
+    ],
+    "artifact_data": [
+      "bundled",
+      "external_available",
+      "mixed",
+      "partial",
+      "unavailable",
+      "unknown"
+    ],
+    "artifact_api": [
+      "required",
+      "optional",
+      "not_required",
+      "unknown"
+    ]
+  },
+  "estimate_units": {
+    "disk_gib": "incremental local storage including environment and selected artifacts",
+    "vram_gib": "estimated peak device memory",
+    "runtime_hours": "estimated wall time on one RTX 5090, excluding environment repair",
+    "range_encoding": "[minimum, maximum]; null maximum means unbounded or above host capacity"
+  },
+  "summary": {
+    "entry_count": 24,
+    "public_candidate_count": 19,
+    "partial_complex_count": 1,
+    "unavailable_blocked_count": 4,
+    "smoke_passed_count": 1,
+    "benchmark_passed_count": 0,
+    "full_reproduction_passed_count": 0
+  },
+  "entries": [
+    {
+      "id": "barc",
+      "name": "BARC",
+      "domain": "arc_solver",
+      "reference_url": "https://arxiv.org/abs/2411.02272",
+      "repository": {
+        "url": "https://github.com/xu3kev/BARC",
+        "default_branch": "master",
+        "verified_at": "2026-08-04"
+      },
+      "availability": "public_candidate",
+      "artifacts": {
+        "code": "available",
+        "checkpoint": "external_available",
+        "data": "mixed",
+        "api": "optional",
+        "notes": "HF models, TTT LoRAs, and synthetic datasets are linked; seeds are bundled."
+      },
+      "environment": {
+        "python": "3.10",
+        "stack": ["PyTorch 2.4", "FlashAttention", "alignment-handbook", "vLLM 0.6.0 or 0.5.4"],
+        "notes": "Induction and transduction use different vLLM versions."
+      },
+      "estimates": {
+        "smoke": {"disk_gib": [1, 5], "vram_gib": [0, 8], "runtime_hours": [0.5, 2]},
+        "benchmark": {"disk_gib": [18, 35], "vram_gib": [18, 30], "runtime_hours": [6, 24]},
+        "full": {"disk_gib": [100, null], "vram_gib": [32, null], "runtime_hours": [72, null]}
+      },
+      "priority": {"phase": 2, "order": 8},
+      "reproduction": {
+        "smoke": {"status": "not_started", "feasibility": "feasible"},
+        "benchmark": {"status": "not_started", "feasibility": "tight"},
+        "full": {"status": "not_started", "feasibility": "blocked"}
+      },
+      "blockers": ["Paper-scale fine-tuning uses an eight-process ZeRO-3 recipe.", "Full model and dataset footprint exceeds available storage."]
+    },
+    {
+      "id": "lpn",
+      "name": "LPN",
+      "domain": "arc_solver",
+      "reference_url": "https://arxiv.org/abs/2411.08706",
+      "repository": {
+        "url": "https://github.com/clement-bonnet/lpn",
+        "default_branch": "main",
+        "verified_at": "2026-08-04"
+      },
+      "availability": "public_candidate",
+      "artifacts": {
+        "code": "available",
+        "checkpoint": "not_advertised",
+        "data": "external_available",
+        "api": "optional",
+        "notes": "Training uses re-ARC processing; HF and W&B credentials are expected by the documented workflow."
+      },
+      "environment": {
+        "python": "unspecified",
+        "stack": ["JAX", "Hydra"],
+        "notes": "A TPU setup script is provided upstream."
+      },
+      "estimates": {
+        "smoke": {"disk_gib": [1, 3], "vram_gib": [4, 12], "runtime_hours": [0.5, 2]},
+        "benchmark": {"disk_gib": [10, 30], "vram_gib": [24, 32], "runtime_hours": [24, 96]},
+        "full": {"disk_gib": [41, null], "vram_gib": [32, null], "runtime_hours": [96, null]}
+      },
+      "priority": {"phase": 1, "order": 6},
+      "reproduction": {
+        "smoke": {"status": "not_started", "feasibility": "likely"},
+        "benchmark": {"status": "not_started", "feasibility": "reduced_only"},
+        "full": {"status": "not_started", "feasibility": "blocked"}
+      },
+      "blockers": ["No paper checkpoint is advertised.", "Published accelerator topology is not matched by one RTX 5090."]
+    },
+    {
+      "id": "architects-2024",
+      "name": "ARChitects 2024",
+      "domain": "arc_solver",
+      "reference_url": "https://github.com/da-fr/arc-prize-2024/blob/main/the_architects.pdf",
+      "repository": {
+        "url": "https://github.com/da-fr/arc-prize-2024",
+        "default_branch": "main",
+        "verified_at": "2026-08-04"
+      },
+      "availability": "public_candidate",
+      "artifacts": {
+        "code": "available",
+        "checkpoint": "external_available",
+        "data": "external_available",
+        "api": "not_required",
+        "notes": "A 4-bit Mistral-NeMo-Minitron-8B checkpoint is linked on HF; ARC/Kaggle inputs are external."
+      },
+      "environment": {
+        "python": "unspecified",
+        "stack": ["Unsloth", "PyTorch", "diskcache"],
+        "notes": "The historical 2024 package/CUDA combination should be isolated."
+      },
+      "estimates": {
+        "smoke": {"disk_gib": [10, 20], "vram_gib": [12, 20], "runtime_hours": [0.5, 2]},
+        "benchmark": {"disk_gib": [18, 30], "vram_gib": [20, 32], "runtime_hours": [6, 12]},
+        "full": {"disk_gib": [30, 60], "vram_gib": [24, 80], "runtime_hours": [24, 96]}
+      },
+      "priority": {"phase": 2, "order": 7},
+      "reproduction": {
+        "smoke": {"status": "not_started", "feasibility": "feasible"},
+        "benchmark": {"status": "not_started", "feasibility": "tight"},
+        "full": {"status": "not_started", "feasibility": "reduced_only"}
+      },
+      "blockers": ["Full retraining is storage-sensitive.", "Exact historical dependency resolution may require repair."]
+    },
+    {
+      "id": "gridcoder2024",
+      "name": "GridCoder2024",
+      "domain": "arc_solver",
+      "reference_url": "https://arxiv.org/abs/2411.17708",
+      "repository": {
+        "url": "https://github.com/SimonOuellette35/GridCoder2024",
+        "default_branch": "main",
+        "verified_at": "2026-08-04"
+      },
+      "availability": "public_candidate",
+      "artifacts": {
+        "code": "available",
+        "checkpoint": "external_available",
+        "data": "external_available",
+        "api": "not_required",
+        "notes": "Pretrained weight is on Kaggle; ARC and ARC_gym are separate dependencies."
+      },
+      "environment": {
+        "python": "unspecified",
+        "stack": ["PyTorch", "ARC_gym"],
+        "notes": "No complete pinned environment is published."
+      },
+      "estimates": {
+        "smoke": {"disk_gib": [1, 3], "vram_gib": [4, 12], "runtime_hours": [0.25, 1]},
+        "benchmark": {"disk_gib": [2, 10], "vram_gib": [8, 24], "runtime_hours": [1, 24]},
+        "full": {"disk_gib": [10, 40], "vram_gib": [24, 32], "runtime_hours": [24, 168]}
+      },
+      "priority": {"phase": 1, "order": 4},
+      "reproduction": {
+        "smoke": {"status": "not_started", "feasibility": "feasible"},
+        "benchmark": {"status": "not_started", "feasibility": "likely"},
+        "full": {"status": "not_started", "feasibility": "unknown"}
+      },
+      "blockers": ["The evaluator runs one named task at a time.", "Paper experiments cover a declared DSL-solvable subset rather than all ARC tasks."]
+    },
+    {
+      "id": "2d-ngpt",
+      "name": "2D nGPT",
+      "domain": "arc_solver",
+      "reference_url": "https://github.com/jfpuget/ARC-AGI-Challenge-2024/blob/main/arc.pdf",
+      "repository": {
+        "url": "https://github.com/jfpuget/ARC-AGI-Challenge-2024",
+        "default_branch": "main",
+        "verified_at": "2026-08-04"
+      },
+      "availability": "public_candidate",
+      "artifacts": {
+        "code": "available",
+        "checkpoint": "partial",
+        "data": "external_available",
+        "api": "not_required",
+        "notes": "A checkpoint area exists, but reusable weight provenance needs verification; ARC and re-ARC data are external."
+      },
+      "environment": {
+        "python": "NGC 24.09 container default",
+        "stack": ["NVIDIA PyTorch NGC 24.09", "NumPy", "einops", "rotary-embedding-torch"],
+        "notes": "Upstream documents the container rather than a fully pinned pip lock."
+      },
+      "estimates": {
+        "smoke": {"disk_gib": [1, 5], "vram_gib": [8, 16], "runtime_hours": [1, 6]},
+        "benchmark": {"disk_gib": [5, 20], "vram_gib": [24, 32], "runtime_hours": [6, 24]},
+        "full": {"disk_gib": [20, 80], "vram_gib": [32, null], "runtime_hours": [24, 168]}
+      },
+      "priority": {"phase": 1, "order": 5},
+      "reproduction": {
+        "smoke": {"status": "not_started", "feasibility": "likely"},
+        "benchmark": {"status": "not_started", "feasibility": "tight"},
+        "full": {"status": "not_started", "feasibility": "reduced_only"}
+      },
+      "blockers": ["Training duration is not specified.", "re-ARC generation and training data may exceed local storage."]
+    },
+    {
+      "id": "tiny-recursive-models",
+      "name": "TinyRecursiveModels",
+      "domain": "arc_solver",
+      "reference_url": "https://arxiv.org/abs/2510.04871",
+      "repository": {
+        "url": "https://github.com/SamsungSAILMontreal/TinyRecursiveModels",
+        "default_branch": "main",
+        "verified_at": "2026-08-04",
+        "archived": true
+      },
+      "availability": "public_candidate",
+      "artifacts": {
+        "code": "available",
+        "checkpoint": "not_advertised",
+        "data": "external_available",
+        "api": "optional",
+        "notes": "Dataset builders are included; ARC inputs and generated augmented data are required. W&B is optional."
+      },
+      "environment": {
+        "python": "3.10",
+        "stack": ["CUDA 12.6", "PyTorch nightly", "adam-atan2", "Hydra"],
+        "notes": "Repository is archived and read-only."
+      },
+      "estimates": {
+        "smoke": {"disk_gib": [0.5, 3], "vram_gib": [4, 12], "runtime_hours": [0.5, 2]},
+        "benchmark": {"disk_gib": [15, 35], "vram_gib": [24, 32], "runtime_hours": [24, 96]},
+        "full": {"disk_gib": [50, 150], "vram_gib": [32, null], "runtime_hours": [72, null]}
+      },
+      "priority": {"phase": 3, "order": 12},
+      "reproduction": {
+        "smoke": {"status": "not_started", "feasibility": "feasible"},
+        "benchmark": {"status": "not_started", "feasibility": "reduced_only"},
+        "full": {"status": "not_started", "feasibility": "blocked"}
+      },
+      "blockers": ["ARC runs are reported at about three days on four H100s.", "No paper checkpoint is advertised."]
+    },
+    {
+      "id": "soar",
+      "name": "SOAR",
+      "domain": "arc_solver",
+      "reference_url": "https://arxiv.org/abs/2507.14172",
+      "repository": {
+        "url": "https://github.com/flowersteam/SOAR",
+        "default_branch": "main",
+        "verified_at": "2026-08-04"
+      },
+      "availability": "public_candidate",
+      "artifacts": {
+        "code": "available",
+        "checkpoint": "external_available",
+        "data": "external_available",
+        "api": "optional",
+        "notes": "Five HF models from 7B to 123B and a 5M-solution dataset are linked."
+      },
+      "environment": {
+        "python": "3.11",
+        "stack": ["SGLang >=0.4.7", "Unsloth", "PyTorch CUDA 12.1"],
+        "notes": "Inference and training use separate environments."
+      },
+      "estimates": {
+        "smoke": {"disk_gib": [16, 25], "vram_gib": [16, 28], "runtime_hours": [1, 4]},
+        "benchmark": {"disk_gib": [25, 41], "vram_gib": [24, 32], "runtime_hours": [24, 72]},
+        "full": {"disk_gib": [500, null], "vram_gib": [32, null], "runtime_hours": [168, null]}
+      },
+      "priority": {"phase": 3, "order": 13},
+      "reproduction": {
+        "smoke": {"status": "not_started", "feasibility": "tight"},
+        "benchmark": {"status": "not_started", "feasibility": "reduced_only"},
+        "full": {"status": "not_started", "feasibility": "blocked"}
+      },
+      "blockers": ["Smallest model plus useful data is storage-tight.", "Full evolutionary training and larger models require substantially more compute."]
+    },
+    {
+      "id": "compressarc",
+      "name": "CompressARC",
+      "domain": "arc_solver",
+      "reference_url": "https://iliao2345.github.io/blog_posts/arc_agi_without_pretraining/arc_agi_without_pretraining.html",
+      "repository": {
+        "url": "https://github.com/iliao2345/CompressARC",
+        "default_branch": "master",
+        "verified_at": "2026-08-04"
+      },
+      "availability": "public_candidate",
+      "artifacts": {
+        "code": "available",
+        "checkpoint": "not_required",
+        "data": "bundled",
+        "api": "not_required",
+        "notes": "The model trains from scratch per task; prior result files are bundled."
+      },
+      "environment": {
+        "python": "unspecified",
+        "stack": ["PyTorch", "requirements.txt"],
+        "notes": "Upstream reports about 20 minutes per task on an RTX 4070."
+      },
+      "estimates": {
+        "smoke": {"disk_gib": [0.2, 2], "vram_gib": [2, 8], "runtime_hours": [0.3, 1]},
+        "benchmark": {"disk_gib": [2, 10], "vram_gib": [8, 20], "runtime_hours": [48, 168]},
+        "full": {"disk_gib": [5, 20], "vram_gib": [8, 24], "runtime_hours": [96, 336]}
+      },
+      "priority": {"phase": 1, "order": 1},
+      "reproduction": {
+        "smoke": {"status": "passed", "feasibility": "feasible"},
+        "benchmark": {"status": "not_started", "feasibility": "feasible"},
+        "full": {"status": "not_started", "feasibility": "likely"}
+      },
+      "blockers": ["A full split is long because every task receives independent training."]
+    },
+    {
+      "id": "arc-vsa-2025",
+      "name": "ARC-VSA-2025",
+      "domain": "arc_solver",
+      "reference_url": "https://arxiv.org/abs/2511.08747",
+      "repository": {
+        "url": "https://github.com/ijoffe/ARC-VSA-2025",
+        "default_branch": "main",
+        "verified_at": "2026-08-04"
+      },
+      "availability": "public_candidate",
+      "artifacts": {
+        "code": "available",
+        "checkpoint": "not_advertised",
+        "data": "mixed",
+        "api": "not_required",
+        "notes": "Solver source and competition layout are public; local input wiring must be verified."
+      },
+      "environment": {
+        "python": "unspecified",
+        "stack": ["PyTorch", "nengo-spa", "NumPy", "SciPy", "scikit-learn", "scikit-image"],
+        "notes": "Requirements are unpinned."
+      },
+      "estimates": {
+        "smoke": {"disk_gib": [0.2, 2], "vram_gib": [0, 8], "runtime_hours": [0.5, 2]},
+        "benchmark": {"disk_gib": [2, 8], "vram_gib": [4, 16], "runtime_hours": [24, 72]},
+        "full": {"disk_gib": [5, 20], "vram_gib": [8, 24], "runtime_hours": [48, 168]}
+      },
+      "priority": {"phase": 1, "order": 2},
+      "reproduction": {
+        "smoke": {"status": "blocked", "feasibility": "blocked"},
+        "benchmark": {"status": "blocked", "feasibility": "blocked"},
+        "full": {"status": "blocked", "feasibility": "blocked"}
+      },
+      "blockers": ["The released solver imports an unavailable and unidentified sspspace implementation.", "No end-to-end local command or resource report is documented."]
+    },
+    {
+      "id": "arc-lang-public",
+      "name": "arc-lang-public",
+      "domain": "arc_solver",
+      "reference_url": "https://github.com/jerber/arc-lang-public/blob/main/from_parrots_to_von_neumanns.pdf",
+      "repository": {
+        "url": "https://github.com/jerber/arc-lang-public",
+        "default_branch": "main",
+        "verified_at": "2026-08-04"
+      },
+      "availability": "public_candidate",
+      "artifacts": {
+        "code": "available",
+        "checkpoint": "not_required",
+        "data": "bundled",
+        "api": "required",
+        "notes": "Provider models are called through OpenAI, Anthropic, Gemini, DeepSeek, OpenRouter, or xAI wrappers."
+      },
+      "environment": {
+        "python": "3.12+",
+        "stack": ["uv", "asyncio", "provider SDKs"],
+        "notes": "MAX_CONCURRENCY is required; Postgres is optional."
+      },
+      "estimates": {
+        "smoke": {"disk_gib": [0.2, 1], "vram_gib": [0, 0], "runtime_hours": [0.5, 2]},
+        "benchmark": {"disk_gib": [1, 5], "vram_gib": [0, 0], "runtime_hours": [6, 48]},
+        "full": {"disk_gib": [1, 5], "vram_gib": [0, 0], "runtime_hours": [24, null]}
+      },
+      "priority": {"phase": 2, "order": 9},
+      "reproduction": {
+        "smoke": {"status": "not_started", "feasibility": "feasible"},
+        "benchmark": {"status": "not_started", "feasibility": "likely"},
+        "full": {"status": "not_started", "feasibility": "blocked"}
+      },
+      "blockers": ["API quota and spend are unresolved.", "Mutable proprietary model snapshots prevent strict parity."]
+    },
+    {
+      "id": "epang-arc-agi",
+      "name": "epang080516/arc_agi",
+      "domain": "arc_solver",
+      "reference_url": "https://ctpang.substack.com/p/arc-agi-2-sota-efficient-evolutionary",
+      "repository": {
+        "url": "https://github.com/epang080516/arc_agi",
+        "default_branch": "main",
+        "verified_at": "2026-08-04"
+      },
+      "availability": "public_candidate",
+      "artifacts": {
+        "code": "available",
+        "checkpoint": "bundled",
+        "data": "bundled",
+        "api": "required",
+        "notes": "A saved program library is bundled; frontier LLM calls drive program generation."
+      },
+      "environment": {
+        "python": "3.11",
+        "stack": ["requirements_py311.txt", "provider SDKs", "optional Docker"],
+        "notes": "Only credentials for the selected provider are required."
+      },
+      "estimates": {
+        "smoke": {"disk_gib": [0.2, 1], "vram_gib": [0, 0], "runtime_hours": [0.5, 2]},
+        "benchmark": {"disk_gib": [1, 5], "vram_gib": [0, 0], "runtime_hours": [2, 24]},
+        "full": {"disk_gib": [1, 5], "vram_gib": [0, 0], "runtime_hours": [24, null]}
+      },
+      "priority": {"phase": 2, "order": 10},
+      "reproduction": {
+        "smoke": {"status": "not_started", "feasibility": "feasible"},
+        "benchmark": {"status": "not_started", "feasibility": "likely"},
+        "full": {"status": "not_started", "feasibility": "blocked"}
+      },
+      "blockers": ["Reported runs depend on paid frontier APIs.", "Library ordering and provider model drift affect results."]
+    },
+    {
+      "id": "arc-nca",
+      "name": "ARC_NCA",
+      "domain": "arc_solver",
+      "reference_url": "https://github.com/etimush/ARC_NCA",
+      "repository": {
+        "url": "https://github.com/etimush/ARC_NCA",
+        "default_branch": "main",
+        "verified_at": "2026-08-04"
+      },
+      "availability": "public_candidate",
+      "artifacts": {
+        "code": "available",
+        "checkpoint": "not_advertised",
+        "data": "external_available",
+        "api": "not_required",
+        "notes": "Training, parsing, and visualization are notebook-centric."
+      },
+      "environment": {
+        "python": "unspecified",
+        "stack": ["Jupyter", "PyTorch"],
+        "notes": "Code hard-codes cuda:0 and package versions are not pinned."
+      },
+      "estimates": {
+        "smoke": {"disk_gib": [0.2, 2], "vram_gib": [2, 8], "runtime_hours": [0.5, 2]},
+        "benchmark": {"disk_gib": [2, 10], "vram_gib": [8, 24], "runtime_hours": [24, 72]},
+        "full": {"disk_gib": [5, 20], "vram_gib": [8, 24], "runtime_hours": [72, 336]}
+      },
+      "priority": {"phase": 1, "order": 3},
+      "reproduction": {
+        "smoke": {"status": "not_started", "feasibility": "likely"},
+        "benchmark": {"status": "not_started", "feasibility": "likely"},
+        "full": {"status": "not_started", "feasibility": "unknown"}
+      },
+      "blockers": ["No requirements file or single benchmark entry point exists.", "Notebook parameters and environment need reconstruction."]
+    },
+    {
+      "id": "arcmemo",
+      "name": "ArcMemo",
+      "domain": "arc_solver",
+      "reference_url": "https://arxiv.org/abs/2509.04439",
+      "repository": {
+        "url": "https://github.com/matt-seb-ho/arc_memo",
+        "default_branch": "main",
+        "verified_at": "2026-08-04"
+      },
+      "availability": "public_candidate",
+      "artifacts": {
+        "code": "available",
+        "checkpoint": "not_required",
+        "data": "bundled",
+        "api": "required",
+        "notes": "Concept annotations and helper-puzzle pipeline are bundled; reported inference uses provider models."
+      },
+      "environment": {
+        "python": "3.11",
+        "stack": ["Hydra", "requirements.txt", "provider SDKs"],
+        "notes": "Reported examples use o4-mini and GPT-4.1."
+      },
+      "estimates": {
+        "smoke": {"disk_gib": [0.2, 2], "vram_gib": [0, 0], "runtime_hours": [1, 4]},
+        "benchmark": {"disk_gib": [1, 5], "vram_gib": [0, 0], "runtime_hours": [24, 168]},
+        "full": {"disk_gib": [1, 10], "vram_gib": [0, 0], "runtime_hours": [168, null]}
+      },
+      "priority": {"phase": 2, "order": 11},
+      "reproduction": {
+        "smoke": {"status": "not_started", "feasibility": "feasible"},
+        "benchmark": {"status": "not_started", "feasibility": "likely"},
+        "full": {"status": "not_started", "feasibility": "blocked"}
+      },
+      "blockers": ["Proprietary model snapshots and rollout spend are not fixed.", "Continual-memory ordering must be pinned."]
+    },
+    {
+      "id": "nvarc",
+      "name": "NVARC",
+      "domain": "arc_solver_ensemble",
+      "reference_url": "https://github.com/1ytic/NVARC/blob/main/nvarc_2025.pdf",
+      "repository": {
+        "url": "https://github.com/1ytic/NVARC",
+        "default_branch": "main",
+        "verified_at": "2026-08-04"
+      },
+      "availability": "public_candidate",
+      "artifacts": {
+        "code": "available",
+        "checkpoint": "external_available",
+        "data": "external_available",
+        "api": "optional",
+        "notes": "Uses seven submodules plus external Kaggle synthetic datasets, notebooks, and component assets."
+      },
+      "environment": {
+        "python": "multiple component-specific environments",
+        "stack": ["ARChitects/Unsloth", "TinyRecursiveModels", "re-ARC"],
+        "notes": "No single unified environment covers the full ensemble."
+      },
+      "estimates": {
+        "smoke": {"disk_gib": [2, 10], "vram_gib": [8, 20], "runtime_hours": [1, 4]},
+        "benchmark": {"disk_gib": [20, 41], "vram_gib": [24, 32], "runtime_hours": [24, 96]},
+        "full": {"disk_gib": [100, null], "vram_gib": [32, null], "runtime_hours": [168, null]}
+      },
+      "priority": {"phase": 3, "order": 14},
+      "reproduction": {
+        "smoke": {"status": "not_started", "feasibility": "likely"},
+        "benchmark": {"status": "not_started", "feasibility": "reduced_only"},
+        "full": {"status": "not_started", "feasibility": "blocked"}
+      },
+      "blockers": ["The 3.2M augmented corpus and full ensemble exceed 41 GiB.", "Several independently complex systems and external Kaggle assets must be coordinated."]
+    },
+    {
+      "id": "latentmas",
+      "name": "LatentMAS",
+      "domain": "multi_agent",
+      "reference_url": "https://arxiv.org/abs/2511.20639",
+      "repository": {
+        "url": "https://github.com/Gen-Verse/LatentMAS",
+        "default_branch": "main",
+        "verified_at": "2026-08-04"
+      },
+      "availability": "public_candidate",
+      "artifacts": {
+        "code": "available",
+        "checkpoint": "external_available",
+        "data": "mixed",
+        "api": "not_required",
+        "notes": "Method is training-free but requires external Qwen/HF base models and benchmark datasets."
+      },
+      "environment": {
+        "python": "3.10",
+        "stack": ["Transformers", "optional vLLM"],
+        "notes": "Official results should use HF path; hybrid vLLM path recommends two GPUs."
+      },
+      "estimates": {
+        "smoke": {"disk_gib": [10, 20], "vram_gib": [10, 20], "runtime_hours": [1, 3]},
+        "benchmark": {"disk_gib": [15, 35], "vram_gib": [18, 32], "runtime_hours": [6, 48]},
+        "full": {"disk_gib": [35, 80], "vram_gib": [32, null], "runtime_hours": [24, 120]}
+      },
+      "priority": {"phase": 3, "order": 16},
+      "reproduction": {
+        "smoke": {"status": "not_started", "feasibility": "feasible"},
+        "benchmark": {"status": "not_started", "feasibility": "reduced_only"},
+        "full": {"status": "not_started", "feasibility": "blocked"}
+      },
+      "blockers": ["Official 14B hybrid path recommends two GPUs.", "One-GPU 4B/8B runs are reduced configurations."]
+    },
+    {
+      "id": "agent-primitives",
+      "name": "AgentPrimitives",
+      "domain": "multi_agent",
+      "reference_url": "https://arxiv.org/abs/2602.03695",
+      "repository": {
+        "url": "https://github.com/haibojin001/AgentPrimitives",
+        "default_branch": "main",
+        "verified_at": "2026-08-04"
+      },
+      "availability": "public_candidate",
+      "artifacts": {
+        "code": "partial",
+        "checkpoint": "external_available",
+        "data": "bundled",
+        "api": "not_required",
+        "notes": "Reference modules and baselines exist; a clean end-to-end demo is announced but not present."
+      },
+      "environment": {
+        "python": "3.10",
+        "stack": ["Transformers", "PyTorch", "HF backbone"],
+        "notes": "Requirements are provided."
+      },
+      "estimates": {
+        "smoke": {"disk_gib": [10, 20], "vram_gib": [12, 24], "runtime_hours": [1, 3]},
+        "benchmark": {"disk_gib": null, "vram_gib": null, "runtime_hours": null},
+        "full": {"disk_gib": null, "vram_gib": null, "runtime_hours": null}
+      },
+      "priority": {"phase": 3, "order": 17},
+      "reproduction": {
+        "smoke": {"status": "not_started", "feasibility": "unknown"},
+        "benchmark": {"status": "blocked", "feasibility": "blocked"},
+        "full": {"status": "blocked", "feasibility": "blocked"}
+      },
+      "blockers": ["README states that the end-to-end demo and detailed experiment pipelines are forthcoming."]
+    },
+    {
+      "id": "graphplanner",
+      "name": "GraphPlanner",
+      "domain": "multi_agent_router",
+      "reference_url": "https://arxiv.org/abs/2604.23626",
+      "repository": {
+        "url": "https://github.com/ulab-uiuc/GraphPlanner",
+        "default_branch": "main",
+        "verified_at": "2026-08-04"
+      },
+      "availability": "public_candidate",
+      "artifacts": {
+        "code": "available",
+        "checkpoint": "not_advertised",
+        "data": "mixed",
+        "api": "required",
+        "notes": "Router training code and schemas are public; agent execution uses NVIDIA NIM/OpenAI-compatible APIs."
+      },
+      "environment": {
+        "python": "3.10+",
+        "stack": ["PyTorch", "PyTorch Geometric", "torch-scatter", "Transformers", "OpenAI SDK"],
+        "notes": "Documented CUDA extension wheels target an older PyTorch/CUDA stack."
+      },
+      "estimates": {
+        "smoke": {"disk_gib": [1, 5], "vram_gib": [2, 8], "runtime_hours": [1, 4]},
+        "benchmark": {"disk_gib": [2, 10], "vram_gib": [4, 16], "runtime_hours": [24, 96]},
+        "full": {"disk_gib": null, "vram_gib": null, "runtime_hours": null}
+      },
+      "priority": {"phase": 3, "order": 18},
+      "reproduction": {
+        "smoke": {"status": "not_started", "feasibility": "likely"},
+        "benchmark": {"status": "not_started", "feasibility": "reduced_only"},
+        "full": {"status": "blocked", "feasibility": "blocked"}
+      },
+      "blockers": ["NVIDIA NIM access and exact interaction histories are required.", "No trained router checkpoint is advertised."]
+    },
+    {
+      "id": "routemoa",
+      "name": "RouteMoA",
+      "domain": "multi_agent_router",
+      "reference_url": "https://arxiv.org/abs/2601.18130",
+      "repository": {
+        "url": "https://github.com/Jize-W/RouteMoA",
+        "default_branch": "main",
+        "verified_at": "2026-08-04"
+      },
+      "availability": "public_candidate",
+      "artifacts": {
+        "code": "available",
+        "checkpoint": "external_available",
+        "data": "bundled",
+        "api": "optional",
+        "notes": "Router weights and mDeBERTa are external; precomputed 450-item predictions/evaluation are bundled."
+      },
+      "environment": {
+        "python": "3.10",
+        "stack": ["Linux x86_64", "LMDeploy", "OpenCompass", "OpenAI-compatible services"],
+        "notes": "Local and large API pools are separate workflows."
+      },
+      "estimates": {
+        "smoke": {"disk_gib": [1, 5], "vram_gib": [0, 8], "runtime_hours": [1, 4]},
+        "benchmark": {"disk_gib": [2, 10], "vram_gib": [0, 12], "runtime_hours": [24, 96]},
+        "full": {"disk_gib": [100, null], "vram_gib": [350, null], "runtime_hours": [24, null]}
+      },
+      "priority": {"phase": 3, "order": 19},
+      "reproduction": {
+        "smoke": {"status": "not_started", "feasibility": "feasible"},
+        "benchmark": {"status": "not_started", "feasibility": "reduced_only"},
+        "full": {"status": "blocked", "feasibility": "blocked"}
+      },
+      "blockers": ["Local paper setup used five A800 80 GiB GPUs.", "Large-pool reproduction requires several paid APIs and an API judge."]
+    },
+    {
+      "id": "maca",
+      "name": "MACA",
+      "domain": "multi_agent",
+      "reference_url": "https://arxiv.org/abs/2605.25746",
+      "repository": {
+        "url": "https://github.com/However-Li/Multi-Agent-Coordination-Adaptation-via-Structure-Guided-Orchestration",
+        "default_branch": "main",
+        "verified_at": "2026-08-04"
+      },
+      "availability": "public_candidate",
+      "artifacts": {
+        "code": "available",
+        "checkpoint": "not_advertised",
+        "data": "partial",
+        "api": "unknown",
+        "notes": "The corrected repository contains configs, dataset preparation, GraphSpec, GRPO, tests, and unpinned requirements."
+      },
+      "environment": {
+        "python": "unspecified",
+        "stack": ["PyTorch", "Transformers", "sentence-transformers", "verl", "OpenAI SDK"],
+        "notes": "README contains only the project title."
+      },
+      "estimates": {
+        "smoke": {"disk_gib": [1, 5], "vram_gib": [0, 16], "runtime_hours": [1, 4]},
+        "benchmark": {"disk_gib": null, "vram_gib": null, "runtime_hours": null},
+        "full": {"disk_gib": null, "vram_gib": null, "runtime_hours": null}
+      },
+      "priority": {"phase": 3, "order": 20},
+      "reproduction": {
+        "smoke": {"status": "not_started", "feasibility": "unknown"},
+        "benchmark": {"status": "blocked", "feasibility": "blocked"},
+        "full": {"status": "blocked", "feasibility": "blocked"}
+      },
+      "blockers": ["No documented command, expected output, model, checkpoint, or hardware budget is published.", "GRPO/VERL training requirements are unknown."]
+    },
+    {
+      "id": "marc",
+      "name": "MARC",
+      "domain": "arc_solver",
+      "reference_url": "https://arxiv.org/abs/2411.07279",
+      "repository": {
+        "url": "https://github.com/ekinakyurek/marc",
+        "default_branch": "main",
+        "verified_at": "2026-08-04"
+      },
+      "availability": "partial_complex",
+      "artifacts": {
+        "code": "partial",
+        "checkpoint": "external_available",
+        "data": "external_available",
+        "api": "not_required",
+        "notes": "HF base/fine-tuned 8B models, LoRAs, and predictions are linked; ARC Prize 2024 data is external."
+      },
+      "environment": {
+        "python": "3.10",
+        "stack": ["custom torchtune fork", "PyTorch/torchao nightly cu121", "two custom vLLM forks"],
+        "notes": "Training and inference require separate incompatible environments and one documented manual patch."
+      },
+      "estimates": {
+        "smoke": {"disk_gib": [20, 35], "vram_gib": [20, 32], "runtime_hours": [2, 6]},
+        "benchmark": {"disk_gib": [25, 41], "vram_gib": [24, 32], "runtime_hours": [24, 168]},
+        "full": {"disk_gib": [41, null], "vram_gib": [32, null], "runtime_hours": [72, null]}
+      },
+      "priority": {"phase": 3, "order": 15},
+      "reproduction": {
+        "smoke": {"status": "not_started", "feasibility": "tight"},
+        "benchmark": {"status": "not_started", "feasibility": "reduced_only"},
+        "full": {"status": "not_started", "feasibility": "blocked"}
+      },
+      "blockers": ["Upstream warns that repository cleanup is still in progress.", "Incompatible training/inference stacks and model caches exceed the practical storage budget."]
+    },
+    {
+      "id": "omni-arc",
+      "name": "Omni-ARC",
+      "domain": "arc_solver",
+      "reference_url": "https://ironbar.github.io/arc24/05_Solution_Summary/",
+      "repository": {
+        "url": null,
+        "default_branch": null,
+        "verified_at": "2026-08-04"
+      },
+      "availability": "unavailable_blocked",
+      "artifacts": {
+        "code": "unavailable",
+        "checkpoint": "unavailable",
+        "data": "unavailable",
+        "api": "unknown",
+        "notes": "A solution write-up is available, but no verified public runnable repository was found."
+      },
+      "environment": {"python": null, "stack": [], "notes": "Unknown."},
+      "estimates": {
+        "smoke": {"disk_gib": null, "vram_gib": null, "runtime_hours": null},
+        "benchmark": {"disk_gib": null, "vram_gib": null, "runtime_hours": null},
+        "full": {"disk_gib": null, "vram_gib": null, "runtime_hours": null}
+      },
+      "priority": {"phase": 4, "order": 21},
+      "reproduction": {
+        "smoke": {"status": "blocked", "feasibility": "blocked"},
+        "benchmark": {"status": "blocked", "feasibility": "blocked"},
+        "full": {"status": "blocked", "feasibility": "blocked"}
+      },
+      "blockers": ["No verified public implementation or default branch."]
+    },
+    {
+      "id": "mini-arc-transformer",
+      "name": "Mini-ARC transformer implementation",
+      "domain": "arc_solver",
+      "reference_url": "https://www.paulfletcherhill.com/mini-arc.pdf",
+      "repository": {
+        "url": null,
+        "default_branch": null,
+        "verified_at": "2026-08-04"
+      },
+      "availability": "unavailable_blocked",
+      "artifacts": {
+        "code": "unavailable",
+        "checkpoint": "unavailable",
+        "data": "unavailable",
+        "api": "unknown",
+        "notes": "The paper is public, but the audited transformer implementation is not."
+      },
+      "environment": {"python": null, "stack": [], "notes": "Unknown."},
+      "estimates": {
+        "smoke": {"disk_gib": null, "vram_gib": null, "runtime_hours": null},
+        "benchmark": {"disk_gib": null, "vram_gib": null, "runtime_hours": null},
+        "full": {"disk_gib": null, "vram_gib": null, "runtime_hours": null}
+      },
+      "priority": {"phase": 4, "order": 22},
+      "reproduction": {
+        "smoke": {"status": "blocked", "feasibility": "blocked"},
+        "benchmark": {"status": "blocked", "feasibility": "blocked"},
+        "full": {"status": "blocked", "feasibility": "blocked"}
+      },
+      "blockers": ["No verified public implementation or default branch."]
+    },
+    {
+      "id": "neuromas",
+      "name": "NeuroMAS",
+      "domain": "multi_agent",
+      "reference_url": "https://arxiv.org/abs/2605.16757",
+      "repository": {
+        "url": null,
+        "default_branch": null,
+        "verified_at": "2026-08-04"
+      },
+      "availability": "unavailable_blocked",
+      "artifacts": {
+        "code": "unavailable",
+        "checkpoint": "unavailable",
+        "data": "unavailable",
+        "api": "unknown",
+        "notes": "No public implementation was verified."
+      },
+      "environment": {"python": null, "stack": [], "notes": "Unknown."},
+      "estimates": {
+        "smoke": {"disk_gib": null, "vram_gib": null, "runtime_hours": null},
+        "benchmark": {"disk_gib": null, "vram_gib": null, "runtime_hours": null},
+        "full": {"disk_gib": null, "vram_gib": null, "runtime_hours": null}
+      },
+      "priority": {"phase": 4, "order": 23},
+      "reproduction": {
+        "smoke": {"status": "blocked", "feasibility": "blocked"},
+        "benchmark": {"status": "blocked", "feasibility": "blocked"},
+        "full": {"status": "blocked", "feasibility": "blocked"}
+      },
+      "blockers": ["No verified public implementation or default branch."]
+    },
+    {
+      "id": "rem-moa",
+      "name": "ReM-MoA",
+      "domain": "multi_agent",
+      "reference_url": "https://arxiv.org/abs/2606.24437",
+      "repository": {
+        "url": null,
+        "default_branch": null,
+        "verified_at": "2026-08-04"
+      },
+      "availability": "unavailable_blocked",
+      "artifacts": {
+        "code": "unavailable",
+        "checkpoint": "unavailable",
+        "data": "unavailable",
+        "api": "unknown",
+        "notes": "No public implementation was verified."
+      },
+      "environment": {"python": null, "stack": [], "notes": "Unknown."},
+      "estimates": {
+        "smoke": {"disk_gib": null, "vram_gib": null, "runtime_hours": null},
+        "benchmark": {"disk_gib": null, "vram_gib": null, "runtime_hours": null},
+        "full": {"disk_gib": null, "vram_gib": null, "runtime_hours": null}
+      },
+      "priority": {"phase": 4, "order": 24},
+      "reproduction": {
+        "smoke": {"status": "blocked", "feasibility": "blocked"},
+        "benchmark": {"status": "blocked", "feasibility": "blocked"},
+        "full": {"status": "blocked", "feasibility": "blocked"}
+      },
+      "blockers": ["No verified public implementation or default branch."]
+    }
+  ]
+}
