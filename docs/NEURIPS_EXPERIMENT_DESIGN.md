@@ -753,7 +753,7 @@ run ID. Logs must never contain credentials or hidden labels.
 
 Observed on 2026-08-04:
 
-- the container root overlay is 100 GiB with only about 8.6 GiB free;
+- the container root overlay is 100 GiB with only about 7.3 GiB free;
 - a physical approximately 232.9 GiB NVMe device is visible but not mounted as a
   writable workspace volume;
 - `/model` is absent;
