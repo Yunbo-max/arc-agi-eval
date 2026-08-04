@@ -1,0 +1,9 @@
+# Shared one-GPU asset-validation environment for LatentMAS, AgentPrimitives,
+# and source-level multi-agent smokes. Install the host-compatible PyTorch
+# build separately or create the venv with --system-site-packages.
+transformers>=4.51,<5
+huggingface_hub>=0.29,<2
+datasets>=3,<5
+accelerate>=1,<2
+protobuf>=5,<7
+sentencepiece>=0.2,<1

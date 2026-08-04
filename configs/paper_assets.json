@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "storage": {
+    "dataset_repo": "humanlong/ARC-AGI-Eval-Data",
+    "model_repo": "humanlong/ARC-AGI-Eval-Models",
+    "private": true,
+    "policy": "Store source locks, manifests, approved derivatives, checkpoints produced by our runs, predictions, and metrics. Do not mirror gated or upstream weights without license review."
+  },
+  "shared_data": {
+    "arc_agi_1": {"path": "third_party/arc-agi-1/data", "revision": "399030444e0ab0cc8b4e199870fb20b863846f34", "training_tasks": 400, "evaluation_tasks": 400, "license": "Apache-2.0"},
+    "arc_agi_2": {"path": "third_party/arc-agi-2/data", "revision": "f3283f727488ad98fe575ea6a5ac981e4a188e49", "training_tasks": 1000, "evaluation_tasks": 120, "license": "Apache-2.0"}
+  },
+  "downloadable_assets": {
+    "architects_4bit": {"kind": "model", "repo_id": "da-fr/Mistral-NeMo-Minitron-8B-ARChitects-Full-bnb-4bit", "revision": "6de719999a213e717fe339fb5a29177ddc4310d9", "size_bytes": 3790920477, "auto_download": true},
+    "qwen3_4b": {"kind": "model", "repo_id": "Qwen/Qwen3-4B", "revision": "1cfa9a7208912126459214e8b04321603b3df60c", "size_bytes": 8060926626, "auto_download": true},
+    "mdeberta_v3_base": {"kind": "model", "repo_id": "microsoft/mdeberta-v3-base", "revision": "a0484667b22365f84929a935b5e50a51f71f159d", "size_bytes": 1337119122, "allow_patterns": ["README.md", "config.json", "pytorch_model.bin", "spm.model", "tokenizer_config.json"], "auto_download": true},
+    "longformer_base_4096": {"kind": "model", "repo_id": "allenai/longformer-base-4096", "revision": "301e6a42cb0d9976a6d6a26a079fef81c18aa895", "size_bytes": 599964347, "allow_patterns": ["README.md", "config.json", "merges.txt", "pytorch_model.bin", "tokenizer.json", "vocab.json"], "auto_download": true},
+    "bge_small_en_v15": {"kind": "model", "repo_id": "BAAI/bge-small-en-v1.5", "revision": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a", "size_bytes": 134505558, "allow_patterns": ["README.md", "1_Pooling/*", "config.json", "config_sentence_transformers.json", "model.safetensors", "modules.json", "sentence_bert_config.json", "special_tokens_map.json", "tokenizer.json", "tokenizer_config.json", "vocab.txt"], "auto_download": true},
+    "soar_train_5m": {"kind": "dataset", "repo_id": "julien31/soar_arc_train_5M", "revision": "cca6061b73c3e80bde9ad3278ad3cfc959bb59de", "size_bytes": 1863107341, "auto_download": true},
+    "gsm8k": {"kind": "dataset", "repo_id": "openai/gsm8k", "revision": "740312add88f781978c0658806c59bc2815b9866", "size_bytes": 5900352, "auto_download": true},
+    "aime_2024": {"kind": "dataset", "repo_id": "HuggingFaceH4/aime_2024", "revision": "2fe88a2f1091d5048c0f36abc874fb997b3dd99a", "size_bytes": 85063, "auto_download": true},
+    "aime_2025": {"kind": "dataset", "repo_id": "yentinglin/aime_2025", "revision": "6f71d77b0b89b9dabe07ab466c51df33f514df7f", "size_bytes": 44907, "auto_download": true},
+    "mbppplus": {"kind": "dataset", "repo_id": "evalplus/mbppplus", "revision": "b2d74c91837c3f2a20c1299ae98133cbe7cfa077", "size_bytes": 1131960, "auto_download": true},
+    "humanevalplus": {"kind": "dataset", "repo_id": "evalplus/humanevalplus", "revision": "d32357cf319e50e9c8d8dab5ea876c72b0fd321b", "size_bytes": 14358049, "auto_download": true}
+  },
+  "papers": {
+    "barc": {
+      "models": ["Four official `barc0/Llama-3.1-ARC-{Heavy,Potpourri}-{Induction,Transduction}-8B` models and two test-time LoRA repositories; each 8B base is deferred because one copy is about 16 GB."],
+      "datasets": ["ARC-AGI-1", "BARC synthetic ARC collections and prompt-formatted derivatives linked by upstream."],
+      "download_assets": [],
+      "entry_point": "Follow the locked upstream README; the published full SFT command uses eight ZeRO-3 processes.",
+      "ready_definition": "Source and ARC data ready; official 8B weights and paper-scale multi-GPU training deferred by disk/compute budget."
+    },
+    "lpn": {
+      "models": ["LPN trained from scratch; no paper checkpoint is advertised."],
+      "datasets": ["ARC-AGI and re-ARC generated training data."],
+      "download_assets": [],
+      "entry_point": "python src/train.py --config-name pattern_2d",
+      "ready_definition": "Source and ARC data ready; re-ARC generation and JAX environment remain to be staged."
+    },
+    "architects-2024": {
+      "models": ["da-fr/Mistral-NeMo-Minitron-8B-ARChitects-Full-bnb-4bit (published paper checkpoint)."],
+      "datasets": ["ARC Prize 2024 / ARC-AGI-1."],
+      "download_assets": ["architects_4bit"],
+      "entry_point": "Run the locked `kaggle_notebooks/arc-prize-2024_updated.ipynb` in an isolated Unsloth environment.",
+      "ready_definition": "Source, data, and published 4-bit checkpoint can be prepared on this host; historical package parity still needs validation."
+    },
+    "gridcoder2024": {
+      "models": ["Published GridCoder2024 checkpoint hosted on Kaggle Models; Kaggle credentials are required."],
+      "datasets": ["ARC-AGI-1 and the external ARC_gym package."],
+      "download_assets": [],
+      "entry_point": "python test_gridcoder.py --task 1990f7a8.json",
+      "ready_definition": "Source and ARC data ready; checkpoint and ARC_gym require Kaggle/manual access."
+    },
+    "2d-ngpt": {
+      "models": ["2D nGPT trained from scratch; checkpoint provenance in the public repository is incomplete."],
+      "datasets": ["ARC-AGI-1 plus re-ARC generated data."],
+      "download_assets": [],
+      "entry_point": "Use the locked training notebook or its `torchrun` command after re-ARC generation.",
+      "ready_definition": "Source and ARC data ready; generated corpus and verified checkpoint are not yet present."
+    },
+    "tiny-recursive-models": {
+      "models": ["Tiny Recursive Model, about 7M parameters, trained from scratch; no paper checkpoint advertised."],
+      "datasets": ["ARC-AGI-1/2 with upstream concept augmentation builders."],
+      "download_assets": [],
+      "entry_point": "python -m dataset.build_arc_dataset ... then python pretrain.py ...",
+      "ready_definition": "Source and raw ARC data ready; augmented corpora and multi-day training are deferred."
+    },
+    "soar": {
+      "models": ["julien31/Soar-qwen-7b is the smallest official checkpoint (~15.25 GB); larger 14B-123B variants are out of scope for this host."],
+      "datasets": ["julien31/soar_arc_train_5M (~1.86 GB) and ARC-AGI."],
+      "download_assets": ["soar_train_5m"],
+      "entry_point": "Use the locked upstream SGLang inference environment; training uses a separate Unsloth environment.",
+      "ready_definition": "Source and 5M training dataset prepared; 7B weight download is deferred to preserve the disk reserve."
+    },
+    "compressarc": {
+      "models": ["No checkpoint: a task-specific compressor trains from scratch."],
+      "datasets": ["Bundled ARC-AGI-1 aggregate files, verified against the canonical snapshot."],
+      "download_assets": [],
+      "entry_point": "python3 scripts/run_compressarc.py --split training --task-id 007bbfb7 --steps 1500 ...",
+      "ready_definition": "Source, data, runner, passing forward smoke, and one 1500-step run are ready."
+    },
+    "arc-vsa-2025": {
+      "models": ["No checkpoint advertised."],
+      "datasets": ["ARC competition layout plus upstream solver source."],
+      "download_assets": [],
+      "entry_point": "No valid local entry point is published.",
+      "ready_definition": "Blocked: upstream imports an unidentified, unavailable `sspspace` implementation."
+    },
+    "arc-lang-public": {
+      "models": ["Provider APIs: xAI Grok by default; OpenAI, Anthropic, Gemini, DeepSeek, and OpenRouter are supported."],
+      "datasets": ["ARC datasets bundled by upstream and canonical local ARC snapshots."],
+      "download_assets": [],
+      "entry_point": "python src/run.py",
+      "ready_definition": "Source and data ready; API keys, immutable model IDs, request cap, and spend approval are required."
+    },
+    "epang-arc-agi": {
+      "models": ["Frontier API models; reported final setup uses Grok-4 and a bundled learned program library."],
+      "datasets": ["ARC-AGI-1/2 public data; private/semi-private splits require official coordination."],
+      "download_assets": [],
+      "entry_point": "python -m src.submission -v1",
+      "ready_definition": "Source and public data ready; paid API credentials and a predeclared cost cap are required."
+    },
+    "arc-nca": {
+      "models": ["Neural cellular automaton trained from scratch; no checkpoint advertised."],
+      "datasets": ["ARC-AGI-1 prepared through notebook-centric scripts."],
+      "download_assets": [],
+      "entry_point": "Repair and parameterize the upstream training notebooks before a command-line smoke.",
+      "ready_definition": "Source and ARC data ready; environment and executable entry point require reconstruction."
+    },
+    "arcmemo": {
+      "models": ["Reported inference uses proprietary o4-mini and GPT-4.1 provider models; no local checkpoint required."],
+      "datasets": ["Bundled ARC concept annotations, helper puzzles, and ARC-AGI public data."],
+      "download_assets": [],
+      "entry_point": "python -m concept_mem.evaluation.driver ...",
+      "ready_definition": "Source and bundled annotations ready; API access, ordering, and spend cap are required."
+    },
+    "nvarc": {
+      "models": ["Ensemble of ARChitects, TRM, and other components; several checkpoints are Kaggle-hosted."],
+      "datasets": ["ARC-AGI plus 3.2M/5M-scale Kaggle synthetic and augmented corpora."],
+      "download_assets": [],
+      "entry_point": "Run one component at a time using the locked NVARC subdirectories.",
+      "ready_definition": "Source and canonical ARC data ready; full ensemble exceeds disk and single-GPU budget."
+    },
+    "latentmas": {
+      "models": ["Qwen/Qwen3-4B for the supported one-GPU reduced path; paper examples also use 8B and 14B."],
+      "datasets": ["openai/gsm8k first; upstream also supports MATH, HumanEval+, MBPP+, and MedQA."],
+      "download_assets": ["qwen3_4b", "gsm8k"],
+      "entry_point": "python run.py --method latent_mas --model_name Qwen/Qwen3-4B --task gsm8k --prompt sequential --max_samples -1 --max_new_tokens 2048",
+      "ready_definition": "Source, 4B model, and GSM8K support a reduced one-GPU smoke; official 14B hybrid is a two-GPU run."
+    },
+    "agent-primitives": {
+      "models": ["Upstream defaults to Qwen/Qwen3-8B; the shared Qwen3-4B asset is only a declared reduced smoke."],
+      "datasets": ["GSM8K, AIME 2024/2025, MBPP+, HumanEval+, plus optional GPQA/AI2-ARC/WinoGrande."],
+      "download_assets": ["qwen3_4b", "gsm8k", "aime_2024", "aime_2025", "mbppplus", "humanevalplus"],
+      "entry_point": "Upstream currently provides primitive modules and `bash baselines/latentmas.sh`, not a clean paper end-to-end runner.",
+      "ready_definition": "Source and reduced public assets ready; benchmark execution remains blocked by the missing documented pipeline."
+    },
+    "graphplanner": {
+      "models": ["allenai/longformer-base-4096 for embeddings; routed agents are called through NVIDIA NIM/OpenAI-compatible APIs."],
+      "datasets": ["Expected router train/test CSVs and agent-description embeddings are not released at the README placeholder URL."],
+      "download_assets": ["longformer_base_4096"],
+      "entry_point": "python -m router_planner.dynamic_router.train ...",
+      "ready_definition": "Source and embedding model ready; interaction data, NIM access, and trained router history are missing."
+    },
+    "routemoa": {
+      "models": ["microsoft/mdeberta-v3-base plus upstream router weights on Google Drive; routed LLM pool may be local or API-hosted."],
+      "datasets": ["Bundled 450-item evaluation/result set and OpenCompass datasets."],
+      "download_assets": ["mdeberta_v3_base"],
+      "entry_point": "python inference.py ... then python evaluate.py ...",
+      "ready_definition": "Source and mDeBERTa ready; Google Drive router weights and service/API configuration remain manual."
+    },
+    "maca": {
+      "models": ["BAAI/bge-small-en-v1.5 for task embeddings; execution supports provider or local Llama/Qwen models but no paper checkpoint is declared."],
+      "datasets": ["GSM8K first; configs also name MMLU-Pro, ARC-C, GSM-Hard, SVAMP, HumanEval, and MBPP."],
+      "download_assets": ["bge_small_en_v15", "gsm8k"],
+      "entry_point": "Use `scripts/run_dataset_prepare.py` and source-level tests; the paper README has no command contract.",
+      "ready_definition": "Source and small public assets ready; model, checkpoint, GRPO budget, and paper command remain under-specified."
+    },
+    "marc": {
+      "models": ["ekinakyurek/marc-8B-finetuned-llama3, BARC 8B base, LoRA adapters, and published prediction repositories (~16 GB per base)."],
+      "datasets": ["ARC Prize 2024 / ARC-AGI-1."],
+      "download_assets": [],
+      "entry_point": "python test_time_train.py ... followed by the separate-vLLM `python predict.py ...` pipeline.",
+      "ready_definition": "Source and ARC data ready; incompatible custom training/inference environments and 8B caches are deferred."
+    },
+    "omni-arc": {
+      "models": ["No verified public checkpoint."],
+      "datasets": ["No packaged public reproduction dataset beyond the ARC benchmark."],
+      "download_assets": [],
+      "entry_point": "Unavailable.",
+      "ready_definition": "Blocked: solution write-up exists, but no verified public implementation."
+    },
+    "mini-arc-transformer": {
+      "models": ["No verified public transformer implementation or checkpoint."],
+      "datasets": ["Mini-ARC paper data is not packaged by a verified implementation."],
+      "download_assets": [],
+      "entry_point": "Unavailable.",
+      "ready_definition": "Blocked: public paper only."
+    },
+    "neuromas": {
+      "models": ["No verified public model or checkpoint."],
+      "datasets": ["No verified packaged dataset."],
+      "download_assets": [],
+      "entry_point": "Unavailable.",
+      "ready_definition": "Blocked: no public runnable implementation verified."
+    },
+    "rem-moa": {
+      "models": ["No verified public model or checkpoint."],
+      "datasets": ["No verified packaged dataset."],
+      "download_assets": [],
+      "entry_point": "Unavailable.",
+      "ready_definition": "Blocked: no public runnable implementation verified."
+    }
+  }
+}

@@ -17,7 +17,7 @@ machine-readable inventory is [`configs/baselines.json`](configs/baselines.json)
 As of 2026-08-04:
 
 - The local ARC-AGI evaluator validates all 1,920 vendored ARC-AGI-1/2 tasks,
-  and its 23 tests pass.
+  and its 29 tests pass.
 - Repository URLs and default branches have been audited for 19 public
   candidates and the partial/complex MARC candidate.
 - Omni-ARC, the Mini-ARC transformer implementation, NeuroMAS, and ReM-MoA have

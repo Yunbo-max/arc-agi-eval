@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-04",
+  "asset_root_env": "ARC_PAPER_ASSETS_ROOT",
+  "default_asset_root": "/usr/paper-assets/arc",
+  "sources": {
+    "barc": {"url": "https://github.com/xu3kev/BARC", "branch": "master", "revision": "a7b51a6b1ff969da3a78a71c533b6d79a93966e7", "asset_subpath": "sources/barc"},
+    "lpn": {"url": "https://github.com/clement-bonnet/lpn", "branch": "main", "revision": "0adfe56b86d2cba5ae5794edb02da6399a96d98a", "asset_subpath": "sources/lpn"},
+    "architects-2024": {"url": "https://github.com/da-fr/arc-prize-2024", "branch": "main", "revision": "d3ac3f6ebf6fb609bfdc782561ee99977ca35d95", "asset_subpath": "sources/architects-2024"},
+    "gridcoder2024": {"url": "https://github.com/SimonOuellette35/GridCoder2024", "branch": "main", "revision": "bf6136e5f57029dcbbb85242b8ffd8a1a241bb5f", "asset_subpath": "sources/gridcoder2024"},
+    "2d-ngpt": {"url": "https://github.com/jfpuget/ARC-AGI-Challenge-2024", "branch": "main", "revision": "e5420b10b9470b3b5c6548572768d2d4c15130f6", "asset_subpath": "sources/2d-ngpt"},
+    "tiny-recursive-models": {"url": "https://github.com/SamsungSAILMontreal/TinyRecursiveModels", "branch": "main", "revision": "c01103738605ba39d1430519b1ee0c62f4c707f8", "asset_subpath": "sources/tiny-recursive-models"},
+    "soar": {"url": "https://github.com/flowersteam/SOAR", "branch": "main", "revision": "8ed0890b60b647f4ca8582b30f6dbc2c709ff443", "asset_subpath": "sources/soar"},
+    "compressarc": {"url": "https://github.com/iliao2345/CompressARC", "branch": "master", "revision": "83a22218024d46273eb32b769a906340202ffb4d", "repository_path": "external/CompressARC"},
+    "arc-vsa-2025": {"url": "https://github.com/ijoffe/ARC-VSA-2025", "branch": "main", "revision": "c031a9c6b4885ab03b28fbfdcd97b6b3693df564", "repository_path": "external/ARC-VSA-2025"},
+    "arc-lang-public": {"url": "https://github.com/jerber/arc-lang-public", "branch": "main", "revision": "3d820fc07a9d904e7bbda325a11d7bfd4fa486f5", "asset_subpath": "sources/arc-lang-public"},
+    "epang-arc-agi": {"url": "https://github.com/epang080516/arc_agi", "branch": "main", "revision": "2b1a3c12a38b8a62627b75d78fd0cd55eacff4a1", "asset_subpath": "sources/epang-arc-agi"},
+    "arc-nca": {"url": "https://github.com/etimush/ARC_NCA", "branch": "main", "revision": "25d522bc766f9ddaebbf7dad63f58790fe7aa884", "asset_subpath": "sources/arc-nca"},
+    "arcmemo": {"url": "https://github.com/matt-seb-ho/arc_memo", "branch": "main", "revision": "e2598f1c093a4ddd8c871bd949e6a425d70f0fa7", "asset_subpath": "sources/arcmemo"},
+    "nvarc": {"url": "https://github.com/1ytic/NVARC", "branch": "main", "revision": "846d0198efa752534594e321fc3289fc0a06c657", "asset_subpath": "sources/nvarc"},
+    "latentmas": {"url": "https://github.com/Gen-Verse/LatentMAS", "branch": "main", "revision": "9a9e4d331eb11430bd9e64754c6b252b06d73031", "asset_subpath": "sources/latentmas"},
+    "agent-primitives": {"url": "https://github.com/haibojin001/AgentPrimitives", "branch": "main", "revision": "b9906548f8e6b79416b43450847a7352aec6e1b9", "asset_subpath": "sources/agent-primitives"},
+    "graphplanner": {"url": "https://github.com/ulab-uiuc/GraphPlanner", "branch": "main", "revision": "56010b1f43c6096ac1a87736c7a2e110e368ecb7", "asset_subpath": "sources/graphplanner"},
+    "routemoa": {"url": "https://github.com/Jize-W/RouteMoA", "branch": "main", "revision": "51e0bf3de1db4330b7e478919dbf4594d88fea56", "asset_subpath": "sources/routemoa"},
+    "maca": {"url": "https://github.com/However-Li/Multi-Agent-Coordination-Adaptation-via-Structure-Guided-Orchestration", "branch": "main", "revision": "63e3f5d5110a391b2dd11329cc3cccdf9778e662", "asset_subpath": "sources/maca"},
+    "marc": {"url": "https://github.com/ekinakyurek/marc", "branch": "main", "revision": "95b334872d435d5639135b32039577e2853a706b", "asset_subpath": "sources/marc"},
+    "omni-arc": null,
+    "mini-arc-transformer": null,
+    "neuromas": null,
+    "rem-moa": null
+  }
+}

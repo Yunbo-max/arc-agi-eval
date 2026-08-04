@@ -1,0 +1,2 @@
+# Lightweight environment for source preparation and Hugging Face sync.
+huggingface_hub>=0.29,<2

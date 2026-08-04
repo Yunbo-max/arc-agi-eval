@@ -81,3 +81,56 @@ Scoring semantics are explicit:
 
 The command reports raw numerators and denominators alongside task, output, and
 cell accuracies so results can be audited.
+
+## Per-paper preparation workspaces
+
+The repository tracks 24 independent papers/methods. Each now has a standalone
+model/data/environment/run contract under [`papers/`](papers/README.md). The
+manifests are the source of truth:
+
+- `configs/baselines.json`: scientific scope, feasibility, and execution state;
+- `configs/source_locks.json`: exact upstream repository commits;
+- `configs/paper_assets.json`: model, dataset, entry point, and storage policy.
+
+Prepare one paper without changing this evaluator's environment:
+
+```bash
+python3 -m venv .venvs/preparation
+.venvs/preparation/bin/pip install -r requirements/preparation.txt
+export ARC_PAPER_ASSETS_ROOT=/usr/paper-assets/arc
+.venvs/preparation/bin/python scripts/prepare_paper.py --paper latentmas --download-public-assets
+```
+
+Prepare all publicly accessible sources and capacity-approved assets while
+preserving at least 10 GiB of free disk:
+
+```bash
+.venvs/preparation/bin/python scripts/prepare_paper.py --all --download-public-assets
+```
+
+The reduced Qwen3-based multi-agent papers use their own environment so they
+cannot change EventTune or evaluator dependencies:
+
+```bash
+python3 -m venv --system-site-packages .venvs/reduced-qwen3
+.venvs/reduced-qwen3/bin/pip install -r requirements/reduced-qwen3.txt
+```
+
+The preparation command never downloads paid-API, Kaggle-only, gated, or
+unidentified artifacts automatically. Such papers receive a concrete blocker
+instead of a false ready status. Every upstream environment remains isolated
+from `arc_agi_eval`.
+
+Code and READMEs are versioned in GitHub. Private durable manifests and run
+artifacts are namespaced by paper in:
+
+- `humanlong/ARC-AGI-Eval-Data`;
+- `humanlong/ARC-AGI-Eval-Models`.
+
+Synchronize approved material with:
+
+```bash
+.venvs/preparation/bin/python scripts/hub_sync.py push-metadata
+.venvs/preparation/bin/python scripts/hub_sync.py push --paper compressarc
+.venvs/preparation/bin/python scripts/hub_sync.py pull --paper compressarc
+```
