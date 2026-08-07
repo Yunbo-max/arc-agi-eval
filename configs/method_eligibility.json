@@ -1,0 +1,887 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-08-06",
+  "scope": "Configuration-level eligibility and trust inventory. Classification is evidence-based and does not promote component or scorer-only checks into solver-prediction or performance claims.",
+  "baseline_manifest": "configs/baselines.json",
+  "classification_policy": {
+    "unit": "one row per configs/baselines.json entry",
+    "performance_gate": "A row is eligible only after a no-label solver prediction, a method/config-matched protocol-v1 strict runtime promotion, and every declared publication gate passes; no current row qualifies.",
+    "strict_runtime_gate": "Global runtime-core evidence is infrastructure-only and cannot promote a method. A passed row must name one method-owned protocol-v1 run whose files validate, whose method_id and config_id match the row, and whose challenge firewall passes label mutation plus post-inference scoring.",
+    "code_trust_precedence": [
+      "unavailable",
+      "generated_untrusted",
+      "unsafe_artifact",
+      "api_network",
+      "trusted_locked"
+    ],
+    "resource_scope": "Estimated native or published benchmark execution, not the already completed component smoke.",
+    "unknown_policy": "Use unknown or false when existing repository evidence cannot establish the claim."
+  },
+  "enums": {
+    "native_benchmark_generation": [
+      "arc_agi_1",
+      "arc_agi_1_and_2",
+      "arc_agi_2_primary_arc_agi_1_backtest",
+      "native_non_arc_agi"
+    ],
+    "cohort": [
+      "arc_prize_2024",
+      "arc_prize_2025",
+      "verified_arc_prize_2026",
+      "non_arc_prize_research"
+    ],
+    "primary_mechanism_family": [
+      "symbolic_program_search",
+      "task_specific_neural_adaptation",
+      "pretrained_neural_or_llm_solver",
+      "ensemble",
+      "api_native_arc_solver",
+      "native_multi_agent",
+      "native_multi_agent_router",
+      "unknown"
+    ],
+    "evidence_scope": [
+      "unavailable",
+      "blocker_audit",
+      "scorer_only",
+      "component",
+      "solver_prediction",
+      "benchmark"
+    ],
+    "parity_class": [
+      "unavailable",
+      "scorer_only",
+      "component_only",
+      "blocked_before_method_execution",
+      "reduced_method_execution",
+      "native_method_execution",
+      "benchmark_parity",
+      "paper_parity"
+    ],
+    "resource_class": [
+      "cpu_or_local_light",
+      "single_gpu_24g",
+      "single_gpu_long_running",
+      "multi_gpu_or_above_host",
+      "metered_api",
+      "unknown",
+      "unavailable"
+    ],
+    "code_trust_class": [
+      "trusted_locked",
+      "generated_untrusted",
+      "unsafe_artifact",
+      "api_network",
+      "unavailable"
+    ],
+    "solver_prediction_smoke_status": [
+      "passed",
+      "failed",
+      "blocked",
+      "not_run",
+      "unavailable"
+    ],
+    "strict_runtime_promotion_status": [
+      "passed",
+      "failed",
+      "blocked",
+      "not_run",
+      "unavailable"
+    ],
+    "blocking_gate_status": [
+      "failed",
+      "unknown"
+    ],
+    "blocking_gate": [
+      "source_revision_lock",
+      "license_clearance",
+      "artifact_provenance",
+      "dataset_provenance",
+      "dependency_environment",
+      "label_firewall",
+      "no_label_solver_prediction",
+      "configuration_class",
+      "timeout_best_effort",
+      "state_retry_seed_contract",
+      "resource_capacity",
+      "code_isolation",
+      "api_budget",
+      "benchmark_coverage",
+      "implementation_available",
+      "native_benchmark_contract",
+      "contamination_control",
+      "runtime_portability"
+    ]
+  },
+  "summary": {
+    "entry_count": 24,
+    "native_benchmark_generation": {
+      "arc_agi_1": 11,
+      "arc_agi_1_and_2": 5,
+      "arc_agi_2_primary_arc_agi_1_backtest": 1,
+      "native_non_arc_agi": 7
+    },
+    "cohort": {
+      "arc_prize_2024": 8,
+      "arc_prize_2025": 9,
+      "verified_arc_prize_2026": 0,
+      "non_arc_prize_research": 7
+    },
+    "primary_mechanism_family": {
+      "symbolic_program_search": 4,
+      "task_specific_neural_adaptation": 4,
+      "pretrained_neural_or_llm_solver": 5,
+      "ensemble": 1,
+      "api_native_arc_solver": 1,
+      "native_multi_agent": 5,
+      "native_multi_agent_router": 2,
+      "unknown": 2
+    },
+    "evidence_scope": {
+      "unavailable": 4,
+      "blocker_audit": 2,
+      "scorer_only": 1,
+      "component": 15,
+      "solver_prediction": 2,
+      "benchmark": 0
+    },
+    "parity_class": {
+      "unavailable": 4,
+      "scorer_only": 1,
+      "component_only": 15,
+      "blocked_before_method_execution": 2,
+      "reduced_method_execution": 2,
+      "native_method_execution": 0,
+      "benchmark_parity": 0,
+      "paper_parity": 0
+    },
+    "resource_class": {
+      "cpu_or_local_light": 0,
+      "single_gpu_24g": 4,
+      "single_gpu_long_running": 3,
+      "multi_gpu_or_above_host": 7,
+      "metered_api": 4,
+      "unknown": 2,
+      "unavailable": 4
+    },
+    "code_trust_class": {
+      "trusted_locked": 12,
+      "generated_untrusted": 5,
+      "unsafe_artifact": 0,
+      "api_network": 3,
+      "unavailable": 4
+    },
+    "solver_prediction_smoke_status": {
+      "passed": 2,
+      "failed": 0,
+      "blocked": 2,
+      "not_run": 16,
+      "unavailable": 4
+    },
+    "strict_runtime_promotion_status": {
+      "passed": 2,
+      "failed": 0,
+      "blocked": 0,
+      "not_run": 22,
+      "unavailable": 0
+    },
+    "performance_table_eligible": {
+      "eligible": 0,
+      "ineligible": 24
+    }
+  },
+  "entries": [
+    {
+      "id": "barc",
+      "name": "BARC",
+      "native_benchmark_generation": "arc_agi_1",
+      "cohort": "arc_prize_2024",
+      "primary_mechanism_family": "pretrained_neural_or_llm_solver",
+      "evidence_scope": "component",
+      "evidence_scope_detail": "The bundled seed generator and fixed seed program remain the only component smoke. A later hardened static source/artifact/label/resource gate is blocker evidence only: it executed no model or solver and produced no prediction.",
+      "parity_class": "component_only",
+      "resource_class": "single_gpu_24g",
+      "code_trust_class": "generated_untrusted",
+      "additional_code_trust_risks": ["unsafe_artifact"],
+      "solver_prediction_smoke": {
+        "status": "not_run",
+        "evidence": ["reports/barc/20260806-seed-00d62c1b-smoke/run.json"]
+      },
+      "strict_runtime_promotion": {"status": "not_run", "config_id": null, "evidence": []},
+      "performance_table_eligible": false,
+      "classification_evidence": {
+        "provenance": ["docs/EXECUTION_BATCHES.md", "configs/barc_gate_v1.json", "reports/barc/20260806-source-artifact-label-resource-gate-v1/run.json"],
+        "taxonomy": ["docs/NEURIPS_EXPERIMENT_DESIGN.md"],
+        "execution": ["configs/baselines.json", "reports/barc/20260806-seed-00d62c1b-smoke/run.json", "reports/barc/20260806-source-artifact-label-resource-gate-v1/run.json"]
+      },
+      "blocking_gates": [
+        {"gate": "license_clearance", "status": "failed", "detail": "No repository-root source license was verified; the Apache-2.0 file is scoped only to the vendored alignment-handbook component.", "evidence": ["reports/barc/20260806-source-artifact-label-resource-gate-v1/run.json"]},
+        {"gate": "artifact_provenance", "status": "failed", "detail": "Four source-declared base models and two LoRAs are absent from the closed source tree and lack verified immutable revisions, manifests, artifact licenses, and base/adapter binding.", "evidence": ["configs/barc_gate_v1.json", "reports/barc/20260806-source-artifact-label-resource-gate-v1/run.json"]},
+        {"gate": "code_isolation", "status": "failed", "detail": "Published loaders lack a validated immutable-revision, local-only, no-remote-code contract, while generated induction code is executed in the label-bearing evaluation path.", "evidence": ["reports/barc/20260806-source-artifact-label-resource-gate-v1/run.json"]},
+        {"gate": "label_firewall", "status": "failed", "detail": "Published transduction, pseudo-evaluation, reranking, induction JSONL, and generated-execution paths carry answers or correctness signals in-process; the static direct-transduction pattern is only an unimplemented challenge-only design candidate.", "evidence": ["reports/barc/20260806-source-artifact-label-resource-gate-v1/run.json"]},
+        {"gate": "dependency_environment", "status": "failed", "detail": "Requirements are not fully pinned, the Git dependency has no revision pin, no lockfile is validated, and induction/transduction declare conflicting vLLM versions.", "evidence": ["reports/barc/20260806-source-artifact-label-resource-gate-v1/run.json"]},
+        {"gate": "resource_capacity", "status": "failed", "detail": "Capacity for one selected 14.97 GiB base has not been validated; all four bases plus LoRAs exceed 60 GiB and paper-scale eight-process training is unsupported on the single RTX 3090 target.", "evidence": ["reports/barc/20260806-source-artifact-label-resource-gate-v1/run.json"]},
+        {"gate": "no_label_solver_prediction", "status": "failed", "detail": "The passing seed/program smoke is not a model run, and the hardened static gate produced no solver prediction, strict promotion, benchmark result, or parity evidence.", "evidence": ["reports/barc/20260806-seed-00d62c1b-smoke/run.json", "reports/barc/20260806-source-artifact-label-resource-gate-v1/run.json"]}
+      ]
+    },
+    {
+      "id": "lpn",
+      "name": "LPN",
+      "native_benchmark_generation": "arc_agi_1",
+      "cohort": "arc_prize_2024",
+      "primary_mechanism_family": "task_specific_neural_adaptation",
+      "evidence_scope": "component",
+      "evidence_scope_detail": "Official generator and architecture self-tests only; later source and hardened seven-blocker gate audits are blocker evidence, not additional smokes.",
+      "parity_class": "component_only",
+      "resource_class": "multi_gpu_or_above_host",
+      "code_trust_class": "trusted_locked",
+      "additional_code_trust_risks": ["unsafe_artifact"],
+      "solver_prediction_smoke": {"status": "not_run", "evidence": ["reports/lpn/20260806-official-tests-architecture-smoke/run.json"]},
+      "strict_runtime_promotion": {"status": "not_run", "config_id": null, "evidence": []},
+      "performance_table_eligible": false,
+      "classification_evidence": {
+        "provenance": ["docs/EXECUTION_BATCHES.md", "configs/lpn_gate_v1.json", "reports/lpn/20260806-locked-source-syntax-audit/run.json", "reports/lpn/20260806-source-artifact-data-label-gate-v1/run.json"],
+        "taxonomy": ["docs/NEURIPS_EXPERIMENT_DESIGN.md"],
+        "execution": ["configs/baselines.json", "reports/lpn/20260806-official-tests-architecture-smoke/run.json", "reports/lpn/20260806-locked-source-syntax-audit/run.json", "reports/lpn/20260806-source-artifact-data-label-gate-v1/run.json"]
+      },
+      "blocking_gates": [
+        {"gate": "artifact_provenance", "status": "failed", "detail": "Seven W&B artifact versions are named in source, but no checkpoint is present in the closed source tree and no artifact hash, configuration binding, paper-row identity, or artifact license has been verified.", "evidence": ["configs/baselines.json", "configs/lpn_gate_v1.json", "reports/lpn/20260806-source-artifact-data-label-gate-v1/run.json"]},
+        {"gate": "label_firewall", "status": "failed", "detail": "The official ARC JSON evaluation path generates predictions and then reads solutions in the same process; challenge and solution files remain colocated, and Evaluator.json_submission is only a static candidate boundary until a separate challenge-only adapter passes staging, lifecycle, and A/B mutation tests.", "evidence": ["configs/baselines.json", "reports/lpn/20260806-source-artifact-data-label-gate-v1/run.json"]},
+        {"gate": "dependency_environment", "status": "failed", "detail": "Fourteen ignored bytecode files are present as metadata-only entries; a clean code-only runtime stage and exact artifact-bound JAX/Hydra environment have not been validated.", "evidence": ["reports/lpn/20260806-source-artifact-data-label-gate-v1/run.json"]},
+        {"gate": "no_label_solver_prediction", "status": "failed", "detail": "Architecture tests do not emit ARC solver predictions, and the hardened static gate executed no solver and produced no prediction.", "evidence": ["reports/lpn/20260806-official-tests-architecture-smoke/run.json", "reports/lpn/20260806-source-artifact-data-label-gate-v1/run.json"]},
+        {"gate": "resource_capacity", "status": "unknown", "detail": "Solver capacity cannot be measured until one exact artifact/configuration is selected and audited; published topology is not compute-matched by the active host, and child-inclusive LPN accounting remains unvalidated.", "evidence": ["configs/baselines.json", "reports/lpn/20260806-source-artifact-data-label-gate-v1/run.json"]}
+      ]
+    },
+    {
+      "id": "architects-2024",
+      "name": "ARChitects 2024",
+      "native_benchmark_generation": "arc_agi_1",
+      "cohort": "arc_prize_2024",
+      "primary_mechanism_family": "pretrained_neural_or_llm_solver",
+      "evidence_scope": "blocker_audit",
+      "evidence_scope_detail": "Checkpoint integrity and a hardened static source/artifact/label/runtime gate audit passed, but the method remains blocked; the forward preflight stopped before allocation and no solver prediction was produced.",
+      "parity_class": "blocked_before_method_execution",
+      "resource_class": "single_gpu_24g",
+      "code_trust_class": "trusted_locked",
+      "additional_code_trust_risks": [],
+      "solver_prediction_smoke": {"status": "blocked", "evidence": ["reports/architects-2024/20260806-forward-preflight-gpu-occupied/run.json"]},
+      "strict_runtime_promotion": {"status": "not_run", "config_id": null, "evidence": []},
+      "performance_table_eligible": false,
+      "classification_evidence": {
+        "provenance": ["docs/EXECUTION_BATCHES.md", "configs/architects_2024_gate_v1.json", "reports/architects-2024/20260806-source-artifact-label-runtime-gate-v1/run.json"],
+        "taxonomy": ["docs/NEURIPS_EXPERIMENT_DESIGN.md"],
+        "execution": ["configs/baselines.json", "reports/architects-2024/20260806-forward-preflight-gpu-occupied/run.json", "reports/architects-2024/20260806-4bit-checkpoint-integrity/run.json", "reports/architects-2024/20260806-source-artifact-label-runtime-gate-v1/run.json"]
+      },
+      "blocking_gates": [
+        {"gate": "license_clearance", "status": "unknown", "detail": "The checkpoint NOTICE is integrity-bound, but its NVIDIA model-license terms remain separate from the Apache-2.0 code license and require review.", "evidence": ["reports/architects-2024/20260806-4bit-checkpoint-integrity/run.json", "reports/architects-2024/20260806-source-artifact-label-runtime-gate-v1/run.json"]},
+        {"gate": "contamination_control", "status": "failed", "detail": "The locked training runner loads ARC-AGI-1 evaluation solutions, moves test pairs into training, repeats them, and mixes them as arceval; ARC-AGI-1 is ineligible for a clean main-board claim.", "evidence": ["reports/architects-2024/20260806-source-artifact-label-runtime-gate-v1/run.json"]},
+        {"gate": "label_firewall", "status": "failed", "detail": "Both local evaluation runners load solutions and validate in-process; the official notebook is only a static challenge-only candidate until a separate adapter passes lifecycle and mutation tests.", "evidence": ["reports/architects-2024/20260806-source-artifact-label-runtime-gate-v1/run.json"]},
+        {"gate": "code_isolation", "status": "failed", "detail": "The reusable loader lacks explicit local-only/no-remote-code controls, and the official pickle-cache path has no fresh trusted no-reuse runtime stage.", "evidence": ["reports/architects-2024/20260806-source-artifact-label-runtime-gate-v1/run.json"]},
+        {"gate": "dependency_environment", "status": "failed", "detail": "The historical notebook stack and current compatibility stack are not an exact immutable dependency match.", "evidence": ["reports/architects-2024/20260806-source-artifact-label-runtime-gate-v1/run.json"]},
+        {"gate": "resource_capacity", "status": "failed", "detail": "The bound forward preflight observed free VRAM below the 10-GiB allocation gate.", "evidence": ["reports/architects-2024/20260806-forward-preflight-gpu-occupied/run.json", "reports/architects-2024/20260806-source-artifact-label-runtime-gate-v1/run.json"]},
+        {"gate": "no_label_solver_prediction", "status": "failed", "detail": "No checkpoint forward, solver prediction, or official/local parity run completed; the static audit does not count as a smoke.", "evidence": ["reports/architects-2024/20260806-forward-preflight-gpu-occupied/run.json", "reports/architects-2024/20260806-source-artifact-label-runtime-gate-v1/run.json"]}
+      ]
+    },
+    {
+      "id": "gridcoder2024",
+      "name": "GridCoder2024",
+      "native_benchmark_generation": "arc_agi_1",
+      "cohort": "arc_prize_2024",
+      "primary_mechanism_family": "symbolic_program_search",
+      "evidence_scope": "component",
+      "evidence_scope_detail": "Synthetic-weight LVM architecture forward only; a later static gate audit is blocker evidence and does not count as another smoke.",
+      "parity_class": "component_only",
+      "resource_class": "single_gpu_24g",
+      "code_trust_class": "trusted_locked",
+      "additional_code_trust_risks": ["unsafe_artifact"],
+      "solver_prediction_smoke": {"status": "not_run", "evidence": ["reports/gridcoder2024/20260806-architecture-forward-smoke/run.json"]},
+      "strict_runtime_promotion": {"status": "not_run", "config_id": null, "evidence": []},
+      "performance_table_eligible": false,
+      "classification_evidence": {
+        "provenance": ["docs/EXECUTION_BATCHES.md", "configs/gridcoder2024_gate_v3.json", "reports/gridcoder2024/20260806-source-dependency-label-artifact-gate-v3/run.json"],
+        "taxonomy": ["docs/NEURIPS_EXPERIMENT_DESIGN.md"],
+        "execution": ["configs/baselines.json", "reports/gridcoder2024/20260806-architecture-forward-smoke/run.json", "reports/gridcoder2024/20260806-source-dependency-label-artifact-gate-v3/run.json"]
+      },
+      "blocking_gates": [
+        {"gate": "artifact_provenance", "status": "failed", "detail": "The byte-locked local source snapshot lacks a locally verifiable upstream commit chain, and the external Kaggle checkpoint is absent with no local SHA-256 lock.", "evidence": ["configs/gridcoder2024_gate_v3.json", "reports/gridcoder2024/20260806-source-dependency-label-artifact-gate-v3/run.json"]},
+        {"gate": "license_clearance", "status": "failed", "detail": "No repository-root license file was identified for either the GridCoder2024 snapshot or the pinned ARC_gym checkout.", "evidence": ["reports/gridcoder2024/20260806-source-dependency-label-artifact-gate-v3/run.json"]},
+        {"gate": "dependency_environment", "status": "failed", "detail": "The pinned ARC_gym checkout lacks graphs.py and batching.py, the default evaluation data directory is absent, and the official runner hard-codes CUDA.", "evidence": ["reports/gridcoder2024/20260806-source-dependency-label-artifact-gate-v3/run.json"]},
+        {"gate": "label_firewall", "status": "failed", "detail": "The default ARC_gym evaluation loader reads every test output and returns it as yq inside the solver process; the challenge-only Kaggle branch has not passed a strict adapter audit.", "evidence": ["reports/gridcoder2024/20260806-source-dependency-label-artifact-gate-v3/run.json"]},
+        {"gate": "no_label_solver_prediction", "status": "failed", "detail": "The only executed evidence is a synthetic-weight architecture forward; the static audit produced no prediction and explicitly does not count as a smoke.", "evidence": ["reports/gridcoder2024/20260806-architecture-forward-smoke/run.json", "reports/gridcoder2024/20260806-source-dependency-label-artifact-gate-v3/run.json"]},
+        {"gate": "benchmark_coverage", "status": "failed", "detail": "Published experiments cover a preselected 49-task DSL-solvable subset rather than the complete ARC-AGI-1 evaluation split.", "evidence": ["configs/baselines.json", "reports/gridcoder2024/20260806-source-dependency-label-artifact-gate-v3/run.json"]}
+      ]
+    },
+    {
+      "id": "2d-ngpt",
+      "name": "2D nGPT",
+      "native_benchmark_generation": "arc_agi_1",
+      "cohort": "arc_prize_2024",
+      "primary_mechanism_family": "task_specific_neural_adaptation",
+      "evidence_scope": "component",
+      "evidence_scope_detail": "Official large architecture forward with synthetic weights only; the hardened static gate is blocker evidence and does not count as another smoke.",
+      "parity_class": "component_only",
+      "resource_class": "single_gpu_24g",
+      "code_trust_class": "trusted_locked",
+      "additional_code_trust_risks": ["unsafe_artifact"],
+      "solver_prediction_smoke": {"status": "not_run", "evidence": ["reports/2d-ngpt/20260806-large-architecture-forward-smoke/run.json"]},
+      "strict_runtime_promotion": {"status": "not_run", "config_id": null, "evidence": []},
+      "performance_table_eligible": false,
+      "classification_evidence": {
+        "provenance": ["docs/EXECUTION_BATCHES.md", "configs/ngpt2d_gate_v1.json", "reports/2d-ngpt/20260806-source-artifact-label-runtime-gate-v1/run.json"],
+        "taxonomy": ["docs/NEURIPS_EXPERIMENT_DESIGN.md"],
+        "execution": ["configs/baselines.json", "reports/2d-ngpt/20260806-large-architecture-forward-smoke/run.json", "reports/2d-ngpt/20260806-source-artifact-label-runtime-gate-v1/run.json"]
+      },
+      "blocking_gates": [
+        {"gate": "source_revision_lock", "status": "failed", "detail": "The retained ten-file snapshot is byte-locked, but it is not an independent checkout, the declared upstream commit object is unavailable locally, and the prepared checkout is absent.", "evidence": ["configs/ngpt2d_gate_v1.json", "reports/2d-ngpt/20260806-source-artifact-label-runtime-gate-v1/run.json"]},
+        {"gate": "artifact_provenance", "status": "failed", "detail": "exp_50.pt/exp_54.pt, re-ARC gen10000 data, and fixed_size.pkl are absent and lack usable local provenance/hash locks.", "evidence": ["configs/baselines.json", "reports/2d-ngpt/20260806-source-artifact-label-runtime-gate-v1/run.json"]},
+        {"gate": "dependency_environment", "status": "failed", "detail": "The retained workflow lacks code/063.py and cfg/cfg_063.py, uses direct torch.load without weights_only, hard-codes CUDA, and relies on module-global cfg without an exact single-device dependency contract.", "evidence": ["reports/2d-ngpt/20260806-source-artifact-label-runtime-gate-v1/run.json"]},
+        {"gate": "label_firewall", "status": "failed", "detail": "code/064.py injects evaluation solutions into test outputs and lets them affect color permutations, test-time tuning, forward loss, and validation metrics; no challenge-only adapter has passed.", "evidence": ["reports/2d-ngpt/20260806-source-artifact-label-runtime-gate-v1/run.json"]},
+        {"gate": "no_label_solver_prediction", "status": "failed", "detail": "The passing architecture forward used synthetic weights and emitted no ARC task prediction; the static audit produced no prediction and explicitly does not count as a smoke.", "evidence": ["reports/2d-ngpt/20260806-large-architecture-forward-smoke/run.json", "reports/2d-ngpt/20260806-source-artifact-label-runtime-gate-v1/run.json"]},
+        {"gate": "benchmark_coverage", "status": "failed", "detail": "The published workflow is fixed-shape-subset evidence, not a complete ARC-AGI-1 evaluation; the current 262/270 reconstruction and historical 259-task generation log remain unresolved.", "evidence": ["configs/baselines.json", "reports/2d-ngpt/20260806-source-artifact-label-runtime-gate-v1/run.json"]},
+        {"gate": "resource_capacity", "status": "unknown", "detail": "Training duration and re-ARC storage requirements remain unresolved after artifact and subset gates.", "evidence": ["configs/baselines.json"]}
+      ]
+    },
+    {
+      "id": "tiny-recursive-models",
+      "name": "TinyRecursiveModels",
+      "native_benchmark_generation": "arc_agi_1_and_2",
+      "cohort": "arc_prize_2025",
+      "primary_mechanism_family": "pretrained_neural_or_llm_solver",
+      "evidence_scope": "component",
+      "evidence_scope_detail": "Random-weight synthetic-token CPU architecture forward only; the separate static source/artifact/dataset/label/resource gate is auxiliary blocker evidence and is not a solver smoke. The 2025 cohort is a paper/method year bucket and does not verify an official ARC Prize entry; the locked asset snapshot was created in 2026.",
+      "parity_class": "component_only",
+      "resource_class": "multi_gpu_or_above_host",
+      "code_trust_class": "trusted_locked",
+      "additional_code_trust_risks": ["unsafe_artifact", "api_network"],
+      "solver_prediction_smoke": {"status": "not_run", "evidence": ["reports/tiny-recursive-models/20260806-cpu-architecture-forward-smoke-retry2/run.json"]},
+      "strict_runtime_promotion": {"status": "not_run", "config_id": null, "evidence": []},
+      "performance_table_eligible": false,
+      "classification_evidence": {
+        "provenance": ["docs/EXECUTION_BATCHES.md", "configs/trm_gate_v1.json", "configs/trm_gate_runner_manifest_v1.json", "reports/tiny-recursive-models/20260806-source-artifact-dataset-label-resource-gate-v1/run.json"],
+        "taxonomy": ["docs/NEURIPS_EXPERIMENT_DESIGN.md"],
+        "execution": ["configs/baselines.json", "reports/tiny-recursive-models/20260806-cpu-architecture-forward-smoke-retry2/run.json", "reports/tiny-recursive-models/20260806-source-artifact-dataset-label-resource-gate-v1/run.json"]
+      },
+      "blocking_gates": [
+        {"gate": "artifact_provenance", "status": "failed", "detail": "No paper checkpoint is advertised or present; paper-score reproduction requires training from scratch.", "evidence": ["configs/trm_gate_v1.json", "reports/tiny-recursive-models/20260806-source-artifact-dataset-label-resource-gate-v1/run.json"]},
+        {"gate": "dataset_provenance", "status": "failed", "detail": "Bundled ARC/concept leaves are metadata-bound only; canonical mapping, concept-subset provenance, and dataset reuse terms have not passed a byte-level audit.", "evidence": ["reports/tiny-recursive-models/20260806-source-artifact-dataset-label-resource-gate-v1/run.json"]},
+        {"gate": "label_firewall", "status": "failed", "detail": "The native builder injects and serializes evaluation labels, the evaluator scores in-process, and eval_save_outputs can persist full-batch labels with torch.save.", "evidence": ["reports/tiny-recursive-models/20260806-source-artifact-dataset-label-resource-gate-v1/run.json"]},
+        {"gate": "contamination_control", "status": "failed", "detail": "ARC-AGI-2 training overlaps ARC-AGI-1 evaluation; separate frozen weights and a no-public-label checkpoint-selection policy are required.", "evidence": ["reports/tiny-recursive-models/20260806-source-artifact-dataset-label-resource-gate-v1/run.json"]},
+        {"gate": "dependency_environment", "status": "failed", "detail": "Dependencies lack a hash-locked transitive closure, the declared torch stack differs from the architecture smoke, and no paper-parity environment is assembled.", "evidence": ["reports/tiny-recursive-models/20260806-source-artifact-dataset-label-resource-gate-v1/run.json"]},
+        {"gate": "code_isolation", "status": "failed", "detail": "Direct torch.load uses weights_only absent and W&B has no detected offline guard; safe artifact loading and OS-enforced egress controls are not frozen.", "evidence": ["reports/tiny-recursive-models/20260806-source-artifact-dataset-label-resource-gate-v1/run.json"]},
+        {"gate": "runtime_portability", "status": "failed", "detail": "The native path hard-codes CUDA and includes unconditional distributed gather; no isolated single-device solver runtime has passed.", "evidence": ["reports/tiny-recursive-models/20260806-source-artifact-dataset-label-resource-gate-v1/run.json"]},
+        {"gate": "native_benchmark_contract", "status": "failed", "detail": "Checkpoint/evaluator state, candidate voting, selection, seed, and two-attempt budgets are not jointly frozen.", "evidence": ["reports/tiny-recursive-models/20260806-source-artifact-dataset-label-resource-gate-v1/run.json"]},
+        {"gate": "resource_capacity", "status": "failed", "detail": "Each benchmark run is documented at about three days on four H100s, with no immutable host-capacity or storage lower-bound manifest.", "evidence": ["reports/tiny-recursive-models/20260806-source-artifact-dataset-label-resource-gate-v1/run.json"]},
+        {"gate": "no_label_solver_prediction", "status": "failed", "detail": "The passing CPU smoke used random weights and synthetic tokens; neither it nor the static gate produced a label-free ARC prediction, benchmark result, or parity evidence.", "evidence": ["reports/tiny-recursive-models/20260806-cpu-architecture-forward-smoke-retry2/run.json", "reports/tiny-recursive-models/20260806-source-artifact-dataset-label-resource-gate-v1/run.json"]}
+      ]
+    },
+    {
+      "id": "soar",
+      "name": "SOAR",
+      "native_benchmark_generation": "arc_agi_1",
+      "cohort": "arc_prize_2025",
+      "primary_mechanism_family": "pretrained_neural_or_llm_solver",
+      "evidence_scope": "component",
+      "evidence_scope_detail": "Challenge-only source, data, and fixed-helper checks remain the only component smoke; no 7B model loaded. The formal static source/artifact/dataset/label/API/code/resource gate is auxiliary blocker evidence only: it executed no model or solver, produced no prediction, and does not count as another smoke.",
+      "parity_class": "component_only",
+      "resource_class": "multi_gpu_or_above_host",
+      "code_trust_class": "generated_untrusted",
+      "additional_code_trust_risks": [],
+      "solver_prediction_smoke": {"status": "not_run", "evidence": ["reports/soar/20260806-zero-dollar-source-data-smoke/run.json"]},
+      "strict_runtime_promotion": {"status": "not_run", "config_id": null, "evidence": []},
+      "performance_table_eligible": false,
+      "classification_evidence": {
+        "provenance": ["docs/EXECUTION_BATCHES.md", "configs/soar_gate_v1.json", "configs/soar_gate_runner_manifest_v1.json", "reports/soar/20260806-source-artifact-dataset-label-api-code-resource-gate-v1/run.json"],
+        "taxonomy": ["docs/NEURIPS_EXPERIMENT_DESIGN.md"],
+        "execution": ["configs/baselines.json", "reports/soar/20260806-zero-dollar-source-data-smoke/run.json", "reports/soar/20260806-source-artifact-dataset-label-api-code-resource-gate-v1/run.json"]
+      },
+      "blocking_gates": [
+        {"gate": "dataset_provenance", "status": "failed", "detail": "Bundled ARC-named 2024/2025 challenge, solution, sample-submission, and archive leaves lack authoritative canonical provenance, license, version mapping, byte-integrity, and cross-version-overlap closure.", "evidence": ["configs/soar_gate_v1.json", "reports/soar/20260806-source-artifact-dataset-label-api-code-resource-gate-v1/run.json"]},
+        {"gate": "license_clearance", "status": "failed", "detail": "The root MIT source license does not clear bundled ARC data, the pickle archive, external Hugging Face data/models, or third-party dependencies.", "evidence": ["reports/soar/20260806-source-artifact-dataset-label-api-code-resource-gate-v1/run.json"]},
+        {"gate": "dependency_environment", "status": "failed", "detail": "Requirements and the README runtime stack lack immutable versions, hashes, transitive closure, an SBOM, and a complete dependency-license inventory.", "evidence": ["reports/soar/20260806-source-artifact-dataset-label-api-code-resource-gate-v1/run.json"]},
+        {"gate": "artifact_provenance", "status": "failed", "detail": "Models, checkpoints, and exact paper configuration are absent or externally referenced without immutable provenance, while train_solutions.pkl remains metadata-only with unverified provenance, schema, and safe-deserialization boundaries.", "evidence": ["configs/soar_gate_v1.json", "reports/soar/20260806-source-artifact-dataset-label-api-code-resource-gate-v1/run.json"]},
+        {"gate": "label_firewall", "status": "failed", "detail": "The native loader opens evaluation solutions, merges them into task test outputs, and exposes label-bearing data to sampling, repair, training, and post-processing paths.", "evidence": ["reports/soar/20260806-source-artifact-dataset-label-api-code-resource-gate-v1/run.json"]},
+        {"gate": "contamination_control", "status": "failed", "detail": "Native candidate checking, metrics, filtering, repair stopping, training-data generation, visualization, and best-code evaluation consume expected test outputs or correctness signals.", "evidence": ["reports/soar/20260806-source-artifact-dataset-label-api-code-resource-gate-v1/run.json"]},
+        {"gate": "code_isolation", "status": "failed", "detail": "Active generated-code execution uses raw exec against globals, and available timeouts/process pools lack verified namespace, seccomp, filesystem, network, device, syscall, and recursive process-tree containment.", "evidence": ["reports/soar/20260806-source-artifact-dataset-label-api-code-resource-gate-v1/run.json"]},
+        {"gate": "api_budget", "status": "failed", "detail": "Native services, completion clients, HTTP probes, retries, and artifact downloads lack fail-closed egress plus immutable provider, request, token, and USD budgets.", "evidence": ["reports/soar/20260806-source-artifact-dataset-label-api-code-resource-gate-v1/run.json"]},
+        {"gate": "native_benchmark_contract", "status": "failed", "detail": "No canonical challenge-only ARC submission writer, fixed coherent two-attempt policy, or post-inference isolated scorer contract is present.", "evidence": ["reports/soar/20260806-source-artifact-dataset-label-api-code-resource-gate-v1/run.json"]},
+        {"gate": "resource_capacity", "status": "failed", "detail": "Paper-scale candidate, context, completion, retry, model, GPU-memory, storage, process, and wall-clock requirements lack an immutable host-capacity envelope.", "evidence": ["reports/soar/20260806-source-artifact-dataset-label-api-code-resource-gate-v1/run.json"]},
+        {"gate": "no_label_solver_prediction", "status": "failed", "detail": "The passing data/helper run is only a component smoke, and the auxiliary formal static gate produced no solver prediction, strict-runtime promotion, benchmark result, independently reproduced official score, or parity evidence.", "evidence": ["reports/soar/20260806-zero-dollar-source-data-smoke/run.json", "reports/soar/20260806-source-artifact-dataset-label-api-code-resource-gate-v1/run.json"]}
+      ]
+    },
+    {
+      "id": "compressarc",
+      "name": "CompressARC",
+      "native_benchmark_generation": "arc_agi_1_and_2",
+      "cohort": "arc_prize_2025",
+      "primary_mechanism_family": "task_specific_neural_adaptation",
+      "evidence_scope": "solver_prediction",
+      "evidence_scope_detail": "One legacy ARC-AGI-1 training task produced a hash-verified prediction after 1,500 task-specific steps; a separate two-step CPU protocol-v1 smoke passed a method-specific A/B label-firewall contract on one predeclared development task.",
+      "parity_class": "reduced_method_execution",
+      "resource_class": "single_gpu_long_running",
+      "code_trust_class": "trusted_locked",
+      "additional_code_trust_risks": [],
+      "solver_prediction_smoke": {"status": "passed", "evidence": ["reports/compressarc/20260804-training-1500-007bbfb7/run.json"]},
+      "strict_runtime_promotion": {"status": "passed", "config_id": "compressarc-cpu-dev-smoke-v1", "evidence": ["reports/compressarc/20260806-cpu-dev-3c9b0459-strict-v1/run.json"]},
+      "performance_table_eligible": false,
+      "classification_evidence": {
+        "provenance": ["docs/EXECUTION_BATCHES.md"],
+        "taxonomy": ["docs/NEURIPS_EXPERIMENT_DESIGN.md"],
+        "execution": ["configs/baselines.json", "reports/compressarc/20260804-training-1500-007bbfb7/run.json", "reports/compressarc/20260806-cpu-dev-3c9b0459-strict-v1/run.json"]
+      },
+      "blocking_gates": [
+        {"gate": "configuration_class", "status": "failed", "detail": "Both solver runs are reduced single-task evidence; the strict run uses a two-step CPU configuration and versions that deviate from upstream requirements.", "evidence": ["reports/compressarc/20260804-training-1500-007bbfb7/run.json", "reports/compressarc/20260806-cpu-dev-3c9b0459-strict-v1/run.json"]},
+        {"gate": "timeout_best_effort", "status": "unknown", "detail": "A benchmark-wide timeout and best-so-far output contract is not evidenced.", "evidence": ["configs/baselines.json"]},
+        {"gate": "benchmark_coverage", "status": "failed", "detail": "Each solver-prediction run covers only one development/training task; no complete public benchmark was executed.", "evidence": ["reports/compressarc/20260804-training-1500-007bbfb7/run.json", "reports/compressarc/20260806-cpu-dev-3c9b0459-strict-v1/run.json"]}
+      ]
+    },
+    {
+      "id": "arc-vsa-2025",
+      "name": "ARC-VSA-2025",
+      "native_benchmark_generation": "arc_agi_1_and_2",
+      "cohort": "arc_prize_2025",
+      "primary_mechanism_family": "symbolic_program_search",
+      "evidence_scope": "blocker_audit",
+      "evidence_scope_detail": "Locked-source dependency and label-gate audit; no eligible solver path executed.",
+      "parity_class": "blocked_before_method_execution",
+      "resource_class": "single_gpu_long_running",
+      "code_trust_class": "trusted_locked",
+      "additional_code_trust_risks": [],
+      "solver_prediction_smoke": {"status": "blocked", "evidence": ["reports/arc-vsa-2025/20260806-dependency-label-gate-audit-retry1/run.json"]},
+      "strict_runtime_promotion": {"status": "not_run", "config_id": null, "evidence": []},
+      "performance_table_eligible": false,
+      "classification_evidence": {
+        "provenance": ["docs/EXECUTION_BATCHES.md"],
+        "taxonomy": ["docs/NEURIPS_EXPERIMENT_DESIGN.md"],
+        "execution": ["configs/baselines.json", "reports/arc-vsa-2025/20260806-dependency-label-gate-audit-retry1/run.json"]
+      },
+      "blocking_gates": [
+        {"gate": "dependency_environment", "status": "failed", "detail": "The released solver requires an unavailable, unidentified sspspace implementation.", "evidence": ["reports/arc-vsa-2025/20260806-dependency-label-gate-audit-retry1/run.json"]},
+        {"gate": "label_firewall", "status": "failed", "detail": "The released Solver constructor reads output fields for test examples.", "evidence": ["reports/arc-vsa-2025/20260806-dependency-label-gate-audit-retry1/run.json"]},
+        {"gate": "no_label_solver_prediction", "status": "failed", "detail": "No eligible local solver command produced a prediction.", "evidence": ["configs/baselines.json"]}
+      ]
+    },
+    {
+      "id": "arc-lang-public",
+      "name": "arc-lang-public",
+      "native_benchmark_generation": "arc_agi_1_and_2",
+      "cohort": "arc_prize_2025",
+      "primary_mechanism_family": "symbolic_program_search",
+      "evidence_scope": "component",
+      "evidence_scope_detail": "Zero-dollar import, configuration, and Pydantic parser component only; the separate static gate is auxiliary blocker evidence and is not a solver smoke.",
+      "parity_class": "component_only",
+      "resource_class": "metered_api",
+      "code_trust_class": "api_network",
+      "additional_code_trust_risks": [],
+      "solver_prediction_smoke": {"status": "not_run", "evidence": ["reports/arc-lang-public/20260806-zero-dollar-import-smoke-retry1/run.json"]},
+      "strict_runtime_promotion": {"status": "not_run", "config_id": null, "evidence": []},
+      "performance_table_eligible": false,
+      "classification_evidence": {
+        "provenance": ["docs/EXECUTION_BATCHES.md", "configs/batch_c_static_gate_v1.json", "reports/arc-lang-public/20260806-source-label-api-egress-gate-v1/run.json"],
+        "taxonomy": ["docs/NEURIPS_EXPERIMENT_DESIGN.md"],
+        "execution": ["configs/baselines.json", "reports/arc-lang-public/20260806-zero-dollar-import-smoke-retry1/run.json", "reports/arc-lang-public/20260806-source-label-api-egress-gate-v1/run.json"]
+      },
+      "blocking_gates": [
+        {"gate": "license_clearance", "status": "failed", "detail": "No root source license is present in the locked tree.", "evidence": ["reports/arc-lang-public/20260806-source-label-api-egress-gate-v1/run.json"]},
+        {"gate": "label_firewall", "status": "failed", "detail": "The default runner reads truth before solving, while the None seam has no frozen raw-key firewall, writer, or independent scorer.", "evidence": ["reports/arc-lang-public/20260806-source-label-api-egress-gate-v1/run.json"]},
+        {"gate": "code_isolation", "status": "failed", "detail": "Import-time provider clients, dotenv, remote Logfire, and optional NEON egress remain reachable.", "evidence": ["reports/arc-lang-public/20260806-source-label-api-egress-gate-v1/run.json"]},
+        {"gate": "api_budget", "status": "failed", "detail": "No pre-request request/token/USD fuse consumes the configured timeout contract.", "evidence": ["reports/arc-lang-public/20260806-source-label-api-egress-gate-v1/run.json"]},
+        {"gate": "artifact_provenance", "status": "failed", "detail": "Mutable model aliases and provider fallback lack immutable response provenance.", "evidence": ["reports/arc-lang-public/20260806-source-label-api-egress-gate-v1/run.json"]},
+        {"gate": "dependency_environment", "status": "failed", "detail": "The installed dependency closure and offline environment are not formally bound.", "evidence": ["reports/arc-lang-public/20260806-source-label-api-egress-gate-v1/run.json"]},
+        {"gate": "no_label_solver_prediction", "status": "failed", "detail": "No qualified challenge-only solver prediction exists.", "evidence": ["reports/arc-lang-public/20260806-source-label-api-egress-gate-v1/run.json"]}
+      ]
+    },
+    {
+      "id": "epang-arc-agi",
+      "name": "epang080516/arc_agi",
+      "native_benchmark_generation": "arc_agi_1_and_2",
+      "cohort": "arc_prize_2025",
+      "primary_mechanism_family": "symbolic_program_search",
+      "evidence_scope": "component",
+      "evidence_scope_detail": "Synthetic data-model and auditor-written trusted-executor component only; the bundled pickle and model-generated code were not executed, and the separate static gate is auxiliary blocker evidence.",
+      "parity_class": "component_only",
+      "resource_class": "metered_api",
+      "code_trust_class": "generated_untrusted",
+      "additional_code_trust_risks": ["unsafe_artifact", "api_network"],
+      "solver_prediction_smoke": {"status": "not_run", "evidence": ["reports/epang-arc-agi/20260806-zero-dollar-component-smoke/run.json"]},
+      "strict_runtime_promotion": {"status": "not_run", "config_id": null, "evidence": []},
+      "performance_table_eligible": false,
+      "classification_evidence": {
+        "provenance": ["docs/EXECUTION_BATCHES.md", "configs/batch_c_static_gate_v1.json", "reports/epang-arc-agi/20260806-source-label-pickle-sandbox-api-gate-v1/run.json"],
+        "taxonomy": ["docs/NEURIPS_EXPERIMENT_DESIGN.md"],
+        "execution": ["configs/baselines.json", "reports/epang-arc-agi/20260806-zero-dollar-component-smoke/run.json", "reports/epang-arc-agi/20260806-source-label-pickle-sandbox-api-gate-v1/run.json"]
+      },
+      "blocking_gates": [
+        {"gate": "license_clearance", "status": "failed", "detail": "Only the vendored LPN subtree has a license; the project root does not.", "evidence": ["reports/epang-arc-agi/20260806-source-label-pickle-sandbox-api-gate-v1/run.json"]},
+        {"gate": "label_firewall", "status": "failed", "detail": "Importing the runner eagerly loads ARC-AGI-1 solutions and retains inline test metrics.", "evidence": ["reports/epang-arc-agi/20260806-source-label-pickle-sandbox-api-gate-v1/run.json"]},
+        {"gate": "contamination_control", "status": "failed", "detail": "The ARC-AGI-2-trained library is ineligible for clean ARC-AGI-1 evaluation without audited overlap exclusion.", "evidence": ["reports/epang-arc-agi/20260806-source-label-pickle-sandbox-api-gate-v1/run.json"]},
+        {"gate": "artifact_provenance", "status": "failed", "detail": "Bundled pickle provenance, schema, license, and sacrificial migration isolation are absent.", "evidence": ["reports/epang-arc-agi/20260806-source-label-pickle-sandbox-api-gate-v1/run.json"]},
+        {"gate": "code_isolation", "status": "failed", "detail": "Generated code runs with host filesystem, network, process, environment, and interpreter access.", "evidence": ["reports/epang-arc-agi/20260806-source-label-pickle-sandbox-api-gate-v1/run.json"]},
+        {"gate": "api_budget", "status": "failed", "detail": "No immutable provider/model snapshot or pre-request request/token/USD fuse exists.", "evidence": ["reports/epang-arc-agi/20260806-source-label-pickle-sandbox-api-gate-v1/run.json"]},
+        {"gate": "dependency_environment", "status": "failed", "detail": "Python 3.10 and 3.11 manifests disagree, and no hash-locked offline closure is proven.", "evidence": ["reports/epang-arc-agi/20260806-source-label-pickle-sandbox-api-gate-v1/run.json"]},
+        {"gate": "native_benchmark_contract", "status": "failed", "detail": "The reported split, RNG/library order, output writer, and two-attempt contract are not reproducible.", "evidence": ["reports/epang-arc-agi/20260806-source-label-pickle-sandbox-api-gate-v1/run.json"]},
+        {"gate": "no_label_solver_prediction", "status": "failed", "detail": "No label-free solver prediction or paper-parity run exists.", "evidence": ["reports/epang-arc-agi/20260806-source-label-pickle-sandbox-api-gate-v1/run.json"]}
+      ]
+    },
+    {
+      "id": "arc-nca",
+      "name": "ARC_NCA",
+      "native_benchmark_generation": "arc_agi_1",
+      "cohort": "arc_prize_2025",
+      "primary_mechanism_family": "task_specific_neural_adaptation",
+      "evidence_scope": "solver_prediction",
+      "evidence_scope_detail": "A reduced scripted wrapper produced a hash-verified prediction for one ARC-AGI-1 training task; a separate CPU-only protocol-v1 smoke passed method-specific A/B label-firewall checks on one predeclared development task.",
+      "parity_class": "reduced_method_execution",
+      "resource_class": "single_gpu_long_running",
+      "code_trust_class": "trusted_locked",
+      "additional_code_trust_risks": [],
+      "solver_prediction_smoke": {"status": "passed", "evidence": ["reports/arc-nca/20260806-training-00d62c1b-10step/run.json"]},
+      "strict_runtime_promotion": {"status": "passed", "config_id": "arc-nca-cpu-dev-smoke-v1", "evidence": ["reports/arc-nca/20260806-cpu-dev-6150a2bd-strict-v1/run.json"]},
+      "performance_table_eligible": false,
+      "classification_evidence": {
+        "provenance": ["docs/EXECUTION_BATCHES.md"],
+        "taxonomy": ["docs/NEURIPS_EXPERIMENT_DESIGN.md"],
+        "execution": ["configs/baselines.json", "reports/arc-nca/20260806-training-00d62c1b-10step/run.json", "reports/arc-nca/20260806-cpu-dev-6150a2bd-strict-v1/run.json"]
+      },
+      "blocking_gates": [
+        {"gate": "configuration_class", "status": "failed", "detail": "The notebook path was reconstructed as a reduced scripted wrapper with declared protocol deviations.", "evidence": ["reports/arc-nca/20260806-training-00d62c1b-10step/run.json"]},
+        {"gate": "timeout_best_effort", "status": "unknown", "detail": "No benchmark-wide timeout and best-so-far contract is evidenced.", "evidence": ["configs/baselines.json"]},
+        {"gate": "benchmark_coverage", "status": "failed", "detail": "Only one development/training task was predicted.", "evidence": ["reports/arc-nca/20260806-training-00d62c1b-10step/run.json"]}
+      ]
+    },
+    {
+      "id": "arcmemo",
+      "name": "ArcMemo",
+      "native_benchmark_generation": "arc_agi_1",
+      "cohort": "arc_prize_2025",
+      "primary_mechanism_family": "api_native_arc_solver",
+      "evidence_scope": "component",
+      "evidence_scope_detail": "Native no-memory generic-driver dry run with dummy completions; the ArcMemo memory mechanism did not run, and the separate static gate is auxiliary blocker evidence.",
+      "parity_class": "component_only",
+      "resource_class": "metered_api",
+      "code_trust_class": "generated_untrusted",
+      "additional_code_trust_risks": ["api_network"],
+      "solver_prediction_smoke": {"status": "not_run", "evidence": ["reports/arcmemo/20260806-native-dry-run-retry2/run.json"]},
+      "strict_runtime_promotion": {"status": "not_run", "config_id": null, "evidence": []},
+      "performance_table_eligible": false,
+      "classification_evidence": {
+        "provenance": ["docs/EXECUTION_BATCHES.md", "configs/batch_c_static_gate_v1.json", "reports/arcmemo/20260806-source-label-memory-api-sandbox-gate-v1/run.json"],
+        "taxonomy": ["docs/NEURIPS_EXPERIMENT_DESIGN.md"],
+        "execution": ["configs/baselines.json", "reports/arcmemo/20260806-native-dry-run-retry2/run.json", "reports/arcmemo/20260806-source-label-memory-api-sandbox-gate-v1/run.json"]
+      },
+      "blocking_gates": [
+        {"gate": "license_clearance", "status": "failed", "detail": "No root source license is present in the locked tree.", "evidence": ["reports/arcmemo/20260806-source-label-memory-api-sandbox-gate-v1/run.json"]},
+        {"gate": "dependency_environment", "status": "failed", "detail": "Most dependencies are unpinned and llmplus is not bound to an immutable commit.", "evidence": ["reports/arcmemo/20260806-source-label-memory-api-sandbox-gate-v1/run.json"]},
+        {"gate": "artifact_provenance", "status": "failed", "detail": "The selected ArcMemo memory/prompt artifact and paper configuration are not frozen or fully present.", "evidence": ["reports/arcmemo/20260806-source-label-memory-api-sandbox-gate-v1/run.json"]},
+        {"gate": "label_firewall", "status": "failed", "detail": "The native process retains test labels and performs inline test scoring.", "evidence": ["reports/arcmemo/20260806-source-label-memory-api-sandbox-gate-v1/run.json"]},
+        {"gate": "contamination_control", "status": "failed", "detail": "Continual memory updates are selected using train-plus-test correctness.", "evidence": ["reports/arcmemo/20260806-source-label-memory-api-sandbox-gate-v1/run.json"]},
+        {"gate": "api_budget", "status": "failed", "detail": "No immutable provider/model snapshot or fail-closed request/token/USD budget exists.", "evidence": ["reports/arcmemo/20260806-source-label-memory-api-sandbox-gate-v1/run.json"]},
+        {"gate": "code_isolation", "status": "failed", "detail": "Generated Python retains dangerous builtins, weak import filtering, and broad descendant termination.", "evidence": ["reports/arcmemo/20260806-source-label-memory-api-sandbox-gate-v1/run.json"]},
+        {"gate": "native_benchmark_contract", "status": "failed", "detail": "The native score is not a fixed two-attempt coherent challenge prediction contract.", "evidence": ["reports/arcmemo/20260806-source-label-memory-api-sandbox-gate-v1/run.json"]},
+        {"gate": "no_label_solver_prediction", "status": "failed", "detail": "No label-free ArcMemo memory-mechanism prediction or parity run exists.", "evidence": ["reports/arcmemo/20260806-source-label-memory-api-sandbox-gate-v1/run.json"]}
+      ]
+    },
+    {
+      "id": "nvarc",
+      "name": "NVARC",
+      "native_benchmark_generation": "arc_agi_2_primary_arc_agi_1_backtest",
+      "cohort": "arc_prize_2025",
+      "primary_mechanism_family": "ensemble",
+      "evidence_scope": "component",
+      "evidence_scope_detail": "Gitlink, SFT configuration, and fixed trusted-helper checks remain the only component smoke; no ensemble component checkpoint ran. The formal static source/gitlink/artifact/dataset/label/code/resource gate is auxiliary blocker evidence only: it executed no model, ensemble, or solver, produced no prediction, and does not count as another smoke.",
+      "parity_class": "component_only",
+      "resource_class": "multi_gpu_or_above_host",
+      "code_trust_class": "generated_untrusted",
+      "additional_code_trust_risks": ["unsafe_artifact"],
+      "solver_prediction_smoke": {"status": "not_run", "evidence": ["reports/nvarc/20260806-zero-dollar-component-source-smoke/run.json"]},
+      "strict_runtime_promotion": {"status": "not_run", "config_id": null, "evidence": []},
+      "performance_table_eligible": false,
+      "classification_evidence": {
+        "provenance": ["docs/EXECUTION_BATCHES.md", "configs/nvarc_gate_v1.json", "configs/nvarc_gate_runner_manifest_v1.json", "reports/nvarc/20260806-source-gitlink-artifact-dataset-label-code-resource-gate-v1/run.json"],
+        "taxonomy": ["docs/NEURIPS_EXPERIMENT_DESIGN.md"],
+        "execution": ["configs/baselines.json", "reports/nvarc/20260806-zero-dollar-component-source-smoke/run.json", "reports/nvarc/20260806-source-gitlink-artifact-dataset-label-code-resource-gate-v1/run.json"]
+      },
+      "blocking_gates": [
+        {"gate": "license_clearance", "status": "failed", "detail": "The locked repository has no root license, and no verified license closure covers the seven gitlinks, external datasets, models, or checkpoints.", "evidence": ["configs/nvarc_gate_v1.json", "reports/nvarc/20260806-source-gitlink-artifact-dataset-label-code-resource-gate-v1/run.json"]},
+        {"gate": "source_revision_lock", "status": "failed", "detail": "Seven gitlink commit OIDs are pinned, but their source bytes, nested dependencies, licenses, and availability are not assembled into the closed source snapshot.", "evidence": ["configs/nvarc_gate_v1.json", "configs/nvarc_gate_runner_manifest_v1.json", "reports/nvarc/20260806-source-gitlink-artifact-dataset-label-code-resource-gate-v1/run.json"]},
+        {"gate": "dataset_provenance", "status": "failed", "detail": "External or absent ARC, H-ARC, BARC, ConceptARC, MINI-ARC, re-ARC, synthetic, augmented, and TRM data lack a closed byte manifest, license, schema, and task-overlap audit.", "evidence": ["reports/nvarc/20260806-source-gitlink-artifact-dataset-label-code-resource-gate-v1/run.json"]},
+        {"gate": "artifact_provenance", "status": "failed", "detail": "The Qwen3-4B model, ARChitects checkpoints, TRM training checkpoint, tokenizer outputs, and ensemble assets are absent or external without immutable revision, SHA-256, size, configuration, and license closure.", "evidence": ["configs/nvarc_gate_v1.json", "reports/nvarc/20260806-source-gitlink-artifact-dataset-label-code-resource-gate-v1/run.json"]},
+        {"gate": "contamination_control", "status": "failed", "detail": "The released builder turns ARC-AGI-2 public evaluation pairs and outputs into validation data used for val_loss checkpoint selection, precluding a clean held-out public score.", "evidence": ["reports/nvarc/20260806-source-gitlink-artifact-dataset-label-code-resource-gate-v1/run.json"]},
+        {"gate": "label_firewall", "status": "failed", "detail": "ARC-AGI-1 test-time fine-tuning, ARC-AGI-2-derived weights, and persisted label-bearing TRM batch fields require separate weights, overlap audit, and a challenge-only label firewall.", "evidence": ["reports/nvarc/20260806-source-gitlink-artifact-dataset-label-code-resource-gate-v1/run.json"]},
+        {"gate": "code_isolation", "status": "failed", "detail": "Synthetic-data generation executes generated Python with raw exec and only a signal timeout, without builtin, filesystem, network, subprocess, memory, or syscall isolation.", "evidence": ["reports/nvarc/20260806-source-gitlink-artifact-dataset-label-code-resource-gate-v1/run.json"]},
+        {"gate": "dependency_environment", "status": "failed", "detail": "NeMo-RL, PyTorch, SDG, TRM, image, and external-model dependencies lack a hash-locked closure; W&B has no offline guard and tracked launch paths remain host-specific or missing.", "evidence": ["reports/nvarc/20260806-source-gitlink-artifact-dataset-label-code-resource-gate-v1/run.json"]},
+        {"gate": "state_retry_seed_contract", "status": "failed", "detail": "TRM loading omits weights_only, checkpoints omit optimizer/step/RNG state, and SDG seed recording and traversal do not provide a frozen resume-and-replay contract.", "evidence": ["reports/nvarc/20260806-source-gitlink-artifact-dataset-label-code-resource-gate-v1/run.json"]},
+        {"gate": "native_benchmark_contract", "status": "failed", "detail": "The full ensemble and ARChitects inference orchestrators are absent, while two-attempt formatting, candidate budgets, voting, tie-breaking, checkpoint selection, and label-free selection are not frozen.", "evidence": ["reports/nvarc/20260806-source-gitlink-artifact-dataset-label-code-resource-gate-v1/run.json"]},
+        {"gate": "resource_capacity", "status": "failed", "detail": "Published ARChitects and TRM workflows require multi-GPU/H100-scale execution, and full synthetic-generation plus ensemble disk, time, VRAM, provider, and storage lower bounds are not frozen.", "evidence": ["reports/nvarc/20260806-source-gitlink-artifact-dataset-label-code-resource-gate-v1/run.json"]},
+        {"gate": "no_label_solver_prediction", "status": "failed", "detail": "The passing component smoke checked only gitlinks, configuration, and fixed helpers; neither it nor the auxiliary formal static gate produced a label-free prediction, ensemble submission, benchmark, independently reproduced official score, strict-runtime promotion, or parity evidence.", "evidence": ["reports/nvarc/20260806-zero-dollar-component-source-smoke/run.json", "reports/nvarc/20260806-source-gitlink-artifact-dataset-label-code-resource-gate-v1/run.json"]}
+      ]
+    },
+    {
+      "id": "latentmas",
+      "name": "LatentMAS",
+      "native_benchmark_generation": "native_non_arc_agi",
+      "cohort": "non_arc_prize_research",
+      "primary_mechanism_family": "native_multi_agent",
+      "evidence_scope": "component",
+      "evidence_scope_detail": "Native AI2 ARC prompt and role schemas only; no dataset, model, tokenizer, or latent KV state loaded.",
+      "parity_class": "component_only",
+      "resource_class": "multi_gpu_or_above_host",
+      "code_trust_class": "trusted_locked",
+      "additional_code_trust_risks": [],
+      "solver_prediction_smoke": {"status": "not_run", "evidence": ["reports/latentmas/20260806-native-prompt-schema-smoke-retry1/run.json"]},
+      "strict_runtime_promotion": {"status": "not_run", "config_id": null, "evidence": []},
+      "performance_table_eligible": false,
+      "classification_evidence": {
+        "provenance": ["docs/EXECUTION_BATCHES.md"],
+        "taxonomy": ["configs/baselines.json", "docs/NEURIPS_EXPERIMENT_DESIGN.md"],
+        "execution": ["configs/baselines.json", "reports/latentmas/20260806-native-prompt-schema-smoke-retry1/run.json"]
+      },
+      "blocking_gates": [
+        {"gate": "artifact_provenance", "status": "failed", "detail": "No native model/tokenizer artifact was loaded by the passing smoke.", "evidence": ["reports/latentmas/20260806-native-prompt-schema-smoke-retry1/run.json"]},
+        {"gate": "no_label_solver_prediction", "status": "failed", "detail": "Prompt-schema validation is not a solver prediction.", "evidence": ["reports/latentmas/20260806-native-prompt-schema-smoke-retry1/run.json"]},
+        {"gate": "native_benchmark_contract", "status": "unknown", "detail": "A frozen native AI2 ARC execution contract has not run; ARC-AGI would be a new adaptation.", "evidence": ["configs/baselines.json", "docs/EXECUTION_BATCHES.md"]},
+        {"gate": "resource_capacity", "status": "failed", "detail": "The official 14B hybrid path recommends two GPUs.", "evidence": ["configs/baselines.json"]}
+      ]
+    },
+    {
+      "id": "agent-primitives",
+      "name": "AgentPrimitives",
+      "native_benchmark_generation": "native_non_arc_agi",
+      "cohort": "non_arc_prize_research",
+      "primary_mechanism_family": "native_multi_agent",
+      "evidence_scope": "component",
+      "evidence_scope_detail": "Static AST, YAML, and organizer-schema validation only; no upstream module imported.",
+      "parity_class": "component_only",
+      "resource_class": "unknown",
+      "code_trust_class": "trusted_locked",
+      "additional_code_trust_risks": [],
+      "solver_prediction_smoke": {"status": "not_run", "evidence": ["reports/agent-primitives/20260806-static-config-schema-smoke/run.json"]},
+      "strict_runtime_promotion": {"status": "not_run", "config_id": null, "evidence": []},
+      "performance_table_eligible": false,
+      "classification_evidence": {
+        "provenance": ["docs/EXECUTION_BATCHES.md"],
+        "taxonomy": ["configs/baselines.json", "docs/NEURIPS_EXPERIMENT_DESIGN.md"],
+        "execution": ["configs/baselines.json", "reports/agent-primitives/20260806-static-config-schema-smoke/run.json"]
+      },
+      "blocking_gates": [
+        {"gate": "implementation_available", "status": "failed", "detail": "The announced end-to-end demo and run_demo.py are absent.", "evidence": ["configs/baselines.json"]},
+        {"gate": "dependency_environment", "status": "failed", "detail": "Case-sensitive primitive imports fail and the smoke imports no upstream module.", "evidence": ["configs/baselines.json", "reports/agent-primitives/20260806-static-config-schema-smoke/run.json"]},
+        {"gate": "license_clearance", "status": "failed", "detail": "No root source license was verified.", "evidence": ["configs/baselines.json"]},
+        {"gate": "no_label_solver_prediction", "status": "failed", "detail": "Static schema checks produced no model output.", "evidence": ["reports/agent-primitives/20260806-static-config-schema-smoke/run.json"]},
+        {"gate": "resource_capacity", "status": "unknown", "detail": "No complete benchmark command or resource estimate exists.", "evidence": ["configs/baselines.json"]}
+      ]
+    },
+    {
+      "id": "graphplanner",
+      "name": "GraphPlanner",
+      "native_benchmark_generation": "native_non_arc_agi",
+      "cohort": "non_arc_prize_research",
+      "primary_mechanism_family": "native_multi_agent_router",
+      "evidence_scope": "component",
+      "evidence_scope_detail": "Bundled router-data schema and pure prompt formatter only; no router environment or agent model ran.",
+      "parity_class": "component_only",
+      "resource_class": "metered_api",
+      "code_trust_class": "api_network",
+      "additional_code_trust_risks": [],
+      "solver_prediction_smoke": {"status": "not_run", "evidence": ["reports/graphplanner/20260806-zero-dollar-schema-smoke/run.json"]},
+      "strict_runtime_promotion": {"status": "not_run", "config_id": null, "evidence": []},
+      "performance_table_eligible": false,
+      "classification_evidence": {
+        "provenance": ["docs/EXECUTION_BATCHES.md"],
+        "taxonomy": ["configs/baselines.json", "docs/NEURIPS_EXPERIMENT_DESIGN.md"],
+        "execution": ["configs/baselines.json", "reports/graphplanner/20260806-zero-dollar-schema-smoke/run.json"]
+      },
+      "blocking_gates": [
+        {"gate": "license_clearance", "status": "failed", "detail": "No root source license was verified.", "evidence": ["configs/baselines.json"]},
+        {"gate": "artifact_provenance", "status": "failed", "detail": "No trained router checkpoint is advertised.", "evidence": ["configs/baselines.json"]},
+        {"gate": "api_budget", "status": "unknown", "detail": "Native execution requires NVIDIA NIM interaction access and a frozen budget.", "evidence": ["configs/baselines.json"]},
+        {"gate": "no_label_solver_prediction", "status": "failed", "detail": "The schema smoke ran no router or agent model.", "evidence": ["reports/graphplanner/20260806-zero-dollar-schema-smoke/run.json"]},
+        {"gate": "native_benchmark_contract", "status": "unknown", "detail": "The native target is AI2 ARC, not ARC-AGI; no frozen native run has completed.", "evidence": ["configs/baselines.json", "docs/EXECUTION_BATCHES.md"]}
+      ]
+    },
+    {
+      "id": "routemoa",
+      "name": "RouteMoA",
+      "native_benchmark_generation": "native_non_arc_agi",
+      "cohort": "non_arc_prize_research",
+      "primary_mechanism_family": "native_multi_agent_router",
+      "evidence_scope": "scorer_only",
+      "evidence_scope_detail": "Auxiliary audit of bundled labeled predictions and scorer behavior only; explicitly excluded from solver smoke.",
+      "parity_class": "scorer_only",
+      "resource_class": "multi_gpu_or_above_host",
+      "code_trust_class": "api_network",
+      "additional_code_trust_risks": [],
+      "solver_prediction_smoke": {"status": "not_run", "evidence": ["reports/routemoa/20260806-zero-dollar-precomputed-scorer-audit/run.json"]},
+      "strict_runtime_promotion": {"status": "not_run", "config_id": null, "evidence": []},
+      "performance_table_eligible": false,
+      "classification_evidence": {
+        "provenance": ["docs/EXECUTION_BATCHES.md"],
+        "taxonomy": ["configs/baselines.json", "docs/NEURIPS_EXPERIMENT_DESIGN.md"],
+        "execution": ["configs/baselines.json", "reports/routemoa/20260806-zero-dollar-precomputed-scorer-audit/run.json"]
+      },
+      "blocking_gates": [
+        {"gate": "dependency_environment", "status": "failed", "detail": "The repository-wide source audit preserves a syntax failure.", "evidence": ["configs/baselines.json"]},
+        {"gate": "artifact_provenance", "status": "failed", "detail": "Router weights and a runnable model/API pool are not assembled and locked.", "evidence": ["configs/baselines.json"]},
+        {"gate": "api_budget", "status": "unknown", "detail": "Native service and judge budgets are not frozen.", "evidence": ["configs/baselines.json"]},
+        {"gate": "no_label_solver_prediction", "status": "failed", "detail": "The passing auxiliary report scores precomputed labeled data and is not a solver smoke.", "evidence": ["reports/routemoa/20260806-zero-dollar-precomputed-scorer-audit/run.json"]},
+        {"gate": "resource_capacity", "status": "failed", "detail": "The local paper setup used five A800 80 GiB GPUs.", "evidence": ["configs/baselines.json"]}
+      ]
+    },
+    {
+      "id": "maca",
+      "name": "MACA",
+      "native_benchmark_generation": "native_non_arc_agi",
+      "cohort": "non_arc_prize_research",
+      "primary_mechanism_family": "native_multi_agent",
+      "evidence_scope": "component",
+      "evidence_scope_detail": "Random-weight CPU GraphSpec forward only; not a trained solver or orchestrator run.",
+      "parity_class": "component_only",
+      "resource_class": "unknown",
+      "code_trust_class": "trusted_locked",
+      "additional_code_trust_risks": [],
+      "solver_prediction_smoke": {"status": "not_run", "evidence": ["reports/maca/20260806-zero-dollar-graphspec-component-smoke/run.json"]},
+      "strict_runtime_promotion": {"status": "not_run", "config_id": null, "evidence": []},
+      "performance_table_eligible": false,
+      "classification_evidence": {
+        "provenance": ["docs/EXECUTION_BATCHES.md"],
+        "taxonomy": ["configs/baselines.json", "docs/NEURIPS_EXPERIMENT_DESIGN.md"],
+        "execution": ["configs/baselines.json", "reports/maca/20260806-zero-dollar-graphspec-component-smoke/run.json"]
+      },
+      "blocking_gates": [
+        {"gate": "dependency_environment", "status": "failed", "detail": "The source audit preserves two syntax failures.", "evidence": ["configs/baselines.json"]},
+        {"gate": "license_clearance", "status": "failed", "detail": "No root source license was verified.", "evidence": ["configs/baselines.json"]},
+        {"gate": "artifact_provenance", "status": "failed", "detail": "No trained paper checkpoint is advertised.", "evidence": ["configs/baselines.json"]},
+        {"gate": "implementation_available", "status": "failed", "detail": "Native GRPO and VERL paths are mock or placeholder and most dataset adapters are unimplemented.", "evidence": ["configs/baselines.json"]},
+        {"gate": "no_label_solver_prediction", "status": "failed", "detail": "A random-weight GraphSpec forward is component-only.", "evidence": ["reports/maca/20260806-zero-dollar-graphspec-component-smoke/run.json"]},
+        {"gate": "resource_capacity", "status": "unknown", "detail": "No complete benchmark command or hardware budget is published.", "evidence": ["configs/baselines.json"]}
+      ]
+    },
+    {
+      "id": "marc",
+      "name": "MARC",
+      "native_benchmark_generation": "arc_agi_1",
+      "cohort": "arc_prize_2024",
+      "primary_mechanism_family": "pretrained_neural_or_llm_solver",
+      "evidence_scope": "component",
+      "evidence_scope_detail": "Synthetic ARC serialization, submission formatting, and fixed-candidate voting components only.",
+      "parity_class": "component_only",
+      "resource_class": "multi_gpu_or_above_host",
+      "code_trust_class": "trusted_locked",
+      "additional_code_trust_risks": [],
+      "solver_prediction_smoke": {"status": "not_run", "evidence": ["reports/marc/20260806-zero-cost-arc-components-smoke-retry1/run.json"]},
+      "strict_runtime_promotion": {"status": "not_run", "config_id": null, "evidence": []},
+      "performance_table_eligible": false,
+      "classification_evidence": {
+        "provenance": ["docs/EXECUTION_BATCHES.md"],
+        "taxonomy": ["docs/NEURIPS_EXPERIMENT_DESIGN.md"],
+        "execution": ["configs/baselines.json", "reports/marc/20260806-zero-cost-arc-components-smoke-retry1/run.json"]
+      },
+      "blocking_gates": [
+        {"gate": "dependency_environment", "status": "failed", "detail": "The locked torchtune submodule is uninitialized and training/inference stacks are incompatible.", "evidence": ["configs/baselines.json"]},
+        {"gate": "artifact_provenance", "status": "failed", "detail": "No checkpoint was loaded by the passing smoke.", "evidence": ["reports/marc/20260806-zero-cost-arc-components-smoke-retry1/run.json"]},
+        {"gate": "label_firewall", "status": "failed", "detail": "Official evaluation exposes solutions to in-process filtering and accounting.", "evidence": ["configs/baselines.json"]},
+        {"gate": "no_label_solver_prediction", "status": "failed", "detail": "Fixed-component tests produced no model prediction.", "evidence": ["reports/marc/20260806-zero-cost-arc-components-smoke-retry1/run.json"]},
+        {"gate": "resource_capacity", "status": "failed", "detail": "Full model caches and incompatible environments exceed practical storage capacity.", "evidence": ["configs/baselines.json"]}
+      ]
+    },
+    {
+      "id": "omni-arc",
+      "name": "Omni-ARC",
+      "native_benchmark_generation": "arc_agi_1",
+      "cohort": "arc_prize_2024",
+      "primary_mechanism_family": "unknown",
+      "evidence_scope": "unavailable",
+      "evidence_scope_detail": "A write-up exists, but no verified public runnable implementation was found.",
+      "parity_class": "unavailable",
+      "resource_class": "unavailable",
+      "code_trust_class": "unavailable",
+      "additional_code_trust_risks": [],
+      "solver_prediction_smoke": {"status": "unavailable", "evidence": ["configs/baselines.json"]},
+      "strict_runtime_promotion": {"status": "not_run", "config_id": null, "evidence": []},
+      "performance_table_eligible": false,
+      "classification_evidence": {
+        "provenance": ["docs/EXECUTION_BATCHES.md"],
+        "taxonomy": ["configs/baselines.json"],
+        "execution": ["configs/baselines.json"]
+      },
+      "blocking_gates": [
+        {"gate": "implementation_available", "status": "failed", "detail": "No verified public implementation or default branch exists.", "evidence": ["configs/baselines.json"]},
+        {"gate": "no_label_solver_prediction", "status": "failed", "detail": "A solver smoke cannot run without an implementation.", "evidence": ["configs/baselines.json"]}
+      ]
+    },
+    {
+      "id": "mini-arc-transformer",
+      "name": "Mini-ARC transformer implementation",
+      "native_benchmark_generation": "arc_agi_1",
+      "cohort": "arc_prize_2024",
+      "primary_mechanism_family": "unknown",
+      "evidence_scope": "unavailable",
+      "evidence_scope_detail": "The paper is public, but the audited transformer implementation is unavailable.",
+      "parity_class": "unavailable",
+      "resource_class": "unavailable",
+      "code_trust_class": "unavailable",
+      "additional_code_trust_risks": [],
+      "solver_prediction_smoke": {"status": "unavailable", "evidence": ["configs/baselines.json"]},
+      "strict_runtime_promotion": {"status": "not_run", "config_id": null, "evidence": []},
+      "performance_table_eligible": false,
+      "classification_evidence": {
+        "provenance": ["docs/EXECUTION_BATCHES.md"],
+        "taxonomy": ["configs/baselines.json"],
+        "execution": ["configs/baselines.json"]
+      },
+      "blocking_gates": [
+        {"gate": "implementation_available", "status": "failed", "detail": "No verified public implementation or default branch exists.", "evidence": ["configs/baselines.json"]},
+        {"gate": "no_label_solver_prediction", "status": "failed", "detail": "A solver smoke cannot run without an implementation.", "evidence": ["configs/baselines.json"]}
+      ]
+    },
+    {
+      "id": "neuromas",
+      "name": "NeuroMAS",
+      "native_benchmark_generation": "native_non_arc_agi",
+      "cohort": "non_arc_prize_research",
+      "primary_mechanism_family": "native_multi_agent",
+      "evidence_scope": "unavailable",
+      "evidence_scope_detail": "No verified public implementation was found.",
+      "parity_class": "unavailable",
+      "resource_class": "unavailable",
+      "code_trust_class": "unavailable",
+      "additional_code_trust_risks": [],
+      "solver_prediction_smoke": {"status": "unavailable", "evidence": ["configs/baselines.json"]},
+      "strict_runtime_promotion": {"status": "not_run", "config_id": null, "evidence": []},
+      "performance_table_eligible": false,
+      "classification_evidence": {
+        "provenance": ["docs/EXECUTION_BATCHES.md"],
+        "taxonomy": ["configs/baselines.json", "docs/NEURIPS_EXPERIMENT_DESIGN.md"],
+        "execution": ["configs/baselines.json"]
+      },
+      "blocking_gates": [
+        {"gate": "implementation_available", "status": "failed", "detail": "No verified public implementation or default branch exists.", "evidence": ["configs/baselines.json"]},
+        {"gate": "no_label_solver_prediction", "status": "failed", "detail": "A solver smoke cannot run without an implementation.", "evidence": ["configs/baselines.json"]}
+      ]
+    },
+    {
+      "id": "rem-moa",
+      "name": "ReM-MoA",
+      "native_benchmark_generation": "native_non_arc_agi",
+      "cohort": "non_arc_prize_research",
+      "primary_mechanism_family": "native_multi_agent",
+      "evidence_scope": "unavailable",
+      "evidence_scope_detail": "No verified public implementation was found.",
+      "parity_class": "unavailable",
+      "resource_class": "unavailable",
+      "code_trust_class": "unavailable",
+      "additional_code_trust_risks": [],
+      "solver_prediction_smoke": {"status": "unavailable", "evidence": ["configs/baselines.json"]},
+      "strict_runtime_promotion": {"status": "not_run", "config_id": null, "evidence": []},
+      "performance_table_eligible": false,
+      "classification_evidence": {
+        "provenance": ["docs/EXECUTION_BATCHES.md"],
+        "taxonomy": ["configs/baselines.json", "docs/NEURIPS_EXPERIMENT_DESIGN.md"],
+        "execution": ["configs/baselines.json"]
+      },
+      "blocking_gates": [
+        {"gate": "implementation_available", "status": "failed", "detail": "No verified public implementation or default branch exists.", "evidence": ["configs/baselines.json"]},
+        {"gate": "no_label_solver_prediction", "status": "failed", "detail": "A solver smoke cannot run without an implementation.", "evidence": ["configs/baselines.json"]}
+      ]
+    }
+  ]
+}

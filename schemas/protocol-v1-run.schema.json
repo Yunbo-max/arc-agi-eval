@@ -1,0 +1,887 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://arc-rebench.local/schemas/protocol-v1-run.schema.json",
+  "title": "ARC-REBench protocol-v1 terminal run record",
+  "description": "Strict schema for new protocol-v1 terminal evidence. Legacy run records are outside its scope.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "schema_digest_sha256",
+    "protocol_id",
+    "protocol_digest_sha256",
+    "method_id",
+    "config_id",
+    "run_id",
+    "status",
+    "evidence_scope",
+    "parity_class",
+    "resource_class",
+    "code_trust_class",
+    "claim",
+    "started_at_utc",
+    "ended_at_utc",
+    "source",
+    "artifacts",
+    "data",
+    "config",
+    "hardware",
+    "execution",
+    "challenge_firewall",
+    "attempt_budget",
+    "resources",
+    "results",
+    "failures",
+    "files",
+    "limitations"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "protocol-v1-run-1.0.0"
+    },
+    "schema_digest_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "protocol_id": {
+      "$ref": "#/$defs/identifier"
+    },
+    "protocol_digest_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "method_id": {
+      "$ref": "#/$defs/identifier"
+    },
+    "config_id": {
+      "$ref": "#/$defs/identifier"
+    },
+    "run_id": {
+      "$ref": "#/$defs/identifier"
+    },
+    "status": {
+      "enum": [
+        "passed",
+        "failed",
+        "blocked"
+      ]
+    },
+    "evidence_scope": {
+      "enum": [
+        "e0_audit",
+        "source_audit",
+        "component_smoke",
+        "solver_prediction_smoke",
+        "single_task_experiment",
+        "fixed_subset_benchmark",
+        "full_public_benchmark",
+        "paper_reproduction"
+      ]
+    },
+    "parity_class": {
+      "enum": [
+        "paper_exact",
+        "paper_equivalent",
+        "checkpoint_only",
+        "reduced",
+        "api_replication",
+        "source_only",
+        "scorer_only",
+        "not_applicable"
+      ]
+    },
+    "resource_class": {
+      "enum": [
+        "local_gpu",
+        "local_cpu",
+        "paper_equivalent_cluster",
+        "api_hosted",
+        "non_execution"
+      ]
+    },
+    "code_trust_class": {
+      "enum": [
+        "trusted_locked",
+        "generated_untrusted",
+        "unsafe_artifact",
+        "api_remote",
+        "no_code_execution"
+      ]
+    },
+    "claim": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "started_at_utc": {
+      "$ref": "#/$defs/dateTime"
+    },
+    "ended_at_utc": {
+      "$ref": "#/$defs/dateTime"
+    },
+    "source": {
+      "$ref": "#/$defs/source"
+    },
+    "artifacts": {
+      "$ref": "#/$defs/artifacts"
+    },
+    "data": {
+      "$ref": "#/$defs/data"
+    },
+    "config": {
+      "$ref": "#/$defs/config"
+    },
+    "hardware": {
+      "$ref": "#/$defs/hardware"
+    },
+    "execution": {
+      "$ref": "#/$defs/execution"
+    },
+    "challenge_firewall": {
+      "$ref": "#/$defs/challengeFirewall"
+    },
+    "attempt_budget": {
+      "$ref": "#/$defs/attemptBudget"
+    },
+    "resources": {
+      "$ref": "#/$defs/resources"
+    },
+    "results": {
+      "$ref": "#/$defs/results"
+    },
+    "failures": {
+      "$ref": "#/$defs/failures"
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/fileRecord"
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      },
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "identifier": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{0,127}$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "nullableSha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "repoPath": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096,
+      "pattern": "^(?!/)(?!.*\\\\).+$"
+    },
+    "nullableRepoPath": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1,
+      "maxLength": 4096,
+      "pattern": "^(?!/)(?!.*\\\\).+$"
+    },
+    "dateTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "nullableNumber": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "nullableInteger": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lock_digest_sha256",
+        "revision",
+        "dirty",
+        "patch_digest_sha256"
+      ],
+      "properties": {
+        "lock_digest_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "revision": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+        },
+        "dirty": {
+          "type": "boolean"
+        },
+        "patch_digest_sha256": {
+          "$ref": "#/$defs/nullableSha256"
+        }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "manifest_digest_sha256",
+        "artifact_count",
+        "licenses_verified"
+      ],
+      "properties": {
+        "manifest_digest_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "artifact_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "licenses_verified": {
+          "type": "boolean"
+        }
+      }
+    },
+    "data": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "manifest_digest_sha256",
+        "dataset_id",
+        "split",
+        "task_count",
+        "contamination_policy"
+      ],
+      "properties": {
+        "manifest_digest_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "dataset_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "split": {
+          "$ref": "#/$defs/identifier"
+        },
+        "task_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "contamination_policy": {
+          "enum": [
+            "clean",
+            "overlap_excluded",
+            "contamination_aware",
+            "historical",
+            "not_applicable"
+          ]
+        }
+      }
+    },
+    "config": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "digest_sha256",
+        "seed",
+        "deterministic"
+      ],
+      "properties": {
+        "digest_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "seed": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "deterministic": {
+          "type": "boolean"
+        }
+      }
+    },
+    "hardware": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profile_id",
+        "manifest_digest_sha256",
+        "cpu_model",
+        "accelerator_kind",
+        "accelerator_model",
+        "accelerator_uuid",
+        "accelerator_count",
+        "exclusive_accelerator"
+      ],
+      "properties": {
+        "profile_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "manifest_digest_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "cpu_model": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "accelerator_kind": {
+          "enum": [
+            "none",
+            "nvidia_gpu",
+            "other_gpu",
+            "remote_provider"
+          ]
+        },
+        "accelerator_model": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "accelerator_uuid": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "accelerator_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "exclusive_accelerator": {
+          "type": "boolean"
+        }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runner",
+        "command",
+        "working_directory",
+        "environment_digest_sha256",
+        "claim_execution_started",
+        "target_code_executed",
+        "network_used",
+        "gpu_requested"
+      ],
+      "properties": {
+        "runner": {
+          "$ref": "#/$defs/identifier"
+        },
+        "command": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          }
+        },
+        "working_directory": {
+          "$ref": "#/$defs/repoPath"
+        },
+        "environment_digest_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "claim_execution_started": {
+          "type": "boolean"
+        },
+        "target_code_executed": {
+          "type": "boolean"
+        },
+        "network_used": {
+          "type": "boolean"
+        },
+        "gpu_requested": {
+          "type": "boolean"
+        }
+      }
+    },
+    "challengeFirewall": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "challenge_manifest_digest_sha256",
+        "inference_received_test_labels",
+        "inference_started",
+        "scoring_after_inference",
+        "label_mutation_check",
+        "network_policy",
+        "write_policy",
+        "security_isolation"
+      ],
+      "properties": {
+        "challenge_manifest_digest_sha256": {
+          "$ref": "#/$defs/nullableSha256"
+        },
+        "inference_received_test_labels": {
+          "const": false
+        },
+        "inference_started": {
+          "type": "boolean"
+        },
+        "scoring_after_inference": {
+          "type": "boolean"
+        },
+        "label_mutation_check": {
+          "enum": [
+            "passed",
+            "failed",
+            "not_run",
+            "not_applicable"
+          ]
+        },
+        "network_policy": {
+          "enum": [
+            "denied",
+            "api_allowlisted",
+            "not_applicable"
+          ]
+        },
+        "write_policy": {
+          "enum": [
+            "run_directory_only",
+            "no_writes",
+            "not_applicable"
+          ]
+        },
+        "security_isolation": {
+          "enum": [
+            "strict_sandbox",
+            "trusted_process",
+            "api_remote",
+            "no_execution"
+          ]
+        }
+      }
+    },
+    "attemptBudget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "top_k",
+        "timeout_seconds",
+        "max_retries",
+        "max_candidates",
+        "api_call_cap",
+        "input_token_cap",
+        "output_token_cap",
+        "cost_cap_usd"
+      ],
+      "properties": {
+        "top_k": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "timeout_seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max_retries": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_candidates": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "api_call_cap": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "input_token_cap": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "output_token_cap": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cost_cap_usd": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "accounting_scope",
+        "child_processes_observed",
+        "children_included",
+        "sampling",
+        "wall_time_seconds",
+        "cpu_seconds",
+        "peak_rss_bytes",
+        "peak_vram_bytes",
+        "energy_joules",
+        "disk_delta_bytes",
+        "api_calls",
+        "input_tokens",
+        "output_tokens",
+        "cost_usd"
+      ],
+      "properties": {
+        "accounting_scope": {
+          "enum": [
+            "current_process",
+            "process_tree",
+            "external_provider",
+            "not_applicable"
+          ]
+        },
+        "child_processes_observed": {
+          "type": "boolean"
+        },
+        "children_included": {
+          "type": "boolean"
+        },
+        "sampling": {
+          "enum": [
+            "continuous",
+            "sampled",
+            "provider_reported",
+            "not_applicable"
+          ]
+        },
+        "wall_time_seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "cpu_seconds": {
+          "$ref": "#/$defs/nullableNumber"
+        },
+        "peak_rss_bytes": {
+          "$ref": "#/$defs/nullableInteger"
+        },
+        "peak_vram_bytes": {
+          "$ref": "#/$defs/nullableInteger"
+        },
+        "energy_joules": {
+          "$ref": "#/$defs/nullableNumber"
+        },
+        "disk_delta_bytes": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "api_calls": {
+          "$ref": "#/$defs/nullableInteger"
+        },
+        "input_tokens": {
+          "$ref": "#/$defs/nullableInteger"
+        },
+        "output_tokens": {
+          "$ref": "#/$defs/nullableInteger"
+        },
+        "cost_usd": {
+          "$ref": "#/$defs/nullableNumber"
+        }
+      }
+    },
+    "metric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "role",
+        "top_k",
+        "numerator",
+        "denominator",
+        "value",
+        "denominator_policy"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/identifier"
+        },
+        "role": {
+          "enum": [
+            "primary",
+            "secondary",
+            "diagnostic"
+          ]
+        },
+        "top_k": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "numerator": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "denominator": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "value": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "denominator_policy": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        }
+      }
+    },
+    "nullableMetric": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "role",
+        "top_k",
+        "numerator",
+        "denominator",
+        "value",
+        "denominator_policy"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/identifier"
+        },
+        "role": {
+          "enum": [
+            "primary",
+            "secondary",
+            "diagnostic"
+          ]
+        },
+        "top_k": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "numerator": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "denominator": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "value": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "denominator_policy": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        }
+      }
+    },
+    "check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "status",
+        "detail"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/identifier"
+        },
+        "status": {
+          "enum": [
+            "passed",
+            "failed"
+          ]
+        },
+        "detail": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      }
+    },
+    "results": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "predictions_path",
+        "score_path",
+        "primary_metric",
+        "secondary_metrics",
+        "checks"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "arc_predictions",
+            "check"
+          ]
+        },
+        "predictions_path": {
+          "$ref": "#/$defs/nullableRepoPath"
+        },
+        "score_path": {
+          "$ref": "#/$defs/nullableRepoPath"
+        },
+        "primary_metric": {
+          "$ref": "#/$defs/nullableMetric"
+        },
+        "secondary_metrics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/metric"
+          }
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/check"
+          }
+        }
+      }
+    },
+    "failure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "code",
+        "message",
+        "retryable"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "blocker",
+            "error",
+            "timeout",
+            "oom",
+            "malformed_output",
+            "missing_output",
+            "policy",
+            "other"
+          ]
+        },
+        "code": {
+          "$ref": "#/$defs/identifier"
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "retryable": {
+          "type": "boolean"
+        }
+      }
+    },
+    "failures": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "count",
+        "items"
+      ],
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/failure"
+          }
+        }
+      }
+    },
+    "fileRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role",
+        "path",
+        "sha256",
+        "bytes",
+        "required_for_claim"
+      ],
+      "properties": {
+        "role": {
+          "enum": [
+            "source_lock",
+            "source_patch",
+            "artifact_manifest",
+            "data_manifest",
+            "config",
+            "environment_lock",
+            "hardware_manifest",
+            "protocol_manifest",
+            "challenge_manifest",
+            "predictions",
+            "results",
+            "stdout",
+            "stderr",
+            "event_log",
+            "resource_trace",
+            "failure_log",
+            "content_manifest",
+            "schema",
+            "validator",
+            "test",
+            "other"
+          ]
+        },
+        "path": {
+          "$ref": "#/$defs/repoPath"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "required_for_claim": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

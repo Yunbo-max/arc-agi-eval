@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-08-06",
+  "scope": "Immutable local identity and declared split counts for the vendored public ARC-AGI-1 and ARC-AGI-2 snapshots.",
+  "benchmarks": {
+    "arc_agi_1": {
+      "repository": "https://github.com/fchollet/ARC-AGI",
+      "revision": "399030444e0ab0cc8b4e199870fb20b863846f34",
+      "retrieved_at": "2026-08-04",
+      "local_path": "third_party/arc-agi-1",
+      "license_path": "third_party/arc-agi-1/LICENSE",
+      "data_path": "third_party/arc-agi-1/data",
+      "expected_splits": {
+        "evaluation": 400,
+        "training": 400
+      },
+      "provenance_evidence": "third_party/SOURCES.md"
+    },
+    "arc_agi_2": {
+      "repository": "https://github.com/arcprize/ARC-AGI-2",
+      "revision": "f3283f727488ad98fe575ea6a5ac981e4a188e49",
+      "retrieved_at": "2026-08-04",
+      "local_path": "third_party/arc-agi-2",
+      "license_path": "third_party/arc-agi-2/LICENSE",
+      "data_path": "third_party/arc-agi-2/data",
+      "expected_splits": {
+        "evaluation": 120,
+        "training": 1000
+      },
+      "provenance_evidence": "third_party/SOURCES.md"
+    }
+  },
+  "limitations": [
+    "The extracted snapshots do not retain Git metadata, so the declared upstream revisions are tied to the retrieval ledger and the audited local per-file hashes rather than re-proved from a local Git object database.",
+    "This manifest identifies public task files and validates their schema; it does not make public labels private or researcher-unseen."
+  ]
+}

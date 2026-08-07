@@ -1,0 +1,503 @@
+{
+  "schema_version": "1.0.0-draft",
+  "protocol_id": "arc-rebench-protocol-v1-draft",
+  "protocol_status": "draft-not-frozen",
+  "generated_at": "2026-08-06",
+  "scope": "Single-root readiness contract for ARC-AGI-1 and ARC-AGI-2 development, locked-public execution, and separately labeled paper reproduction.",
+  "comparison_axes": {
+    "evidence_scope": [
+      "e0_audit",
+      "source_audit",
+      "component_smoke",
+      "solver_prediction_smoke",
+      "single_task_experiment",
+      "fixed_subset_benchmark",
+      "full_public_benchmark",
+      "paper_reproduction"
+    ],
+    "parity_class": [
+      "paper_exact",
+      "paper_equivalent",
+      "checkpoint_only",
+      "reduced",
+      "api_replication",
+      "source_only",
+      "scorer_only",
+      "not_applicable"
+    ],
+    "resource_class": [
+      "local_gpu",
+      "local_cpu",
+      "paper_equivalent_cluster",
+      "api_hosted",
+      "non_execution"
+    ],
+    "code_trust_class": [
+      "trusted_locked",
+      "generated_untrusted",
+      "unsafe_artifact",
+      "api_remote",
+      "no_code_execution"
+    ]
+  },
+  "scoring_contract": {
+    "primary": {
+      "name": "output_exact_pass_at_k",
+      "top_k": 2,
+      "denominator_policy": "all_declared_test_outputs"
+    },
+    "secondary": "strict_task_exact_pass_at_k",
+    "diagnostic_only": "micro_cell_accuracy",
+    "missing_output_policy": "zero_credit_in_declared_denominator",
+    "evidence": [
+      "reports/e0-scoring/20260806-output-primary-contract/run.json"
+    ]
+  },
+  "benchmark_contracts": {
+    "arc_agi_1": {
+      "benchmark_generation": "arc_agi_1",
+      "public_split": "evaluation",
+      "top_k": 2,
+      "declared_task_count": 400,
+      "declared_output_count": 419,
+      "challenge_view": "reports/e0-challenge-data/20260806-locked-public-challenge-trees-draft-retry2/data/arc_agi_1/evaluation",
+      "challenge_tree_sha256": "2cf1ca07dd8275e2562c566afb938d2434d1a341e1ca99fc7ffdde97e096b971",
+      "evidence": [
+        "reports/e0-benchmark-data/20260806-public-snapshot-integrity-v1/run.json",
+        "reports/e0-challenge-data/20260806-locked-public-challenge-trees-draft-retry2/run.json"
+      ]
+    },
+    "arc_agi_2": {
+      "benchmark_generation": "arc_agi_2",
+      "public_split": "evaluation",
+      "top_k": 2,
+      "declared_task_count": 120,
+      "declared_output_count": 167,
+      "challenge_view": "reports/e0-challenge-data/20260806-locked-public-challenge-trees-draft-retry2/data/arc_agi_2/evaluation",
+      "challenge_tree_sha256": "32ed2e8ec650387cda09ce8d7778bf1943c1ff37151bccdce84b6f5dde5ce56a",
+      "evidence": [
+        "reports/e0-benchmark-data/20260806-public-snapshot-integrity-v1/run.json",
+        "reports/e0-challenge-data/20260806-locked-public-challenge-trees-draft-retry2/run.json"
+      ]
+    }
+  },
+  "freeze_gates": [
+    {
+      "id": "cm.scorer-contract",
+      "class": "core_measurement",
+      "status": "passed",
+      "required_for_freeze": true,
+      "claim": "Output-level exact pass@2 is primary, missing outputs remain in the declared denominator, and two independent implementations agree.",
+      "evidence": [
+        "reports/e0-scoring/20260806-output-primary-contract/run.json"
+      ],
+      "acceptance_assertions": [
+        {"path": "reports/e0-scoring/20260806-output-primary-contract/run.json", "pointer": "/status", "equals": "passed"},
+        {"path": "reports/e0-scoring/20260806-output-primary-contract/run.json", "pointer": "/contract/primary", "equals": "output_exact_pass_at_k"},
+        {"path": "reports/e0-scoring/20260806-output-primary-contract/run.json", "pointer": "/contract/locked_public_top_k", "equals": 2},
+        {"path": "reports/e0-scoring/20260806-output-primary-contract/run.json", "pointer": "/canonical_deterministic_floor_checks/arc_agi_1_evaluation/independent_reference_agreed", "equals": true},
+        {"path": "reports/e0-scoring/20260806-output-primary-contract/run.json", "pointer": "/canonical_deterministic_floor_checks/arc_agi_2_evaluation/independent_reference_agreed", "equals": true}
+      ],
+      "blocker": null
+    },
+    {
+      "id": "cm.public-data-integrity",
+      "class": "core_measurement",
+      "status": "passed",
+      "required_for_freeze": true,
+      "claim": "All vendored public tasks are schema-valid and have immutable per-file identities.",
+      "evidence": [
+        "reports/e0-benchmark-data/20260806-public-snapshot-integrity-v1/run.json"
+      ],
+      "acceptance_assertions": [
+        {"path": "reports/e0-benchmark-data/20260806-public-snapshot-integrity-v1/run.json", "pointer": "/status", "equals": "passed"},
+        {"path": "reports/e0-benchmark-data/20260806-public-snapshot-integrity-v1/run.json", "pointer": "/summary/task_file_count", "equals": 1920},
+        {"path": "reports/e0-benchmark-data/20260806-public-snapshot-integrity-v1/run.json", "pointer": "/summary/test_output_count", "equals": 2078}
+      ],
+      "blocker": null
+    },
+    {
+      "id": "cm.overlap-control",
+      "class": "core_measurement",
+      "status": "passed",
+      "required_for_freeze": true,
+      "claim": "The known ARC-AGI-1 evaluation versus ARC-AGI-2 training overlap is enumerated and cannot be silently treated as clean.",
+      "evidence": [
+        "reports/e0-overlap/20260806-arc1-eval-vs-arc2-train-retry1/run.json"
+      ],
+      "acceptance_assertions": [
+        {"path": "reports/e0-overlap/20260806-arc1-eval-vs-arc2-train-retry1/run.json", "pointer": "/status", "equals": "passed"},
+        {"path": "reports/e0-overlap/20260806-arc1-eval-vs-arc2-train-retry1/run.json", "pointer": "/expected_core_counts/id_overlap_count", "equals": 376},
+        {"path": "reports/e0-overlap/20260806-arc1-eval-vs-arc2-train-retry1/run.json", "pointer": "/expected_core_counts/semantic_labeled_exact_count", "equals": 375},
+        {"path": "reports/e0-overlap/20260806-arc1-eval-vs-arc2-train-retry1/run.json", "pointer": "/expected_core_counts/test_io_exact_count", "equals": 376}
+      ],
+      "blocker": null
+    },
+    {
+      "id": "cm.development-partition",
+      "class": "core_measurement",
+      "status": "passed",
+      "required_for_freeze": true,
+      "claim": "The training-only and known-overlap-excluded manifests are bound by a frozen derivative declaration and a 94-cluster, 97-output challenge-only dev-audit runtime without cluster reallocation.",
+      "evidence": [
+        "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1/run.json",
+        "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1/manifest.json"
+      ],
+      "acceptance_assertions": [
+        {"path": "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1/run.json", "pointer": "/status", "equals": "passed"},
+        {"path": "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1/run.json", "pointer": "/schema_version", "equals": "protocol-v1-run-1.0.0"},
+        {"path": "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1/run.json", "pointer": "/data/task_count", "equals": 94},
+        {"path": "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1/manifest.json", "pointer": "/freeze_status", "equals": "frozen"},
+        {"path": "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1/manifest.json", "pointer": "/claim_boundary", "equals": "known-overlap-excluded-only"},
+        {"path": "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1/manifest.json", "pointer": "/partition/general_cluster_count", "equals": 1008},
+        {"path": "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1/manifest.json", "pointer": "/partition/known_overlap_excluded_cluster_count", "equals": 376},
+        {"path": "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1/manifest.json", "pointer": "/partition/remaining_cluster_count", "equals": 632},
+        {"path": "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1/manifest.json", "pointer": "/partition/no_cluster_reallocation", "equals": true},
+        {"path": "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1/manifest.json", "pointer": "/dev_audit/cluster_count", "equals": 94},
+        {"path": "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1/manifest.json", "pointer": "/dev_audit/representative_task_count", "equals": 94},
+        {"path": "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1/manifest.json", "pointer": "/dev_audit/source_record_count", "equals": 159},
+        {"path": "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1/manifest.json", "pointer": "/dev_audit/test_output_denominator", "equals": 97},
+        {"path": "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1/manifest.json", "pointer": "/dev_audit/test_output_fields_present", "equals": 0},
+        {"path": "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1/manifest.json", "pointer": "/checks/hidden_label_mutation_stable", "equals": true},
+        {"path": "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1/manifest.json", "pointer": "/checks/scorer_label_sensitivity_passed", "equals": true}
+      ],
+      "blocker": null
+    },
+    {
+      "id": "cm.e0-contracts",
+      "class": "core_measurement",
+      "status": "passed",
+      "required_for_freeze": true,
+      "claim": "Synthetic challenge stripping, label mutation, process-group timeout, IsoARC, and reference scorer contracts have terminal evidence.",
+      "evidence": [
+        "reports/e0-contracts/20260806-firewall-isoarc-process-terminal/run.json"
+      ],
+      "acceptance_assertions": [
+        {"path": "reports/e0-contracts/20260806-firewall-isoarc-process-terminal/run.json", "pointer": "/status", "equals": "passed"},
+        {"path": "reports/e0-contracts/20260806-firewall-isoarc-process-terminal/run.json", "pointer": "/test_summary/observed_test_count", "equals": 12},
+        {"path": "reports/e0-contracts/20260806-firewall-isoarc-process-terminal/run.json", "pointer": "/contract_checks/label_mutation_prediction_bytes_stable", "equals": true},
+        {"path": "reports/e0-contracts/20260806-firewall-isoarc-process-terminal/run.json", "pointer": "/contract_checks/timeout_kills_process_group", "equals": true},
+        {"path": "reports/e0-contracts/20260806-firewall-isoarc-process-terminal/run.json", "pointer": "/contract_checks/d4_and_color_round_trip", "equals": true}
+      ],
+      "blocker": null
+    },
+    {
+      "id": "cm.run-record-contract",
+      "class": "core_measurement",
+      "status": "passed",
+      "required_for_freeze": true,
+      "claim": "New protocol-v1 records are strict, cross-field validated, provenance-bound, and hardware-identified; legacy reports are not promoted.",
+      "evidence": [
+        "reports/e0-schema/20260806-protocol-v1-run-schema-self-audit/run.json"
+      ],
+      "acceptance_assertions": [
+        {"path": "reports/e0-schema/20260806-protocol-v1-run-schema-self-audit/run.json", "pointer": "/status", "equals": "passed"},
+        {"path": "reports/e0-schema/20260806-protocol-v1-run-schema-self-audit/run.json", "pointer": "/schema_version", "equals": "protocol-v1-run-1.0.0"},
+        {"path": "reports/e0-schema/20260806-protocol-v1-run-schema-self-audit/run.json", "pointer": "/results/checks/2/status", "equals": "passed"},
+        {"path": "reports/e0-schema/20260806-protocol-v1-run-schema-self-audit/run.json", "pointer": "/results/checks/3/status", "equals": "passed"},
+        {"path": "reports/e0-schema/20260806-protocol-v1-run-schema-self-audit/run.json", "pointer": "/results/checks/4/status", "equals": "passed"}
+      ],
+      "blocker": null
+    },
+    {
+      "id": "cm.prior-exposure",
+      "class": "core_measurement",
+      "status": "passed",
+      "required_for_freeze": true,
+      "claim": "The pre-attestation workspace exposure inventory has a non-circular cutoff and explicit public-label limitations.",
+      "evidence": [
+        "reports/e0-prior-exposure/20260806-workspace-disclosure-draft-retry16/run.json"
+      ],
+      "acceptance_assertions": [
+        {"path": "reports/e0-prior-exposure/20260806-workspace-disclosure-draft-retry16/run.json", "pointer": "/status", "equals": "passed"},
+        {"path": "reports/e0-prior-exposure/20260806-workspace-disclosure-draft-retry16/run.json", "pointer": "/summary/run_record_count", "equals": 263},
+        {"path": "reports/e0-prior-exposure/20260806-workspace-disclosure-draft-retry16/run.json", "pointer": "/summary/result_artifact_count", "equals": 4},
+        {"path": "reports/e0-prior-exposure/20260806-workspace-disclosure-draft-retry16/run.json", "pointer": "/manifest/inventory_sha256", "equals": "d64534cc7f699a0255e55e3bce0b89723e414fb1c03aecb13eda84eb01eb5fc2"}
+      ],
+      "blocker": null
+    },
+    {
+      "id": "cm.resource-calibration",
+      "class": "core_measurement",
+      "status": "passed",
+      "required_for_freeze": true,
+      "claim": "Current-process resource sampling overhead and semantics are measured; process-tree accounting is a separate open gate.",
+      "evidence": [
+        "reports/e0-resources/20260806-process-monitor-calibration/run.json"
+      ],
+      "acceptance_assertions": [
+        {"path": "reports/e0-resources/20260806-process-monitor-calibration/run.json", "pointer": "/status", "equals": "passed"},
+        {"path": "reports/e0-resources/20260806-process-monitor-calibration/run.json", "pointer": "/gate/passed", "equals": true}
+      ],
+      "blocker": null
+    },
+    {
+      "id": "te.process-lifecycle",
+      "class": "trusted_execution",
+      "status": "passed",
+      "required_for_freeze": true,
+      "claim": "Trusted subprocess timeout kills the process group and preserves terminal evidence in synthetic tests.",
+      "evidence": [
+        "reports/e0-contracts/20260806-firewall-isoarc-process-terminal/run.json"
+      ],
+      "acceptance_assertions": [
+        {"path": "reports/e0-contracts/20260806-firewall-isoarc-process-terminal/run.json", "pointer": "/status", "equals": "passed"},
+        {"path": "reports/e0-contracts/20260806-firewall-isoarc-process-terminal/run.json", "pointer": "/contract_checks/timeout_kills_process_group", "equals": true}
+      ],
+      "blocker": null
+    },
+    {
+      "id": "te.challenge-runtime",
+      "class": "trusted_execution",
+      "status": "passed",
+      "required_for_freeze": true,
+      "claim": "The global trusted-process runtime core is validated on the frozen 94-task, 97-output dev-audit view and bound to the source-verified 520-task public challenge views: a locked reference solver received no test labels, produced byte-stable A/B predictions, and was scored by distinct processes only after inference exited. This infrastructure evidence cannot itself promote a method; separately validated CompressARC and ARC_NCA method-specific strict smokes now pass.",
+      "evidence": [
+        "reports/e0-challenge-runtime/20260806-deterministic-baseline-dev-audit-v1/run.json",
+        "reports/e0-challenge-runtime/20260806-deterministic-baseline-dev-audit-v1/results-summary.json",
+        "reports/e0-challenge-data/20260806-locked-public-challenge-trees-draft-retry2/run.json",
+        "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1/manifest.json",
+        "reports/e0-method-eligibility/20260806-eligibility-trust-audit-retry12/run.json"
+      ],
+      "acceptance_assertions": [
+        {"path": "reports/e0-challenge-runtime/20260806-deterministic-baseline-dev-audit-v1/run.json", "pointer": "/status", "equals": "passed"},
+        {"path": "reports/e0-challenge-runtime/20260806-deterministic-baseline-dev-audit-v1/run.json", "pointer": "/schema_version", "equals": "protocol-v1-run-1.0.0"},
+        {"path": "reports/e0-challenge-runtime/20260806-deterministic-baseline-dev-audit-v1/run.json", "pointer": "/method_id", "equals": "deterministic-floor-runtime-core"},
+        {"path": "reports/e0-challenge-runtime/20260806-deterministic-baseline-dev-audit-v1/run.json", "pointer": "/evidence_scope", "equals": "solver_prediction_smoke"},
+        {"path": "reports/e0-challenge-runtime/20260806-deterministic-baseline-dev-audit-v1/run.json", "pointer": "/data/task_count", "equals": 94},
+        {"path": "reports/e0-challenge-runtime/20260806-deterministic-baseline-dev-audit-v1/run.json", "pointer": "/challenge_firewall/inference_received_test_labels", "equals": false},
+        {"path": "reports/e0-challenge-runtime/20260806-deterministic-baseline-dev-audit-v1/run.json", "pointer": "/challenge_firewall/inference_started", "equals": true},
+        {"path": "reports/e0-challenge-runtime/20260806-deterministic-baseline-dev-audit-v1/run.json", "pointer": "/challenge_firewall/scoring_after_inference", "equals": true},
+        {"path": "reports/e0-challenge-runtime/20260806-deterministic-baseline-dev-audit-v1/run.json", "pointer": "/challenge_firewall/label_mutation_check", "equals": "passed"},
+        {"path": "reports/e0-challenge-runtime/20260806-deterministic-baseline-dev-audit-v1/run.json", "pointer": "/challenge_firewall/security_isolation", "equals": "trusted_process"},
+        {"path": "reports/e0-challenge-runtime/20260806-deterministic-baseline-dev-audit-v1/run.json", "pointer": "/resources/accounting_scope", "equals": "current_process"},
+        {"path": "reports/e0-challenge-runtime/20260806-deterministic-baseline-dev-audit-v1/run.json", "pointer": "/resources/children_included", "equals": false},
+        {"path": "reports/e0-challenge-runtime/20260806-deterministic-baseline-dev-audit-v1/run.json", "pointer": "/results/kind", "equals": "arc_predictions"},
+        {"path": "reports/e0-challenge-runtime/20260806-deterministic-baseline-dev-audit-v1/run.json", "pointer": "/results/primary_metric/denominator", "equals": 97},
+        {"path": "reports/e0-challenge-runtime/20260806-deterministic-baseline-dev-audit-v1/results-summary.json", "pointer": "/status", "equals": "passed"},
+        {"path": "reports/e0-challenge-runtime/20260806-deterministic-baseline-dev-audit-v1/results-summary.json", "pointer": "/scope", "equals": "global-trusted-challenge-runtime-core"},
+        {"path": "reports/e0-challenge-runtime/20260806-deterministic-baseline-dev-audit-v1/results-summary.json", "pointer": "/checks/prediction_bytes_a_b_equal", "equals": true},
+        {"path": "reports/e0-challenge-runtime/20260806-deterministic-baseline-dev-audit-v1/results-summary.json", "pointer": "/checks/scoring_after_all_inference", "equals": true},
+        {"path": "reports/e0-challenge-runtime/20260806-deterministic-baseline-dev-audit-v1/results-summary.json", "pointer": "/checks/sentinel_label_sensitivity", "equals": true},
+        {"path": "reports/e0-challenge-runtime/20260806-deterministic-baseline-dev-audit-v1/results-summary.json", "pointer": "/checks/production_reference_scorers_agree", "equals": true},
+        {"path": "reports/e0-challenge-runtime/20260806-deterministic-baseline-dev-audit-v1/results-summary.json", "pointer": "/method_specific_strict_runtime_reports_created", "equals": 0},
+        {"path": "reports/e0-challenge-runtime/20260806-deterministic-baseline-dev-audit-v1/results-summary.json", "pointer": "/performance_table_eligibility_changed", "equals": false},
+        {"path": "reports/e0-challenge-data/20260806-locked-public-challenge-trees-draft-retry2/run.json", "pointer": "/status", "equals": "passed"},
+        {"path": "reports/e0-challenge-data/20260806-locked-public-challenge-trees-draft-retry2/run.json", "pointer": "/summary/task_count", "equals": 520},
+        {"path": "reports/e0-challenge-data/20260806-locked-public-challenge-trees-draft-retry2/run.json", "pointer": "/summary/test_output_fields_present", "equals": 0},
+        {"path": "reports/e0-challenge-data/20260806-locked-public-challenge-trees-draft-retry2/run.json", "pointer": "/summary/source_hash_mismatch_count", "equals": 0},
+        {"path": "reports/e0-challenge-data/20260806-locked-public-challenge-trees-draft-retry2/run.json", "pointer": "/summary/source_to_challenge_mismatch_count", "equals": 0},
+        {"path": "reports/e0-challenge-data/20260806-locked-public-challenge-trees-draft-retry2/run.json", "pointer": "/summary/visible_label_locator_count", "equals": 0},
+        {"path": "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1/manifest.json", "pointer": "/dev_audit/representative_task_count", "equals": 94},
+        {"path": "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1/manifest.json", "pointer": "/dev_audit/test_output_denominator", "equals": 97},
+        {"path": "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1/manifest.json", "pointer": "/dev_audit/test_output_fields_present", "equals": 0},
+        {"path": "reports/e0-method-eligibility/20260806-eligibility-trust-audit-retry12/run.json", "pointer": "/status", "equals": "passed"},
+        {"path": "reports/e0-method-eligibility/20260806-eligibility-trust-audit-retry12/run.json", "pointer": "/summary/strict_runtime_promotion_status/passed", "equals": 2},
+        {"path": "reports/e0-method-eligibility/20260806-eligibility-trust-audit-retry12/run.json", "pointer": "/summary/performance_table_eligible/eligible", "equals": 0}
+      ],
+      "blocker": null
+    },
+    {
+      "id": "lp.method-eligibility",
+      "class": "locked_public",
+      "status": "passed",
+      "required_for_freeze": true,
+      "claim": "All 24 methods have explicit scope, parity, resource, trust, blocking-gate, and method-specific strict-runtime classifications; two retain legacy reduced solver-prediction evidence, CompressARC and ARC_NCA have validated strict-runtime promotions, and zero are performance-eligible.",
+      "evidence": [
+        "reports/e0-method-eligibility/20260806-eligibility-trust-audit-retry12/run.json"
+      ],
+      "acceptance_assertions": [
+        {"path": "reports/e0-method-eligibility/20260806-eligibility-trust-audit-retry12/run.json", "pointer": "/status", "equals": "passed"},
+        {"path": "reports/e0-method-eligibility/20260806-eligibility-trust-audit-retry12/run.json", "pointer": "/summary/entry_count", "equals": 24},
+        {"path": "reports/e0-method-eligibility/20260806-eligibility-trust-audit-retry12/run.json", "pointer": "/summary/performance_table_eligible/eligible", "equals": 0},
+        {"path": "reports/e0-method-eligibility/20260806-eligibility-trust-audit-retry12/run.json", "pointer": "/summary/performance_table_eligible/ineligible", "equals": 24},
+        {"path": "reports/e0-method-eligibility/20260806-eligibility-trust-audit-retry12/run.json", "pointer": "/summary/solver_prediction_smoke_status/passed", "equals": 2},
+        {"path": "reports/e0-method-eligibility/20260806-eligibility-trust-audit-retry12/run.json", "pointer": "/summary/strict_runtime_promotion_status/passed", "equals": 2},
+        {"path": "reports/e0-method-eligibility/20260806-eligibility-trust-audit-retry12/run.json", "pointer": "/summary/strict_runtime_promotion_status/not_run", "equals": 22},
+        {"path": "reports/e0-method-eligibility/20260806-eligibility-trust-audit-retry12/run.json", "pointer": "/summary/strict_runtime_artifact_validated_count", "equals": 2}
+      ],
+      "blocker": null
+    },
+    {
+      "id": "lp.freeze-inputs",
+      "class": "locked_public",
+      "status": "passed",
+      "required_for_freeze": true,
+      "claim": "Immutable input bundle v1 binds 49 exact declared inputs, 125 repository-native code files, label-free public/development/fixed64 task rosters and deterministic orders, plus frozen budgets, seeds, and retry policy; it records two strict-runtime promotions while its empty admitted set explicitly authorizes no locked-public solver run. The declared inputs include the SOAR and NVARC Batch D gate configs, runner manifests, and formal reports.",
+      "evidence": [
+        "reports/e0-freeze/20260806-input-bundle-v1-retry16/run.json",
+        "reports/e0-freeze/20260806-input-bundle-v1-retry16/bundle-manifest.json",
+        "reports/e0-freeze/20260806-input-bundle-v1-retry16/task-orders.json",
+        "reports/e0-freeze/20260806-input-bundle-v1-retry16/declared-input-inventory.json",
+        "reports/e0-freeze/20260806-input-bundle-v1-retry16/code-inventory.json"
+      ],
+      "acceptance_assertions": [
+        {"path": "reports/e0-freeze/20260806-input-bundle-v1-retry16/run.json", "pointer": "/status", "equals": "passed"},
+        {"path": "reports/e0-freeze/20260806-input-bundle-v1-retry16/run.json", "pointer": "/schema_version", "equals": "protocol-v1-run-1.0.0"},
+        {"path": "reports/e0-freeze/20260806-input-bundle-v1-retry16/bundle-manifest.json", "pointer": "/bundle_root_sha256", "equals": "47249b5556f3049cb4195db4a75c9bd360d384fa64ce214c6bb1e66b318d9cde"},
+        {"path": "reports/e0-freeze/20260806-input-bundle-v1-retry16/bundle-manifest.json", "pointer": "/freeze_status", "equals": "frozen-no-admitted-method-configurations"},
+        {"path": "reports/e0-freeze/20260806-input-bundle-v1-retry16/bundle-manifest.json", "pointer": "/inputs/declared_input_count", "equals": 49},
+        {"path": "reports/e0-freeze/20260806-input-bundle-v1-retry16/bundle-manifest.json", "pointer": "/inputs/code_file_count", "equals": 125},
+        {"path": "reports/e0-freeze/20260806-input-bundle-v1-retry16/bundle-manifest.json", "pointer": "/methods/entry_count", "equals": 24},
+        {"path": "reports/e0-freeze/20260806-input-bundle-v1-retry16/bundle-manifest.json", "pointer": "/methods/legacy_solver_prediction_smoke_passed", "equals": 2},
+        {"path": "reports/e0-freeze/20260806-input-bundle-v1-retry16/bundle-manifest.json", "pointer": "/methods/strict_runtime_passed", "equals": 2},
+        {"path": "reports/e0-freeze/20260806-input-bundle-v1-retry16/bundle-manifest.json", "pointer": "/methods/performance_eligible", "equals": 0},
+        {"path": "reports/e0-freeze/20260806-input-bundle-v1-retry16/bundle-manifest.json", "pointer": "/methods/admitted_configuration_count", "equals": 0},
+        {"path": "reports/e0-freeze/20260806-input-bundle-v1-retry16/bundle-manifest.json", "pointer": "/authorization/locked_public_solver_run", "equals": false},
+        {"path": "reports/e0-freeze/20260806-input-bundle-v1-retry16/bundle-manifest.json", "pointer": "/data/public_task_count", "equals": 520},
+        {"path": "reports/e0-freeze/20260806-input-bundle-v1-retry16/bundle-manifest.json", "pointer": "/data/public_test_input_count", "equals": 586},
+        {"path": "reports/e0-freeze/20260806-input-bundle-v1-retry16/bundle-manifest.json", "pointer": "/data/public_test_output_fields_present", "equals": 0},
+        {"path": "reports/e0-freeze/20260806-input-bundle-v1-retry16/bundle-manifest.json", "pointer": "/invalidation_policy/method_promotion_requires_new_bundle", "equals": true},
+        {"path": "reports/e0-freeze/20260806-input-bundle-v1-retry16/bundle-manifest.json", "pointer": "/invalidation_policy/any_frozen_code_change_requires_new_bundle", "equals": true},
+        {"path": "reports/e0-freeze/20260806-input-bundle-v1-retry16/task-orders.json", "pointer": "/deterministic_replay", "equals": true},
+        {"path": "reports/e0-freeze/20260806-input-bundle-v1-retry16/task-orders.json", "pointer": "/benchmarks/arc_agi_1/task_count", "equals": 400},
+        {"path": "reports/e0-freeze/20260806-input-bundle-v1-retry16/task-orders.json", "pointer": "/benchmarks/arc_agi_1/orders/2/seed", "equals": 2026080603},
+        {"path": "reports/e0-freeze/20260806-input-bundle-v1-retry16/task-orders.json", "pointer": "/benchmarks/arc_agi_2/task_count", "equals": 120},
+        {"path": "reports/e0-freeze/20260806-input-bundle-v1-retry16/task-orders.json", "pointer": "/benchmarks/arc_agi_2/orders/2/seed", "equals": 2026080603},
+        {"path": "reports/e0-freeze/20260806-input-bundle-v1-retry16/task-orders.json", "pointer": "/development/task_count", "equals": 94},
+        {"path": "reports/e0-freeze/20260806-input-bundle-v1-retry16/task-orders.json", "pointer": "/fixed64/task_count", "equals": 64}
+      ],
+      "blocker": null
+    },
+    {
+      "id": "lp.analysis-and-venue",
+      "class": "locked_public",
+      "status": "passed",
+      "required_for_freeze": true,
+      "claim": "Analysis plan v1 freezes the NeurIPS 2027 Evaluations & Datasets target cycle without inventing unpublished dates, plus the scientific estimands, clustered model and fallback triggers, multiplicity, missingness, synthetic power assumptions, and a 1,500 GPU-hour/USD 0 API campaign ceiling before any new protocol-locked public method score.",
+      "evidence": [
+        "reports/e0-analysis/20260806-analysis-plan-v1/run.json",
+        "reports/e0-analysis/20260806-analysis-plan-v1/results-summary.json",
+        "configs/analysis_plan_v1.json",
+        "docs/ANALYSIS_PLAN_V1.md"
+      ],
+      "acceptance_assertions": [
+        {"path": "reports/e0-analysis/20260806-analysis-plan-v1/run.json", "pointer": "/status", "equals": "passed"},
+        {"path": "reports/e0-analysis/20260806-analysis-plan-v1/run.json", "pointer": "/schema_version", "equals": "protocol-v1-run-1.0.0"},
+        {"path": "reports/e0-analysis/20260806-analysis-plan-v1/run.json", "pointer": "/results/checks/0/status", "equals": "passed"},
+        {"path": "reports/e0-analysis/20260806-analysis-plan-v1/run.json", "pointer": "/results/checks/1/status", "equals": "passed"},
+        {"path": "reports/e0-analysis/20260806-analysis-plan-v1/run.json", "pointer": "/results/checks/2/status", "equals": "passed"},
+        {"path": "reports/e0-analysis/20260806-analysis-plan-v1/results-summary.json", "pointer": "/status", "equals": "passed"},
+        {"path": "reports/e0-analysis/20260806-analysis-plan-v1/results-summary.json", "pointer": "/freeze_status", "equals": "frozen-v1"},
+        {"path": "reports/e0-analysis/20260806-analysis-plan-v1/results-summary.json", "pointer": "/target_cycle", "equals": 2027},
+        {"path": "reports/e0-analysis/20260806-analysis-plan-v1/results-summary.json", "pointer": "/official_2027_author_cfp_status", "equals": "not_published_as_of_2026-08-06"},
+        {"path": "reports/e0-analysis/20260806-analysis-plan-v1/results-summary.json", "pointer": "/statistical_self_test_passed", "equals": true},
+        {"path": "reports/e0-analysis/20260806-analysis-plan-v1/results-summary.json", "pointer": "/power_simulation_deterministic", "equals": true},
+        {"path": "reports/e0-analysis/20260806-analysis-plan-v1/results-summary.json", "pointer": "/campaign_gpu_hour_cap", "equals": 1500},
+        {"path": "reports/e0-analysis/20260806-analysis-plan-v1/results-summary.json", "pointer": "/api_spend_cap_usd", "equals": 0},
+        {"path": "reports/e0-analysis/20260806-analysis-plan-v1/results-summary.json", "pointer": "/h3_status", "equals": "declared_infeasible_for_protocol_v1_at_freeze"},
+        {"path": "reports/e0-analysis/20260806-analysis-plan-v1/results-summary.json", "pointer": "/new_locked_public_method_scores_used", "equals": 0},
+        {"path": "configs/analysis_plan_v1.json", "pointer": "/freeze_status", "equals": "frozen-v1"},
+        {"path": "configs/analysis_plan_v1.json", "pointer": "/venue_freeze/target_venue", "equals": "NeurIPS"},
+        {"path": "configs/analysis_plan_v1.json", "pointer": "/venue_freeze/target_track", "equals": "Evaluations & Datasets"},
+        {"path": "configs/analysis_plan_v1.json", "pointer": "/venue_freeze/target_cycle", "equals": 2027},
+        {"path": "configs/analysis_plan_v1.json", "pointer": "/venue_freeze/abstract_deadline", "equals": null},
+        {"path": "configs/analysis_plan_v1.json", "pointer": "/venue_freeze/full_paper_deadline", "equals": null},
+        {"path": "configs/analysis_plan_v1.json", "pointer": "/power_simulation/uses_locked_public_outcomes", "equals": false},
+        {"path": "configs/analysis_plan_v1.json", "pointer": "/campaign_cap/api_execution_authorized", "equals": false}
+      ],
+      "blocker": null
+    },
+    {
+      "id": "lp.fixed64-isoarc",
+      "class": "locked_public",
+      "status": "passed",
+      "required_for_freeze": true,
+      "claim": "The input-visible fixed64 base-task selection, complete logical IsoARC assignment, label-mutation audit, and task/prediction round trips are frozen and hash-bound.",
+      "evidence": [
+        "reports/e0-isoarc/20260806-fixed64-design-v1/run.json"
+      ],
+      "acceptance_assertions": [
+        {"path": "reports/e0-isoarc/20260806-fixed64-design-v1/run.json", "pointer": "/status", "equals": "passed"},
+        {"path": "reports/e0-isoarc/20260806-fixed64-design-v1/run.json", "pointer": "/summary/source_task_count", "equals": 520},
+        {"path": "reports/e0-isoarc/20260806-fixed64-design-v1/run.json", "pointer": "/summary/selected_base_task_count", "equals": 64},
+        {"path": "reports/e0-isoarc/20260806-fixed64-design-v1/run.json", "pointer": "/summary/selected_by_benchmark/arc_agi_1", "equals": 32},
+        {"path": "reports/e0-isoarc/20260806-fixed64-design-v1/run.json", "pointer": "/summary/selected_by_benchmark/arc_agi_2", "equals": 32},
+        {"path": "reports/e0-isoarc/20260806-fixed64-design-v1/run.json", "pointer": "/summary/unique_task_id_count", "equals": 64},
+        {"path": "reports/e0-isoarc/20260806-fixed64-design-v1/run.json", "pointer": "/summary/challenge_test_output_field_count", "equals": 0},
+        {"path": "reports/e0-isoarc/20260806-fixed64-design-v1/run.json", "pointer": "/summary/logical_variant_count", "equals": 1135},
+        {"path": "reports/e0-isoarc/20260806-fixed64-design-v1/run.json", "pointer": "/contract_checks/deterministic_rebuild", "equals": true},
+        {"path": "reports/e0-isoarc/20260806-fixed64-design-v1/run.json", "pointer": "/contract_checks/hidden_label_mutation_stable", "equals": true},
+        {"path": "reports/e0-isoarc/20260806-fixed64-design-v1/run.json", "pointer": "/contract_checks/all_labeled_task_round_trips", "equals": true},
+        {"path": "reports/e0-isoarc/20260806-fixed64-design-v1/run.json", "pointer": "/contract_checks/all_labeled_prediction_round_trips", "equals": true},
+        {"path": "reports/e0-isoarc/20260806-fixed64-design-v1/run.json", "pointer": "/contract_checks/color_bijections_valid", "equals": true},
+        {"path": "reports/e0-isoarc/20260806-fixed64-design-v1/run.json", "pointer": "/contract_checks/latin_balance_exact", "equals": true},
+        {"path": "reports/e0-isoarc/20260806-fixed64-design-v1/run.json", "pointer": "/contract_checks/test_order_restoration", "equals": true},
+        {"path": "reports/e0-isoarc/20260806-fixed64-design-v1/run.json", "pointer": "/validation/error_count", "equals": 0},
+        {"path": "reports/e0-isoarc/20260806-fixed64-design-v1/run.json", "pointer": "/manifest/fixed64_manifest_sha256", "equals": "81b2232856c676c4ce2f31dcd6a5d024ed3756784412b17558575c7f70bf2e9a"}
+      ],
+      "blocker": null
+    },
+    {
+      "id": "lp.process-tree-resources",
+      "class": "locked_public",
+      "status": "pending",
+      "required_for_freeze": true,
+      "claim": "Parent-process sampling is calibrated, but child CPU/RSS/GPU accounting required for comparable method runs is not implemented.",
+      "evidence": [
+        "reports/e0-resources/20260806-process-monitor-calibration/run.json",
+        "reports/e0-schema/20260806-protocol-v1-run-schema-self-audit/run.json",
+        "reports/e0-resources/20260806-process-tree-resource-gate-probe/run.json"
+      ],
+      "acceptance_assertions": [
+        {"path": "reports/e0-resources/20260806-process-monitor-calibration/run.json", "pointer": "/status", "equals": "passed"},
+        {"path": "reports/e0-resources/20260806-process-monitor-calibration/run.json", "pointer": "/gate/passed", "equals": true},
+        {"path": "reports/e0-schema/20260806-protocol-v1-run-schema-self-audit/run.json", "pointer": "/status", "equals": "passed"},
+        {"path": "reports/e0-schema/20260806-protocol-v1-run-schema-self-audit/run.json", "pointer": "/resources/children_included", "equals": false},
+        {"path": "reports/e0-resources/20260806-process-tree-resource-gate-probe/run.json", "pointer": "/status", "equals": "passed"},
+        {"path": "reports/e0-resources/20260806-process-tree-resource-gate-probe/run.json", "pointer": "/gate/status", "equals": "blocked"},
+        {"path": "reports/e0-resources/20260806-process-tree-resource-gate-probe/run.json", "pointer": "/gate/passed", "equals": false},
+        {"path": "reports/e0-resources/20260806-process-tree-resource-gate-probe/run.json", "pointer": "/cgroup/cgroup_v2_mounted", "equals": false},
+        {"path": "reports/e0-resources/20260806-process-tree-resource-gate-probe/run.json", "pointer": "/cgroup/delegation/usable_for_gate", "equals": false},
+        {"path": "reports/e0-resources/20260806-process-tree-resource-gate-probe/run.json", "pointer": "/nvidia_read_only_snapshot/accounting_enabled_on_all_devices", "equals": false},
+        {"path": "reports/e0-resources/20260806-process-tree-resource-gate-probe/run.json", "pointer": "/nvidia_read_only_snapshot/gpu_occupied", "equals": true},
+        {"path": "reports/e0-resources/20260806-process-tree-resource-gate-probe/run.json", "pointer": "/setsid_escape_fixture/assertions/child_escaped_root_process_group", "equals": true},
+        {"path": "reports/e0-resources/20260806-process-tree-resource-gate-probe/run.json", "pointer": "/resource_claim/children_included", "equals": false}
+      ],
+      "blocker": "The host exposes cgroup v1 rather than a delegated cgroup v2 hierarchy, NVIDIA accounting is disabled, the GPU is occupied, and no calibrated child-inclusive backend exists; provision a suitable host/backend and rerun the synthetic parent/child/setsid calibration."
+    },
+    {
+      "id": "ue.strict-sandbox",
+      "class": "untrusted_execution",
+      "status": "blocked",
+      "required_for_freeze": false,
+      "claim": "Generated/untrusted code remains ineligible on this host; the blocker does not authorize weakening the gate for other methods.",
+      "evidence": [
+        "reports/e0-isolation/20260806-host-namespace-probe/run.json"
+      ],
+      "acceptance_assertions": [
+        {"path": "reports/e0-isolation/20260806-host-namespace-probe/run.json", "pointer": "/status", "equals": "passed"},
+        {"path": "reports/e0-isolation/20260806-host-namespace-probe/run.json", "pointer": "/isolation_gate_passed", "equals": false}
+      ],
+      "blocker": "Mount, network, and user namespace probes return EPERM and no supported sandbox runtime is installed."
+    },
+    {
+      "id": "lp.external-private-access",
+      "class": "locked_public",
+      "status": "blocked",
+      "required_for_freeze": false,
+      "claim": "No external-private evaluation receipt or task is represented in the workspace; public protocol work may proceed without a private claim.",
+      "evidence": [
+        "reports/e0-prior-exposure/20260806-workspace-disclosure-draft-retry16/run.json"
+      ],
+      "acceptance_assertions": [
+        {"path": "reports/e0-prior-exposure/20260806-workspace-disclosure-draft-retry16/run.json", "pointer": "/status", "equals": "passed"},
+        {"path": "reports/e0-prior-exposure/20260806-workspace-disclosure-draft-retry16/run.json", "pointer": "/summary/external_private_workspace_record_count", "equals": 0}
+      ],
+      "blocker": "No external-private benchmark access or submission authority has been supplied."
+    }
+  ],
+  "unresolved_p0": [
+    {
+      "gate_id": "lp.process-tree-resources",
+      "resolution": "Implement calibrated child-inclusive CPU/RSS/GPU accounting and require it for performance records."
+    }
+  ],
+  "limitations": [
+    "This root is draft-not-frozen and does not authorize a locked-public solver run.",
+    "The public ARC-AGI-1 and ARC-AGI-2 labels are locally accessible and historically exposed; a label firewall cannot turn them into a pristine holdout.",
+    "Known-overlap-excluded means only the locked 376-ID ledger and verified cluster relation were removed; renamed semantic overlap and pretrained-model contamination may remain.",
+    "Strict sandbox absence is optional for freezing a trusted-code-only protocol but remains a hard per-method blocker for generated_untrusted and unsafe_artifact configurations.",
+    "Zero of 24 tracked methods is currently eligible for a performance table; component, scorer-only, blocker, and solver-prediction smoke evidence remain distinct."
+  ]
+}

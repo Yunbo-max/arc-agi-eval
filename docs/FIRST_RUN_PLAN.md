@@ -1,5 +1,13 @@
 # First-run plan for storage-light official baselines
 
+Status update (2026-08-06): this is a historical RTX 5090 acquisition plan,
+not current execution authority. The active target is one RTX 3090; use
+[`EXECUTION_BATCHES.md`](EXECUTION_BATCHES.md) and the current
+[protocol root](../reports/e0-protocol/20260806-protocol-v1-draft-root-retry16/run.json).
+The process-tree resource gate remains pending and no locked-public solver run
+is authorized. Historical commands and measurements below are retained as
+provenance.
+
 This plan covers only the pinned source snapshots in `external/CompressARC`
 and `external/ARC-VSA-2025`. No dependency was installed, no upstream file was
 edited, no checkpoint was downloaded, and no training or solver experiment was

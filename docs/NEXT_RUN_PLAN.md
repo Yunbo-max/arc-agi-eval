@@ -1,12 +1,54 @@
 # Next-run plan for ARC_NCA, GridCoder2024, and 2D nGPT
 
+Batch-D checkpoint (2026-08-06): TinyRecursiveModels, SOAR, and NVARC now have
+passing metadata-first static gates, but the methods remain blocked on ten,
+13, and 12 gates respectively. None of these gates produced a solver
+prediction, benchmark, official-result reproduction, or paper reproduction
+([TRM](../reports/tiny-recursive-models/20260806-source-artifact-dataset-label-resource-gate-v1/run.json),
+[SOAR](../reports/soar/20260806-source-artifact-dataset-label-api-code-resource-gate-v1/run.json),
+[NVARC](../reports/nvarc/20260806-source-gitlink-artifact-dataset-label-code-resource-gate-v1/run.json)).
+The refreshed zero-admit protocol chain is
+[eligibility retry12](../reports/e0-method-eligibility/20260806-eligibility-trust-audit-retry12/run.json),
+[funnel retry9](../reports/e0-reproduction-funnel/20260806-manifest-funnel-audit-retry9/run.json),
+[input bundle retry16](../reports/e0-freeze/20260806-input-bundle-v1-retry16/run.json),
+[exposure retry16](../reports/e0-prior-exposure/20260806-workspace-disclosure-draft-retry16/run.json),
+and [protocol root retry16](../reports/e0-protocol/20260806-protocol-v1-draft-root-retry16/run.json).
+The input bundle explicitly anchors the SOAR/NVARC gate configs, runner
+manifests, and formal reports while still admitting zero locked-public solver
+configurations. The next Batch-D source-first target is MARC; no model,
+checkpoint, initialized submodule, generated-code, provider, or GPU execution
+is admissible until its artifact, label, isolation, dependency, and capacity
+gates are prospectively closed.
+
+Status update (2026-08-06): ARC_NCA has completed the planned reduced execution
+and a separate CPU-only method-specific protocol-v1 A/B firewall smoke on frozen
+development task `6150a2bd`. The strict run used no GPU or network, disclosed
+analyst label exposure, and remains ineligible for performance reporting
+([evidence](../reports/arc-nca/20260806-cpu-dev-6150a2bd-strict-v1/run.json)).
+CompressARC has also completed a compatibility-deviant CPU method-specific
+strict smoke on frozen task `3c9b0459`; its two inference processes used a
+code-only upstream stage and exited before run-local scoring payloads were
+materialized
+([evidence](../reports/compressarc/20260806-cpu-dev-3c9b0459-strict-v1/run.json)).
+GridCoder2024, 2D nGPT, and LPN now each have a hardened static seven-blocker
+audit. The LPN audit binds the exact Git tree and 21 Python files while leaving
+bundled ARC JSON, YAML, notebooks, bytecode, and checkpoint-like files unread.
+None of these audits is a method smoke or promotion
+([GridCoder](../reports/gridcoder2024/20260806-source-dependency-label-artifact-gate-v3/run.json),
+[2D nGPT](../reports/2d-ngpt/20260806-source-artifact-label-runtime-gate-v1/run.json),
+[LPN](../reports/lpn/20260806-source-artifact-data-label-gate-v1/run.json)).
+The historical preflight and minimal-smoke notes below are retained as planning
+provenance. Remaining Batch-A work should address challenge-only adapters and
+verifiable artifacts; ARC_NCA's next step is a
+predeclared same-shape development subset, not a public benchmark.
+
 This plan covers the pinned, storage-filtered snapshots in `external/ARC_NCA`,
 `external/GridCoder2024`, and `external/ARC-AGI-Challenge-2024`. Acquisition
 installed no package, downloaded no model checkpoint, invoked no upstream
 module, and used no CUDA device. Only CPU-side source, notebook, archive, and
 canonical-data checks were run.
 
-## Preflight status
+## Historical preflight status
 
 | Item | Observed result |
 | --- | --- |
@@ -18,25 +60,25 @@ canonical-data checks were run.
 | External files | No `.pt`, `.pth`, `.ckpt`, `.pdf`, archive, media, NumPy result, or Git LFS pointer retained |
 | Retained source | 50 files and 2,801,767 regular-file bytes |
 
-The target GPU documented in `FIRST_RUN_PLAN.md` is an RTX 5090 (`sm_120`). It
-was not queried or used in this preflight because a CompressARC run was active.
-For all three methods, first prove a one-tensor operation with the selected
-Blackwell-capable PyTorch build before importing upstream code. The PyTorch 2.7
-CUDA 12.8 wheel used for the prior CompressARC smoke is the earliest stable
-upstream combination already identified for this host; reusing that version is
-a compatibility experiment, not an upstream-exact environment.
+At the historical acquisition preflight, the target GPU documented in
+`FIRST_RUN_PLAN.md` was an RTX 5090 (`sm_120`). It was not queried or used in
+that preflight because a CompressARC run was active.
+Those Blackwell-specific instructions are historical. The active target is now
+one 24 GiB RTX 3090; any future method run must first pass a fresh capacity
+preflight and a one-tensor compatibility check for the prospectively selected
+stack. Reusing the earlier PyTorch 2.7/CUDA 12.8 environment would be a declared
+compatibility experiment, not an upstream-exact environment.
 
 ## Recommended order
 
-Run ARC_NCA next. It has no external model or synthetic corpus, its Apache-2.0
-license is clear, and a one-grid forward pass can isolate environment and
-Blackwell issues without entering a training notebook. Do not start its 3,000
-step loop until that smoke passes and task-index ordering is made explicit.
+ARC_NCA's reduced one-task strict smoke is now complete. Do not start its 3,000
+step loop or broaden its task set until the same-shape subset, timeout policy,
+resource accounting limitation, and immutable input bundle are predeclared.
 
-GridCoder2024 is second only after licensing and dependency decisions. Its
-official checkpoint is available but large. 2D nGPT is third: the checked-in
-workflow does not provide the referenced pretrained checkpoint or exact TTT
-source version, and paper-scale data generation is the largest storage risk.
+GridCoder2024 and 2D nGPT have both reached static blocker-audit status. Neither
+may advance merely by downloading a large artifact: source/license/dependency,
+artifact-hash, challenge-only label firewall, subset denominator, and capacity
+gates must pass prospectively first.
 
 ## ARC_NCA
 
@@ -87,7 +129,7 @@ ARC-AGI-2 has the same task-per-file shape and could be symlinked for a new
 experiment, but that would not reproduce the ARC_NCA workflow and must be
 reported separately.
 
-### Minimal smoke
+### Historical GPU minimal smoke (superseded by the CPU strict adapter)
 
 After creating a dedicated environment with NumPy and a Blackwell-capable
 Torch, this one-grid forward pass is the smallest useful smoke. It performs no
@@ -130,6 +172,16 @@ evaluates every step, writes loss JSON and checkpoints, and uses task indices
 rather than stable task IDs.
 
 ## GridCoder2024
+
+The current offline gate audit is
+[`20260806-source-dependency-label-artifact-gate-v3`](../reports/gridcoder2024/20260806-source-dependency-label-artifact-gate-v3/run.json).
+Its top-level `passed` status means only that the frozen static observations
+matched. It imported and executed no upstream code, opened no ARC data or
+checkpoint, requested no GPU or network, and generated no prediction. The
+method remains blocked on seven gates: upstream provenance, source licensing,
+dependency/API and data assembly, checkpoint provenance, label isolation, a
+CPU-capable entrypoint, and complete benchmark coverage. This audit is not
+counted as another smoke.
 
 ### Actual entry points
 
@@ -234,11 +286,12 @@ version; `064.py` adds test-time tuning and prediction.
 The README says the code ran in NVIDIA `nvcr.io/nvidia/pytorch:24.09-py3` with
 `rotary_embedding_torch` added. Actual imports also require NumPy, pandas,
 SciPy, tqdm, einops, and PyTorch. No versions are pinned. NVIDIA's 24.09 release
-notes identify Python 3.10, CUDA 12.6.1, and a PyTorch 2.5.0 alpha build. That
-historical stack predates Blackwell support and should not be used unchanged on
-the RTX 5090. A Python 3.12 plus PyTorch 2.7/CUDA 12.8 environment is plausible
-but is an unverified compatibility deviation, especially for
-`rotary_embedding_torch` and the Torch parametrization/checkpoint keys.
+notes identify Python 3.10, CUDA 12.6.1, and a PyTorch 2.5.0 alpha build. The
+active target is an RTX 3090, not the historical RTX 5090. The upstream NGC
+stack and any locally available PyTorch 2.7/CUDA 12.8 stack are distinct
+environment classes; either requires a prospective compatibility record,
+especially for `rotary_embedding_torch` and Torch parametrization/checkpoint
+keys.
 
 The checked-in reproduction is internally inconsistent:
 
@@ -250,6 +303,15 @@ The checked-in reproduction is internally inconsistent:
   instead defaults to absent `../checkpoints/ngc/exp_54.pt`.
 - No checkpoint URL, checksum, exact re-ARC revision, requirements lock, or
   complete single-GPU reproduction command is published in this repository.
+
+The hardened static audit also establishes that `code/064.py` loads evaluation
+solutions, injects them into test samples, and lets them influence evaluation
+color permutations, TTT/model update and training, forward loss, and validation
+loss/accuracy. It uses direct `torch.load` without `weights_only`, hard-codes
+CUDA, and reads module-global `cfg`. The audit itself imported or executed no
+upstream module, opened no checkpoint/re-ARC/fixed-size/solution bytes, and
+produced no prediction; all seven method gates remain blocked
+([evidence](../reports/2d-ngpt/20260806-source-artifact-label-runtime-gate-v1/run.json)).
 
 The default large config has 38,046,722 parameters, or 152,186,888 raw FP32
 parameter bytes. The training notebook's `--task_embed_size 8` override reduces

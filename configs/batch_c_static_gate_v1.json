@@ -1,0 +1,421 @@
+{
+  "schema_version": 1,
+  "config_id": "batch-c-static-source-label-api-artifact-gate-v1",
+  "scope": "static-source-label-api-artifact-blocker-audit-only",
+  "counted_toward_smoke": false,
+  "config_read_policy": {
+    "canonical_path": "configs/batch_c_static_gate_v1.json",
+    "alternate_paths_allowed": false
+  },
+  "source_lock": {
+    "path": "configs/source_locks.json",
+    "sha256": "a785b89743dc06c1296dbfa9691081035bd062ae7f97c5d80c9cfbb38f76a5b4"
+  },
+  "methods": [
+    {
+      "method_id": "arcmemo",
+      "source_lock_entry": {
+        "url": "https://github.com/matt-seb-ho/arc_memo",
+        "branch": "main",
+        "revision": "e2598f1c093a4ddd8c871bd949e6a425d70f0fa7",
+        "asset_subpath": "sources/arcmemo"
+      },
+      "source": {
+        "repository_path": "/root/arc-paper-assets/sources/arcmemo",
+        "repository_url": "https://github.com/matt-seb-ho/arc_memo",
+        "expected_revision": "e2598f1c093a4ddd8c871bd949e6a425d70f0fa7",
+        "expected_commit_tree": "eaeb4297b75f1c44fd07efaa9cc34e6b0b5b2cb3",
+        "expected_tracked_file_count": 848,
+        "expected_tracked_bytes": 20654713,
+        "git_tree_manifest_sha256": "171c9417551adb5d28931698a22be83fb9b862f4860f9c0be00d9c296825111b",
+        "worktree_metadata_sha256": "205557da02e03ed1fe2cfca1c3b873b0027a692267b1c36f471b1403114d589d",
+        "expected_extension_counts": {
+          ".csv": 2,
+          ".ds_store": 4,
+          ".gitignore": 2,
+          ".gitkeep": 1,
+          ".ipynb": 2,
+          ".json": 34,
+          ".jsonl": 124,
+          ".md": 6,
+          ".pdf": 1,
+          ".png": 325,
+          ".py": 227,
+          ".pyc": 1,
+          ".sh": 1,
+          ".toml": 1,
+          ".txt": 19,
+          ".yaml": 98
+        },
+        "git_metadata_contract": {
+          "local_config": {"path": ".git/config", "bytes": 309, "sha256": "f8ff923c1bec830c1d1ecd2a0b4c703faded00da9fe8689a7c3fbf1ea1b2a288", "mode": "0644"},
+          "head": {"path": ".git/HEAD", "bytes": 41, "sha256": "6fcecb9503dff89e15ea1a48f0c57ce8b29c44232494d60d31183f0837a77617", "mode": "0644"}
+        },
+        "retained_text": [
+          {"path": "concept_mem/abstraction/analysis_concepts.py", "role": "abstraction_source"},
+          {"path": "concept_mem/abstraction/thought_process.py", "role": "abstraction_source"},
+          {"path": "concept_mem/constants.py", "role": "source_python"},
+          {"path": "concept_mem/data/arc_agi.py", "role": "arc_data_loader_source"},
+          {"path": "concept_mem/data/read_data_config.py", "role": "data_config_loader_source"},
+          {"path": "concept_mem/evaluation/continual_driver.py", "role": "continual_label_bearing_runner_source"},
+          {"path": "concept_mem/evaluation/driver.py", "role": "label_bearing_runner_source"},
+          {"path": "concept_mem/evaluation/prompt_builder.py", "role": "prompt_builder_source"},
+          {"path": "concept_mem/evaluation/prompts.py", "role": "prompt_source"},
+          {"path": "concept_mem/evaluation/retry_policy.py", "role": "retry_policy_source"},
+          {"path": "concept_mem/evaluation/score_tree.py", "role": "scoring_source"},
+          {"path": "concept_mem/evaluation/solution_tree.py", "role": "solution_orchestration_source"},
+          {"path": "concept_mem/lesson_memory.py", "role": "memory_source"},
+          {"path": "concept_mem/selection/description/select.py", "role": "selection_source"},
+          {"path": "concept_mem/selection/long_cot.py", "role": "selection_source"},
+          {"path": "concept_mem/utils/__init__.py", "role": "source_python"},
+          {"path": "concept_mem/utils/code_execution/exec.py", "role": "generated_code_executor_source"},
+          {"path": "concept_mem/utils/code_execution/exec_transform.py", "role": "generated_code_transform_source"},
+          {"path": "concept_mem/utils/common.py", "role": "source_python"},
+          {"path": "concept_mem/utils/llm_job.py", "role": "provider_job_source"},
+          {"path": "configs/abstraction/default_lesson_from_trace.yaml", "role": "abstraction_config"},
+          {"path": "configs/data/val100.yaml", "role": "data_config"},
+          {"path": "configs/data/val2.yaml", "role": "data_config"},
+          {"path": "configs/default.yaml", "role": "runtime_config"},
+          {"path": "configs/generation/gen_default.yaml", "role": "generation_config"},
+          {"path": "configs/generation/long_cot_defaults.yaml", "role": "generation_config"},
+          {"path": "configs/model/gpt41.yaml", "role": "provider_model_config"},
+          {"path": "configs/model/o4_mini.yaml", "role": "provider_model_config"},
+          {"path": "configs/selection/default.yaml", "role": "selection_config"},
+          {"path": "pyproject.toml", "role": "dependency_manifest"},
+          {"path": "readme.md", "role": "source_documentation"},
+          {"path": "requirements.txt", "role": "dependency_manifest"}
+        ],
+        "expected_retained_file_count": 32,
+        "expected_retained_bytes": 186191,
+        "retained_manifest_sha256": "a4138d494dfb34d8c236593f0ed9ffadbc1296865df59b366d4704bb88e2aa7b",
+        "opaque_worktree_paths": ["cache"],
+        "expected_root_license_paths": []
+      },
+      "prior_reports": [
+        {
+          "path": "reports/arcmemo/20260806-locked-source-syntax-audit/run.json",
+          "sha256": "9ec3cc5f59287cc3a9f7b0e81695b035d19dd78f21392fd72df37a887c9a1304",
+          "role": "prior_syntax_report",
+          "assertions": {"method_id": "arcmemo", "status": "passed", "scope": "source-lock-and-python-syntax-only", "source": {"observed_revision": "e2598f1c093a4ddd8c871bd949e6a425d70f0fa7", "python_file_count": 227, "root_license_files": []}}
+        },
+        {
+          "path": "reports/arcmemo/20260806-native-dry-run-retry2/run.json",
+          "sha256": "92aa590f2d7762827b29dec1934114be43f7d92636ae6da8fe18dc8604d9c765",
+          "role": "prior_component_smoke_report",
+          "assertions": {"method_id": "arcmemo", "status": "passed", "scope": "native-fixed-memory-zero-dollar-dry-run", "checks": {"api_requests_expected": 0, "model_outputs_written": false, "token_usage_written": false}, "fairness": {"continual_mode_exercised": false, "score_eligible_for_fair_main_board": false, "test_labels_accessible_to_upstream_process": true}}
+        }
+      ],
+      "expected_analysis": {
+        "continual_selection_dry_run_propagated": false,
+        "continual_strict_filter_precedes_memory_update": true,
+        "continual_update_llm_dry_run_propagated": false,
+        "default_long_cot_selection_disabled": true,
+        "default_problem_data_is_null": true,
+        "default_retry_criterion_train": true,
+        "driver_loads_problems_and_initializes_llm": true,
+        "driver_scores_attempts_inline": true,
+        "dry_run_dummy_completion_detected": true,
+        "executor_dangerous_builtins_retained": true,
+        "executor_disallowed_imports": ["multiprocessing", "os", "pathlib", "subprocess", "sys"],
+        "executor_exec_call_count": 2,
+        "executor_kills_all_recursive_descendants": true,
+        "lesson_memory_select_accepts_dry_run": false,
+        "missing_declared_method_artifacts": ["data/descriptions/gpt41_vlm.json", "data/lessons/from_trace_fs/gpt41_lessons.json"],
+        "official_attempt_limit_default_is_none": true,
+        "official_per_case_any_detected": true,
+        "prompt_test_input_only_signature": true,
+        "readme_artifact_path_issues": {"placeholder_prompt_info": true, "selection_typo": true},
+        "retry_test_criterion_available": true,
+        "strict_correctness_combines_train_and_test": true,
+        "test_expected_output_scoring_detected": true,
+        "unpinned_llmplus_git_dependency": true,
+        "unpinned_requirement_count": 24
+      },
+      "blockers": [
+        {"id": "root-license", "gate": "license_clearance", "detail": "No root source license is present in the locked tree."},
+        {"id": "dependency-lock", "gate": "dependency_environment", "detail": "Most dependencies are unpinned and llmplus is not bound to an immutable commit."},
+        {"id": "method-artifact-and-config-parity", "gate": "artifact_provenance", "detail": "The selected ArcMemo memory/prompt artifact and paper configuration are not frozen or fully present."},
+        {"id": "challenge-label-firewall", "gate": "label_firewall", "detail": "The native process retains test labels and performs inline test scoring."},
+        {"id": "continual-test-oracle-feedback", "gate": "contamination_control", "detail": "Continual memory updates are selected using train-plus-test correctness."},
+        {"id": "api-budget-and-model-snapshot", "gate": "api_budget", "detail": "No immutable provider/model snapshot or fail-closed request/token/USD budget exists."},
+        {"id": "generated-code-isolation", "gate": "code_isolation", "detail": "Generated Python retains dangerous builtins, weak import filtering, and broad descendant termination."},
+        {"id": "submission-and-scoring-contract", "gate": "native_benchmark_contract", "detail": "The native score is not a fixed two-attempt coherent challenge prediction contract."},
+        {"id": "solver-prediction-and-parity", "gate": "no_label_solver_prediction", "detail": "No label-free ArcMemo memory-mechanism prediction or parity run exists."}
+      ],
+      "benchmark_policy": {
+        "arc_agi_1": "blocked-until-label-firewall-memory-artifact-sandbox-and-submission-contract",
+        "arc_agi_2": "non-native-transfer-only-after-all-gates"
+      },
+      "prior_evidence_interpretation": {
+        "component_smoke_status": "passed",
+        "corrected_scope": "native-no-memory-generic-driver-dummy-completion-dry-run",
+        "memory_mechanism_exercised": false,
+        "continual_mode_safe_to_dry_run": false,
+        "solver_prediction_status": "not-run"
+      }
+    },
+    {
+      "method_id": "arc-lang-public",
+      "source_lock_entry": {
+        "url": "https://github.com/jerber/arc-lang-public",
+        "branch": "main",
+        "revision": "3d820fc07a9d904e7bbda325a11d7bfd4fa486f5",
+        "asset_subpath": "sources/arc-lang-public"
+      },
+      "source": {
+        "repository_path": "/root/arc-paper-assets/sources/arc-lang-public",
+        "repository_url": "https://github.com/jerber/arc-lang-public",
+        "expected_revision": "3d820fc07a9d904e7bbda325a11d7bfd4fa486f5",
+        "expected_commit_tree": "10636a443e8e1a5787f4f22666076c8049dcee7b",
+        "expected_tracked_file_count": 42,
+        "expected_tracked_bytes": 14397340,
+        "git_tree_manifest_sha256": "2e834fee1b0c7f47e6fda4ab5dd66206517bd9ff3062c204b0dc977ffbaf7406",
+        "worktree_metadata_sha256": "21034869bcbed289299ec3026c98fd4e8668ed1ae6598ce703c82c67d654d779",
+        "expected_extension_counts": {".gitignore": 1, ".json": 12, ".lock": 1, ".md": 2, ".pdf": 1, ".py": 22, ".python-version": 1, ".toml": 1, ".txt": 1},
+        "git_metadata_contract": {
+          "local_config": {"path": ".git/config", "bytes": 311, "sha256": "4855eb1e5a51e250914a1b209b58a790e92492c436b02a96aa54df194d6181c2", "mode": "0644"},
+          "head": {"path": ".git/HEAD", "bytes": 41, "sha256": "ae56e317c61f60926bc445090171ab8288c1428a26e34c1a9598d2b141bc5661", "mode": "0644"}
+        },
+        "retained_text": [
+          {"path": ".gitignore", "role": "source_ignore_policy"},
+          {"path": ".python-version", "role": "runtime_version"},
+          {"path": "README.md", "role": "source_documentation"},
+          {"path": "pyproject.toml", "role": "dependency_manifest"},
+          {"path": "src/__init__.py", "role": "source_python"},
+          {"path": "src/async_utils/semaphore_monitor.py", "role": "source_python"},
+          {"path": "src/configs/ant_configs.py", "role": "provider_model_config_source"},
+          {"path": "src/configs/fast_configs.py", "role": "provider_model_config_source"},
+          {"path": "src/configs/gemini3pro_configs.py", "role": "provider_model_config_source"},
+          {"path": "src/configs/gpt52_configs.py", "role": "provider_model_config_source"},
+          {"path": "src/configs/gpt5pro_configs.py", "role": "provider_model_config_source"},
+          {"path": "src/configs/gpt_configs.py", "role": "provider_model_config_source"},
+          {"path": "src/configs/grok_configs.py", "role": "provider_model_config_source"},
+          {"path": "src/configs/models.py", "role": "provider_model_config_source"},
+          {"path": "src/configs/oss_configs.py", "role": "provider_model_config_source"},
+          {"path": "src/llms/messages.py", "role": "provider_client_source"},
+          {"path": "src/llms/models.py", "role": "provider_client_source"},
+          {"path": "src/llms/openai_responses.py", "role": "provider_client_source"},
+          {"path": "src/llms/structured.py", "role": "provider_client_source"},
+          {"path": "src/log.py", "role": "source_python"},
+          {"path": "src/logging_config.py", "role": "source_python"},
+          {"path": "src/main.py", "role": "solver_entrypoint_source"},
+          {"path": "src/models.py", "role": "source_python"},
+          {"path": "src/run.py", "role": "label_bearing_solver_runner_source"},
+          {"path": "src/utils.py", "role": "source_python"},
+          {"path": "src/viz.py", "role": "source_python"},
+          {"path": "uv.lock", "role": "dependency_lock"}
+        ],
+        "expected_retained_file_count": 27,
+        "expected_retained_bytes": 862068,
+        "retained_manifest_sha256": "1f34588f30e4ff5056bdc2620ee2161bbf4ff6068f05cc10ff80a9b83d02a391",
+        "opaque_worktree_paths": [],
+        "expected_root_license_paths": []
+      },
+      "prior_reports": [
+        {
+          "path": "reports/arc-lang-public/20260806-locked-source-syntax-audit/run.json",
+          "sha256": "707c370e6e61de7661de906d250749151758fdc1d629c248103e35143ef075d7",
+          "role": "prior_syntax_report",
+          "assertions": {"method_id": "arc-lang-public", "status": "passed", "scope": "source-lock-and-python-syntax-only", "source": {"observed_revision": "3d820fc07a9d904e7bbda325a11d7bfd4fa486f5", "python_file_count": 22, "python_tree_sha256": "55939512d47502e52ec1d5470ea6a2f20db8e80cc8735d501b35b279284f6198", "root_license_files": []}}
+        },
+        {
+          "path": "reports/arc-lang-public/20260806-zero-dollar-import-smoke-retry1/run.json",
+          "sha256": "6c4606d8d2ad750f9511208451d555ccd9bd68bc8abcdf7dd1f9ccc27ec12a0e",
+          "role": "prior_component_smoke_report",
+          "assertions": {"method_id": "arc-lang-public", "status": "passed", "scope": "zero-dollar-import-config-challenge-parser", "fairness": {"api_requests": 0, "evaluation_solutions_loaded": false, "score_eligible_for_fair_main_board": false}, "result": {"test_model_fields": ["input"]}}
+        }
+      ],
+      "expected_analysis": {
+        "challenge_only_none_branch_detected": true,
+        "default_runner_passes_solution_path": true,
+        "dotenv_called_at_import": true,
+        "eager_provider_clients": {
+          "API_SEMAPHORE": "MonitoredSemaphore",
+          "BMType": "T.TypeVar",
+          "P": "T.ParamSpec",
+          "R": "T.TypeVar",
+          "anthropic_client": "AsyncAnthropic",
+          "deepseek_client": "AsyncOpenAI",
+          "gemini_client": "genai.Client",
+          "openai_client": "AsyncOpenAI",
+          "openrouter_client": "AsyncOpenAI"
+        },
+        "expected_eager_provider_clients_bound": true,
+        "generated_code_execution_detected": false,
+        "generated_code_execution_terms": [],
+        "max_retry_20_detected": true,
+        "mutable_model_aliases_detected": true,
+        "neon_egress_path_detected": true,
+        "pre_request_budget_reservation_detected": false,
+        "provider_request_sink_callsite_count": 12,
+        "provider_request_sinks_across_retained_llm_sources": [
+          {"call": "client.chat.completions.create", "line": 67, "path": "src/llms/messages.py"},
+          {"call": "client.chat.completions.create", "line": 125, "path": "src/llms/messages.py"},
+          {"call": "client.chat.completions.create", "line": 146, "path": "src/llms/messages.py"},
+          {"call": "client.messages.create", "line": 186, "path": "src/llms/messages.py"},
+          {"call": "client.aio.models.generate_content", "line": 223, "path": "src/llms/messages.py"},
+          {"call": "client.responses.create", "line": 114, "path": "src/llms/openai_responses.py"},
+          {"call": "client.responses.retrieve", "line": 141, "path": "src/llms/openai_responses.py"},
+          {"call": "anthropic_client.messages.create", "line": 401, "path": "src/llms/structured.py"},
+          {"call": "xai_client.chat.create", "line": 610, "path": "src/llms/structured.py"},
+          {"call": "deepseek_client.chat.completions.create", "line": 690, "path": "src/llms/structured.py"},
+          {"call": "openrouter_client.chat.completions.create", "line": 853, "path": "src/llms/structured.py"},
+          {"call": "gemini_client.aio.models.generate_content", "line": 913, "path": "src/llms/structured.py"}
+        ],
+        "raw_input_extra_forbid_declared": false,
+        "raw_input_model_fields": ["input"],
+        "remote_logfire_default_expression_detected": true,
+        "runtime_timeout_secs_reference_file_count": 0,
+        "scrubbing_returns_original_value": true,
+        "truth_parameter_has_none_default": false,
+        "truth_read_precedes_solver_call": true,
+        "truth_solution_read_detected": true
+      },
+      "blockers": [
+        {"id": "root-license", "gate": "license_clearance", "detail": "No root source license is present in the locked tree."},
+        {"id": "default-runner-label-firewall", "gate": "label_firewall", "detail": "The default runner reads evaluation truth before solver execution."},
+        {"id": "challenge-only-adapter-and-raw-parser", "gate": "label_firewall", "detail": "The None seam lacks a frozen raw-key firewall, read ledger, prediction writer, and independent scorer."},
+        {"id": "provider-egress-isolation", "gate": "code_isolation", "detail": "Import-time provider clients, dotenv, remote Logfire, and optional NEON egress are reachable."},
+        {"id": "fail-closed-api-budget-and-timeout", "gate": "api_budget", "detail": "No pre-request request/token/USD fuse consumes the configured timeout contract."},
+        {"id": "immutable-model-provider-provenance", "gate": "artifact_provenance", "detail": "Mutable model aliases and provider fallback lack immutable response provenance."},
+        {"id": "dependency-environment-parity", "gate": "dependency_environment", "detail": "The lock is present but the installed closure/offline environment is not formally bound."},
+        {"id": "solver-prediction-and-parity", "gate": "no_label_solver_prediction", "detail": "No qualified challenge-only solver prediction exists."}
+      ],
+      "benchmark_policy": {
+        "arc_agi_1": "blocked-until-challenge-only-adapter-api-fuse-and-provider-snapshot",
+        "arc_agi_2": "blocked-until-challenge-only-adapter-api-fuse-and-provider-snapshot"
+      },
+      "prior_evidence_interpretation": {
+        "component_smoke_status": "passed",
+        "corrected_scope": "zero-dollar-import-config-and-pydantic-parser-component",
+        "raw_test_key_firewall_proven": false,
+        "solver_prediction_status": "not-run"
+      }
+    },
+    {
+      "method_id": "epang-arc-agi",
+      "source_lock_entry": {
+        "url": "https://github.com/epang080516/arc_agi",
+        "branch": "main",
+        "revision": "2b1a3c12a38b8a62627b75d78fd0cd55eacff4a1",
+        "asset_subpath": "sources/epang-arc-agi"
+      },
+      "source": {
+        "repository_path": "/root/arc-paper-assets/sources/epang-arc-agi",
+        "repository_url": "https://github.com/epang080516/arc_agi",
+        "expected_revision": "2b1a3c12a38b8a62627b75d78fd0cd55eacff4a1",
+        "expected_commit_tree": "3d96c06d3bf9e733e8c2a8fdf2437071cfcc89df",
+        "expected_tracked_file_count": 1256,
+        "expected_tracked_bytes": 29256152,
+        "git_tree_manifest_sha256": "8f9195175cf6f16a77f9babe448d8867a6cfa53c3cd6b518e689139dd9fc307e",
+        "worktree_metadata_sha256": "b46784539ea6e9af024fed3c0d254922219f686cda9bc36ddc8aa641e0fbc9f5",
+        "expected_extension_counts": {".bash": 1, ".example_env": 1, ".gitignore": 2, ".ipynb": 5, ".json": 1138, ".lock": 1, ".md": 2, ".pdf": 9, ".pkl": 2, ".png": 2, ".py": 55, ".toml": 1, ".txt": 6, ".yaml": 29, "<none>": 2},
+        "git_metadata_contract": {
+          "local_config": {"path": ".git/config", "bytes": 308, "sha256": "ebc0645ec823310804fb16b7d2133dc29b88a5294f814b89c146b79e16c1c53e", "mode": "0644"},
+          "head": {"path": ".git/HEAD", "bytes": 41, "sha256": "47ce1e5797d950db2040afefc140da8b1fea319837f7d8bf411a4d12f5db407b", "mode": "0644"}
+        },
+        "retained_text": [
+          {"path": ".example_env", "role": "provider_environment_template"},
+          {"path": "Dockerfile", "role": "environment_manifest"},
+          {"path": "README.md", "role": "source_documentation"},
+          {"path": "lpn/LICENSE", "role": "vendored_license"},
+          {"path": "poetry.lock", "role": "dependency_lock"},
+          {"path": "pyproject.toml", "role": "dependency_manifest"},
+          {"path": "requirements_py311.txt", "role": "dependency_manifest"},
+          {"path": "src/__init__.py", "role": "source_python"},
+          {"path": "src/data.py", "role": "arc_data_model_source"},
+          {"path": "src/llms/__init__.py", "role": "provider_client_source"},
+          {"path": "src/logic.py", "role": "solver_logic_source"},
+          {"path": "src/models.py", "role": "model_source"},
+          {"path": "src/prompts/prompts.py", "role": "prompt_source"},
+          {"path": "src/run_python.py", "role": "generated_code_executor_source"},
+          {"path": "src/submission.py", "role": "solver_runner_source"},
+          {"path": "src/trees/experiments.py", "role": "experiment_runner_source"}
+        ],
+        "expected_retained_file_count": 16,
+        "expected_retained_bytes": 604908,
+        "retained_manifest_sha256": "00e2ec2432320ec94e780a0d33e52d62842eb5e414e39e0ccdd727285cb16d02",
+        "opaque_worktree_paths": [],
+        "expected_root_license_paths": []
+      },
+      "prior_reports": [
+        {
+          "path": "reports/epang-arc-agi/20260806-locked-source-syntax-audit/run.json",
+          "sha256": "7d155b27c3fc76a929b6d243c1e82363b2419ebca3f35284b22834bec1dea9fe",
+          "role": "prior_syntax_report",
+          "assertions": {"method_id": "epang-arc-agi", "status": "passed", "scope": "source-lock-and-python-syntax-only", "source": {"observed_revision": "2b1a3c12a38b8a62627b75d78fd0cd55eacff4a1", "python_file_count": 55, "root_license_files": []}}
+        },
+        {
+          "path": "reports/epang-arc-agi/20260806-zero-dollar-component-smoke/run.json",
+          "sha256": "c10f1b6a33975089c41037d598797c205697c89b2d2929c0859cb305883e9749",
+          "role": "prior_component_smoke_report",
+          "assertions": {"method_id": "epang-arc-agi", "status": "passed", "scope": "zero-dollar-data-model-and-trusted-executor", "fairness": {"api_requests": 0, "evaluation_labels_loaded": false, "score_eligible_for_fair_main_board": false, "src_data_imported": false, "upstream_test_output_field_required": true}, "bundled_library": {"deserialized": false, "path": "saved_library_1000.pkl", "sha256": "8b3eb5e50fcfa766c495e9b9ee40ae9718a9d6907ce82fdb27676642157c6650", "size_bytes": 684360}}
+        },
+        {
+          "path": "reports/e0-overlap/20260806-arc1-eval-vs-arc2-train-retry1/run.json",
+          "sha256": "ce5920b1bb43546f0decdd29db2540b2a1537a9149d905b12d0b40fdeea31159",
+          "role": "prior_overlap_report",
+          "assertions": {"method_id": "e0-overlap", "status": "passed", "scope": "cross-benchmark-labeled-task-overlap", "expected_core_counts": {"left_task_count": 400, "right_task_count": 1000, "id_overlap_count": 376, "semantic_labeled_exact_count": 375, "test_io_exact_count": 376}}
+        }
+      ],
+      "expected_analysis": {
+        "arc1_solution_paths_at_module_import": true,
+        "arc2_evaluation_loaded_at_module_import": true,
+        "arc2_training_library_claim_detected": true,
+        "challenge_score_pickle_loader_detected": true,
+        "data_module_global_challenge_assignments": ["eval_challenges", "training_challenges", "v2_eval_challenges", "v2_training_challenges"],
+        "dotenv_called_at_import": true,
+        "executor_accepts_child_control_prefix": true,
+        "executor_isolation_terms": [],
+        "executor_only_kills_direct_child_on_timeout": true,
+        "executor_uses_host_tempfile_and_python": true,
+        "grok_tree_five_attempts_detected": true,
+        "inline_test_aggregate_metrics_detected": true,
+        "llm_completion_to_generated_python_executor": true,
+        "logfire_remote_configuration_detected": true,
+        "max_tokens_120000_detected": true,
+        "path_argument_cannot_precede_eager_import": true,
+        "pickle_load_call_count": 2,
+        "pre_request_budget_reservation_detected": false,
+        "root_license_paths": [],
+        "saved_library_path_detected": true,
+        "submission_eager_imports_all_data": true,
+        "test_output_metric_detected": true,
+        "vendored_license_paths": ["lpn/LICENSE"]
+      },
+      "blockers": [
+        {"id": "root-license", "gate": "license_clearance", "detail": "Only the vendored LPN subtree has a license; the project root does not."},
+        {"id": "challenge-label-firewall", "gate": "label_firewall", "detail": "Importing the runner eagerly loads ARC-1 solutions and retains inline test metrics."},
+        {"id": "arc1-arc2-library-overlap", "gate": "contamination_control", "detail": "The ARC-2-trained library is ineligible for clean ARC-1 evaluation without audited overlap exclusion."},
+        {"id": "pickle-artifact-and-isolation", "gate": "artifact_provenance", "detail": "Bundled pickle provenance/schema/license and sacrificial migration isolation are absent."},
+        {"id": "generated-python-isolation", "gate": "code_isolation", "detail": "Generated code runs with host filesystem, network, process, environment, and interpreter access."},
+        {"id": "provider-model-and-api-fuse", "gate": "api_budget", "detail": "No immutable provider/model snapshot or pre-request request/token/USD fuse exists."},
+        {"id": "dependency-environment-integrity", "gate": "dependency_environment", "detail": "Python 3.10/3.11 manifests disagree and no hash-locked offline closure is proven."},
+        {"id": "native-split-and-reproducibility", "gate": "native_benchmark_contract", "detail": "The semi-private reported split, RNG/library order, output writer, and two-attempt contract are not reproducible."},
+        {"id": "solver-prediction-and-parity", "gate": "no_label_solver_prediction", "detail": "No label-free solver prediction or paper-parity run exists."}
+      ],
+      "benchmark_policy": {
+        "arc_agi_1": "library-contaminated-ineligible-unless-overlap-exclusion-precedes-training",
+        "arc_agi_2": "blocked-until-label-firewall-pickle-migration-sandbox-and-api-fuse"
+      },
+      "prior_evidence_interpretation": {
+        "component_smoke_status": "passed",
+        "corrected_scope": "synthetic-data-model-and-auditor-written-trusted-executor-component",
+        "bundled_pickle_deserialized": false,
+        "generated_model_code_executed": false,
+        "solver_prediction_status": "not-run"
+      }
+    }
+  ],
+  "controls": {
+    "network_allowed": false,
+    "gpu_allowed": false,
+    "upstream_import_allowed": false,
+    "upstream_execution_allowed": false,
+    "arc_or_solution_byte_read_allowed": false,
+    "pickle_byte_read_allowed": false,
+    "generated_code_execution_allowed": false,
+    "provider_call_allowed": false,
+    "prediction_allowed": false
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "config_id": "2d-ngpt-source-artifact-label-runtime-gate-v1",
+  "method_id": "2d-ngpt",
+  "scope": "source-artifact-label-runtime-gate-audit-only",
+  "counted_toward_smoke": false,
+  "expected_blocker_ids": [
+    "upstream-provenance",
+    "checkpoint-provenance",
+    "re-arc-data",
+    "fixed-size-and-solution-data",
+    "label-firewall",
+    "runtime-portability",
+    "reproduction-contract"
+  ],
+  "source": {
+    "repository_url": "https://github.com/jfpuget/ARC-AGI-Challenge-2024",
+    "expected_revision": "e5420b10b9470b3b5c6548572768d2d4c15130f6",
+    "source_lock_path": "configs/source_locks.json",
+    "source_lock_sha256": "a785b89743dc06c1296dbfa9691081035bd062ae7f97c5d80c9cfbb38f76a5b4",
+    "local_snapshot": "external/ARC-AGI-Challenge-2024",
+    "prepared_checkout": "/usr/paper-assets/arc/sources/2d-ngpt",
+    "expected_independent_git_checkout": false,
+    "expected_prepared_checkout_present": false,
+    "expected_revision_object_present_in_root_git": false,
+    "expected_file_count": 10,
+    "expected_total_bytes": 1091417,
+    "expected_tree_sha256": "05bb50747e8cf0b98c149f75f65dee8a37bde3b7fe5c1926ad661bf1513e7c21",
+    "expected_tree_digest_algorithm": "sha256(utf8(concat(file_sha256 + two_spaces + source_root_relative_path + newline)))_in_lexicographic_path_order",
+    "expected_external_sources_prefixed_tree_sha256": "f7d595edbc89619d83f1570532ff5ed58f155accac1dd53a6d11ea268a04d1dd",
+    "expected_files": [
+      {"path": "LICENSE", "bytes": 11357, "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"},
+      {"path": "README.md", "bytes": 2844, "sha256": "d899b77e4b28ffe26716cb54bc42dadcddf9e534729fd0b1770e08e820cca2cf"},
+      {"path": "cfg/cfg_053.py", "bytes": 1882, "sha256": "6566326afe6aca1e9b60076e5f24dc3dbc3a33631220641ed8082e62fd896328"},
+      {"path": "cfg/cfg_064.py", "bytes": 2188, "sha256": "d675369de387aa70bccb996f86d9524df273b4534e852965a64cee0a8c91e537"},
+      {"path": "cfg/readme.md", "bytes": 1, "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},
+      {"path": "code/053.py", "bytes": 48158, "sha256": "0828c40ff6c6700431de9367754de0e2c73e204114b9a15b63bfe511cd689d74"},
+      {"path": "code/064.py", "bytes": 64114, "sha256": "2d9ef3455b0550149312dcaafdf2116fc16008d2770d28563e6ac230de2704c7"},
+      {"path": "notebooks/gen10000.ipynb", "bytes": 923242, "sha256": "66af17202133b7191edc9df3328cb2bf9c3f62c04af597f2db3cdb7f678dce4d"},
+      {"path": "notebooks/train.ipynb", "bytes": 25502, "sha256": "f41ba8a462baa2642d485f2b38d3c5b58098c34c20b7eedf1fd1f8c2623886d5"},
+      {"path": "notebooks/ttt.ipynb", "bytes": 12129, "sha256": "a443a7638bdf5807103ad575832997ca764fdc11ed6869acb158046f718a4cd1"}
+    ],
+    "required_directories": [
+      "cfg",
+      "code",
+      "notebooks"
+    ],
+    "optional_cache_directories": [
+      "cfg/__pycache__",
+      "code/__pycache__"
+    ],
+    "metadata_only_cache_files": [
+      {"path": "cfg/__pycache__/cfg_064.cpython-310.pyc", "bytes": 2044},
+      {"path": "code/__pycache__/064.cpython-310.pyc", "bytes": 44484}
+    ],
+    "expected_root_license_files": [
+      "LICENSE"
+    ]
+  },
+  "forbidden_artifacts": {
+    "checkpoint_paths": [
+      "external/ARC-AGI-Challenge-2024/checkpoints/ngc/exp_50.pt",
+      "external/ARC-AGI-Challenge-2024/checkpoints/ngc/exp_54.pt",
+      "external/checkpoints/ngc/exp_50.pt",
+      "external/checkpoints/ngc/exp_54.pt",
+      "/usr/paper-assets/arc/sources/2d-ngpt/checkpoints/ngc/exp_50.pt",
+      "/usr/paper-assets/arc/sources/2d-ngpt/checkpoints/ngc/exp_54.pt",
+      "/usr/paper-assets/arc/checkpoints/2d-ngpt/exp_50.pt",
+      "/usr/paper-assets/arc/checkpoints/2d-ngpt/exp_54.pt",
+      "/model/2d-ngpt/exp_50.pt",
+      "/model/2d-ngpt/exp_54.pt"
+    ],
+    "re_arc_paths": [
+      "external/ARC-AGI-Challenge-2024/re-arc/gen10000/tasks",
+      "external/re-arc/gen10000/tasks",
+      "/usr/paper-assets/arc/sources/2d-ngpt/re-arc/gen10000/tasks",
+      "/usr/paper-assets/arc/data/re-arc/gen10000/tasks"
+    ],
+    "fixed_size_paths": [
+      "external/ARC-AGI-Challenge-2024/input/arc-prize-2024/fixed_size.pkl",
+      "external/input/arc-prize-2024/fixed_size.pkl",
+      "/usr/paper-assets/arc/sources/2d-ngpt/input/arc-prize-2024/fixed_size.pkl",
+      "/usr/paper-assets/arc/data/arc-prize-2024/fixed_size.pkl"
+    ],
+    "solution_paths": [
+      "external/ARC-AGI-Challenge-2024/input/arc-prize-2024/arc-agi_training_solutions.json",
+      "external/ARC-AGI-Challenge-2024/input/arc-prize-2024/arc-agi_evaluation_solutions.json",
+      "external/input/arc-prize-2024/arc-agi_training_solutions.json",
+      "external/input/arc-prize-2024/arc-agi_evaluation_solutions.json",
+      "/usr/paper-assets/arc/sources/2d-ngpt/input/arc-prize-2024/arc-agi_training_solutions.json",
+      "/usr/paper-assets/arc/sources/2d-ngpt/input/arc-prize-2024/arc-agi_evaluation_solutions.json",
+      "/usr/paper-assets/arc/data/arc-prize-2024/arc-agi_training_solutions.json",
+      "/usr/paper-assets/arc/data/arc-prize-2024/arc-agi_evaluation_solutions.json"
+    ],
+    "expected_present_count": 0
+  },
+  "static_contract": {
+    "runner_path": "code/064.py",
+    "config_path": "cfg/cfg_064.py",
+    "expected_solution_literals": [
+      "arc-agi_training_solutions.json",
+      "arc-agi_evaluation_solutions.json"
+    ],
+    "expected_tune_flow_calls": [
+      "load_checkpoint",
+      "load_train",
+      "add_validation_data",
+      "get_tune_datasets",
+      "train_model",
+      "get_data_loader",
+      "valid_epoch"
+    ],
+    "expected_global_cfg_scopes": [
+      "ARCModel.forward",
+      "add_validation_data"
+    ],
+    "expected_pretrained_literal": "../checkpoints/ngc/exp_54.pt",
+    "expected_re_arc_literal": "../re-arc/%s/tasks",
+    "expected_input_literal": "../input/arc-prize-2024/",
+    "expected_device_literal": "cuda",
+    "expected_tune_model_default": true
+  },
+  "prior_architecture_evidence": {
+    "run_path": "reports/2d-ngpt/20260806-large-architecture-forward-smoke/run.json",
+    "run_sha256": "8d5ac324769781a6a580907ddd9f2795786a7e6464ba4c77ee9b8b16ffc1132a",
+    "runner_path": "scripts/smoke_2d_ngpt.py",
+    "runner_sha256": "8673d35ea09a343350523d264739ef0fff70197453ae37e818c3bbd641ea5568",
+    "classification": "component-evidence-only",
+    "component_smoke_counted": true,
+    "solver_prediction_smoke": false
+  },
+  "controls": {
+    "network_allowed": false,
+    "gpu_allowed": false,
+    "arc_solution_byte_read_allowed": false,
+    "generated_re_arc_byte_read_allowed": false,
+    "fixed_size_byte_read_allowed": false,
+    "checkpoint_byte_read_allowed": false,
+    "checkpoint_load_allowed": false,
+    "upstream_import_allowed": false,
+    "upstream_execution_allowed": false,
+    "solver_execution_allowed": false
+  }
+}

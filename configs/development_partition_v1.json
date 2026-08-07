@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "profile_id": "arc-rebench-development-partition-v1",
+  "freeze_status": "frozen",
+  "source_manifests": {
+    "general_training_only": {
+      "path": "reports/e0-development-split/20260806-training-only-deterministic-split-retry1/manifest.json",
+      "sha256": "b21f60c7fc381977b3ac7ba2655270f037c5ddb6172cbdcf155b8e7c62ff7313"
+    },
+    "arc1_known_overlap_excluded": {
+      "path": "reports/e0-development-split/20260806-arc1-clean-overlap-excluded-draft-view/manifest.json",
+      "sha256": "74c75b12389bc6b69f671e4757fb3be1a3f69850596cc9670418426bb67fd951"
+    }
+  },
+  "training_sources": {
+    "arc-agi-1-training": "third_party/arc-agi-1/data/training",
+    "arc-agi-2-training": "third_party/arc-agi-2/data/training"
+  },
+  "split_roles": {
+    "dev-build": "implementation_and_debugging",
+    "dev-select": "configuration_and_model_selection",
+    "dev-audit": "challenge_only_final_rehearsal_no_selection_changes"
+  },
+  "dev_audit": {
+    "execution_unit": "one_frozen_representative_per_cluster",
+    "representative_order": "source_clean_manifest_deduplicated_tasks_order",
+    "expected_cluster_count": 94,
+    "expected_representative_task_count": 94,
+    "expected_source_record_count": 159,
+    "expected_test_output_denominator": 97,
+    "inference_visible_test_output_fields": 0,
+    "scoring_data_location": "outside_inference_tree"
+  },
+  "claim_boundary": "known-overlap-excluded-only",
+  "limitations": [
+    "Known-overlap-excluded removes only clusters named by the frozen 376-ID ARC-AGI-1-evaluation versus ARC-AGI-2-training ledger.",
+    "It does not prove absence of renamed semantic overlap, historical researcher exposure, or pretrained-model contamination.",
+    "The frozen derivative retains the draft source assignments without reallocating clusters."
+  ]
+}

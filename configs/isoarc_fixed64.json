@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "profile_id": "arc-rebench-isoarc-fixed64-v1",
+  "protocol_status": "frozen-inputs",
+  "challenge_manifest": {
+    "path": "reports/e0-challenge-data/20260806-locked-public-challenge-trees-draft-retry2/manifest.json",
+    "sha256": "93a2e6b1e78f5f102016033b7949527ac8f28e42765a6599855ca356386d11bf",
+    "challenge_manifest_sha256": "ca36c0c4ce504b0f88c1bf492d293ae2dbf9a0d27152632575c6ba6337b07723"
+  },
+  "selection": {
+    "public_seed": 20260806,
+    "domain": "arc-rebench-protocol-v1-fixed64-isoarc-v1",
+    "quota_by_benchmark": {
+      "arc_agi_1": 32,
+      "arc_agi_2": 32
+    },
+    "algorithm": "exact-stratum-largest-remainder-v1",
+    "visible_features": [
+      "demonstration_count_bin",
+      "test_input_count_bin",
+      "max_input_area_bin",
+      "input_color_count_bin",
+      "demonstration_shape_change"
+    ],
+    "benchmark_selection_order": [
+      "arc_agi_2",
+      "arc_agi_1"
+    ],
+    "cross_benchmark_duplicate_policy": "arc_agi_2_selected_first_then_exclude_same_task_id_from_arc_agi_1"
+  },
+  "variant_design": {
+    "d4_order": [
+      "identity",
+      "rotate_90",
+      "rotate_180",
+      "rotate_270",
+      "flip_horizontal",
+      "flip_vertical",
+      "transpose",
+      "anti_transpose"
+    ],
+    "fixed_zero_color_seeds": [
+      2026080601,
+      2026080602,
+      2026080603,
+      2026080604
+    ],
+    "combined_d4_color_assignment": "balanced-8x4-cyclic-latin-v1",
+    "demonstration_permutations_when_at_least_three": 2,
+    "test_order_policy": "cyclic-left-when-at-least-two-plus-reverse-when-at-least-three"
+  },
+  "claim_boundary": "The 64 public base tasks and all IsoARC assignments are selected from label-free challenge views using visible features only. This is a frozen diagnostic input manifest, not a solver result or an independent benchmark."
+}

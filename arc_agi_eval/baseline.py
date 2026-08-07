@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any, Callable, Sequence
 
 from .dataset import task_files
+from .isoarc import D4
 from .scoring import score_prediction_file
 from .validation import Grid, load_task
 
@@ -38,44 +39,7 @@ def constant_dominant_color(grid: Grid) -> Grid:
     return [[color] * len(grid[0]) for _ in grid]
 
 
-def _rotate_90(grid: Grid) -> Grid:
-    return [list(row) for row in zip(*reversed(grid))]
-
-
-def _rotate_180(grid: Grid) -> Grid:
-    return [list(reversed(row)) for row in reversed(grid)]
-
-
-def _rotate_270(grid: Grid) -> Grid:
-    return [list(row) for row in reversed(list(zip(*grid)))]
-
-
-def _flip_horizontal(grid: Grid) -> Grid:
-    return [list(reversed(row)) for row in grid]
-
-
-def _flip_vertical(grid: Grid) -> Grid:
-    return [row[:] for row in reversed(grid)]
-
-
-def _transpose(grid: Grid) -> Grid:
-    return [list(row) for row in zip(*grid)]
-
-
-def _anti_transpose(grid: Grid) -> Grid:
-    return _rotate_180(_transpose(grid))
-
-
-GEOMETRIC_TRANSFORMS: tuple[tuple[str, Transform], ...] = (
-    ("identity", copy_input),
-    ("rotate_90", _rotate_90),
-    ("rotate_180", _rotate_180),
-    ("rotate_270", _rotate_270),
-    ("flip_horizontal", _flip_horizontal),
-    ("flip_vertical", _flip_vertical),
-    ("transpose", _transpose),
-    ("anti_transpose", _anti_transpose),
-)
+GEOMETRIC_TRANSFORMS: tuple[tuple[str, Transform], ...] = tuple(D4.items())
 
 
 def solve_geometric(train: Sequence[TrainPair], grid: Grid) -> list[Candidate]:

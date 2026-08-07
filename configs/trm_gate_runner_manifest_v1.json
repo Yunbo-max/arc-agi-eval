@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "manifest_id": "trm-gate-runner-manifest-v1",
+  "method_id": "tiny-recursive-models",
+  "member_count": 5,
+  "members": [
+    {"role": "launcher", "path": "scripts/launch_trm_gate.py", "bytes": 12602, "sha256": "a41b24ac656a70936c54184fcf41a095557f04b1bcabf665a0a36f5150b104b2"},
+    {"role": "auditor", "path": "scripts/audit_trm_gates.py", "bytes": 78686, "sha256": "e034fc1eb13bac7ec81c18539015ee1a488f0d0d3c4e88c1d05e2b12deb39614"},
+    {"role": "support", "path": "scripts/audit_batch_c_static_gates.py", "bytes": 96445, "sha256": "8860877257cf2864ddf8304fdef407d76de72339b6aba9d47391db5a57c7626e"},
+    {"role": "config", "path": "configs/trm_gate_v1.json", "bytes": 16985, "sha256": "f32d76bcfa2579cb4e88c6b4b5e4d2ff04b9d3d74153c282d44f5165376ffa78", "canonical_sha256": "3f8846344565228e43b8a5dd62c7a7eb0bceb84139b4693cee3423a47313afc9"},
+    {"role": "source_lock", "path": "configs/source_locks.json", "bytes": 3994, "sha256": "a785b89743dc06c1296dbfa9691081035bd062ae7f97c5d80c9cfbb38f76a5b4"}
+  ],
+  "members_sha256": "ec001cb683105201d494651eac029a9048092b87f995d624296e8a3597458502"
+}

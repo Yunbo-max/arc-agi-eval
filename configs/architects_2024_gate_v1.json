@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "config_id": "architects-2024-source-artifact-label-runtime-gate-v1",
+  "method_id": "architects-2024",
+  "scope": "source-artifact-label-runtime-gate-audit-only",
+  "counted_toward_smoke": false,
+  "config_read_policy": {
+    "canonical_path": "configs/architects_2024_gate_v1.json",
+    "alternate_paths_allowed": false
+  },
+  "expected_blocker_ids": [
+    "model-license-review",
+    "arc1-training-contamination",
+    "local-runner-label-firewall",
+    "safe-offline-model-load",
+    "pickle-cache-isolation",
+    "dependency-environment-parity",
+    "resource-capacity",
+    "solver-prediction-and-parity"
+  ],
+  "source_lock": {
+    "path": "configs/source_locks.json",
+    "sha256": "a785b89743dc06c1296dbfa9691081035bd062ae7f97c5d80c9cfbb38f76a5b4",
+    "entry": {
+      "url": "https://github.com/da-fr/arc-prize-2024",
+      "branch": "main",
+      "revision": "d3ac3f6ebf6fb609bfdc782561ee99977ca35d95",
+      "asset_subpath": "sources/architects-2024"
+    }
+  },
+  "source": {
+    "repository_path": "/root/arc-paper-assets/sources/architects-2024",
+    "repository_url": "https://github.com/da-fr/arc-prize-2024",
+    "expected_revision": "d3ac3f6ebf6fb609bfdc782561ee99977ca35d95",
+    "expected_commit_tree": "46eedc2d304d60bcb3a393063528d2a694223199",
+    "expected_git_config_bytes": 309,
+    "expected_git_config_sha256": "1737a734def03c3a14f4af03bf84e452d3a4fd431e28073ba808670873e296fc",
+    "expected_git_head_bytes": 41,
+    "expected_git_head_sha256": "721b0545affeb16fe2d3fdf5079cbc5cb9ce2d9b713a94556187a998ad7f3f8a",
+    "expected_tracked_file_count": 18,
+    "tracked_path_list_sha256": "3791e2090d230f4d23d4795b304188f51f5c29e5ce27c7ad859cea1d6223dbe6",
+    "tracked_metadata_sha256": "b501cc77005eaf78d097da247a5ad147be6cf5d7512a9447e8a5fefa915a3efb",
+    "tracked_files": [
+      {"path": ".github/overview.png", "mode": "100644", "blob_oid": "18794ed3999586e71c205a8bb062c17e48b237bf", "bytes": 75743},
+      {"path": "LICENSE.txt", "mode": "100644", "blob_oid": "d645695673349e3947e8e5ae42332d0ac3164cd7", "bytes": 11358},
+      {"path": "NOTICE", "mode": "100644", "blob_oid": "0ae81745bc084b37c124c0c4a41e2a677a2a3ba3", "bytes": 88},
+      {"path": "README.md", "mode": "100644", "blob_oid": "40edcff9ab70aee240836c3c4235b97eb2cac3ba", "bytes": 4858},
+      {"path": "kaggle_notebooks/arc-prize-2024_kaggle.ipynb", "mode": "100644", "blob_oid": "80d33977cd9a2ede06f1216fbeeca00c86130e9d", "bytes": 280760},
+      {"path": "kaggle_notebooks/arc-prize-2024_updated.ipynb", "mode": "100644", "blob_oid": "6a1d0161884d18d03bfcc09abeddd6d1d4d15008", "bytes": 199578},
+      {"path": "kaggle_notebooks/unsloth-download-2024-9-post4.ipynb", "mode": "100644", "blob_oid": "cd217c4d9e657dfd2e9016250c293500e3f08227", "bytes": 39220},
+      {"path": "params.json", "mode": "100644", "blob_oid": "14dc58fcbb1ddb4046ff8af94a438dd29d0fa53c", "bytes": 150},
+      {"path": "the_architects.pdf", "mode": "100644", "blob_oid": "ca469ec796da19c27b172e602851cf90372d0ac2", "bytes": 2398807},
+      {"path": "training_code/arc_downloader.py", "mode": "100644", "blob_oid": "7a8f56da2980cd06bbea0d661fc5b1d28355e134", "bytes": 1708},
+      {"path": "training_code/arc_loader.py", "mode": "100644", "blob_oid": "63b9e818bddf1d7f038467b000252693c03a0b00", "bytes": 17738},
+      {"path": "training_code/inference_tools.py", "mode": "100644", "blob_oid": "1439b14dda230344243e8796c65744435b159c66", "bytes": 10170},
+      {"path": "training_code/model_tools.py", "mode": "100644", "blob_oid": "26cae79f73dc6f4da50e26f6c78d4964f29bb4bd", "bytes": 8659},
+      {"path": "training_code/run_evaluation_Llama-rearc_with_ttt.py", "mode": "100644", "blob_oid": "a3646b65678721737b3440b511e92656ed5fa8ba", "bytes": 5190},
+      {"path": "training_code/run_evaluation_Llama-rearc_without_ttt.py", "mode": "100644", "blob_oid": "db71b2b00d1c297653c49e33a48a20f1c16afdf9", "bytes": 2680},
+      {"path": "training_code/run_finetuning_Llama-rearc.py", "mode": "100644", "blob_oid": "18213c4c5dedd49d091246b3b8082e7e7f47f29d", "bytes": 5009},
+      {"path": "training_code/run_finetuning_Nemo-full.py", "mode": "100644", "blob_oid": "1e1fefa606015d6c009bdf1ede95f58b0b15ae3f", "bytes": 5750},
+      {"path": "training_code/selection.py", "mode": "100644", "blob_oid": "3e688a18da1efc36526c8cc701711cf7c04f25cd", "bytes": 3786}
+    ],
+    "read_files": [
+      {"path": "LICENSE.txt", "role": "code_license", "bytes": 11358, "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"},
+      {"path": "NOTICE", "role": "source_notice", "bytes": 88, "sha256": "cb41b8e5985532378aaf74cb1d802e5b3bb30d7daf53b516dee53f0d71358c57"},
+      {"path": "README.md", "role": "source_readme", "bytes": 4858, "sha256": "b457568f0037aa8beddcb5a8637f6590aa3b032b09fd65254d24e00a32564094"},
+      {"path": "kaggle_notebooks/arc-prize-2024_kaggle.ipynb", "role": "official_notebook", "bytes": 280760, "sha256": "4ecb52b2811226711b656f40bf3ecff62509c2a189a222c1394cb14180b2bfe9"},
+      {"path": "kaggle_notebooks/arc-prize-2024_updated.ipynb", "role": "updated_notebook", "bytes": 199578, "sha256": "28e76d2c888ab98a0169d9e6889d1b4ed4d03dc54ebd877401e055658d41d6dd"},
+      {"path": "training_code/arc_downloader.py", "role": "python_source", "bytes": 1708, "sha256": "d23f03129267f9b078c46df57b3065cc5c258c33df73a39f4026b6a871b1d6ac"},
+      {"path": "training_code/arc_loader.py", "role": "python_source", "bytes": 17738, "sha256": "95fecb422fd2489c29657cef02f530c52e5a480bbf490d2d4868a0e7b80e65a4"},
+      {"path": "training_code/inference_tools.py", "role": "python_source", "bytes": 10170, "sha256": "7a40dccc65aa89aeea948b8947f03e73c900b44744a8534022e9ac788d67c972"},
+      {"path": "training_code/model_tools.py", "role": "model_loader_source", "bytes": 8659, "sha256": "d47d01702095556b0738d22c1c3f532d625914a2c2a7bcf9dc39b4258eae0c4a"},
+      {"path": "training_code/run_evaluation_Llama-rearc_with_ttt.py", "role": "label_bearing_runner", "bytes": 5190, "sha256": "475736225dfe1d481ee6734e7c8815db09003edd2b2f6f22988851e2ce8a234a"},
+      {"path": "training_code/run_evaluation_Llama-rearc_without_ttt.py", "role": "label_bearing_runner", "bytes": 2680, "sha256": "c5780fa6b0560f3d2fa3c34b24a257fa8f983047442be411a6dbac5baa0278be"},
+      {"path": "training_code/run_finetuning_Llama-rearc.py", "role": "python_source", "bytes": 5009, "sha256": "26a2f9a667aa77957d056a9ae55781ce18a2ca44c386dbfef781b0b581af2b27"},
+      {"path": "training_code/run_finetuning_Nemo-full.py", "role": "contamination_source", "bytes": 5750, "sha256": "e5f05058ddf2d677967e911d02b0a2f45e7c181ef2da6a52e888ec3c1108c389"},
+      {"path": "training_code/selection.py", "role": "python_source", "bytes": 3786, "sha256": "08d1fa906fe49bb6a82954e7422bb62c364027c55b5d94218f46465219ca0aea"}
+    ],
+    "expected_python_file_count": 9,
+    "expected_python_bytes": 60690,
+    "opaque_directories": [".git"],
+    "expected_unknown_entry_count": 0
+  },
+  "notebooks": {
+    "official": {
+      "path": "kaggle_notebooks/arc-prize-2024_kaggle.ipynb",
+      "role": "official-kaggle-53.5-submission",
+      "sha256": "4ecb52b2811226711b656f40bf3ecff62509c2a189a222c1394cb14180b2bfe9",
+      "challenge_file_suffix": "arc-agi_test_challenges.json",
+      "fake_only_reply_file_suffix": "arc-agi_training_solutions.json"
+    },
+    "updated": {
+      "path": "kaggle_notebooks/arc-prize-2024_updated.ipynb",
+      "role": "updated-local-candidate-not-official-submission",
+      "sha256": "28e76d2c888ab98a0169d9e6889d1b4ed4d03dc54ebd877401e055658d41d6dd"
+    }
+  },
+  "ast_contract": {
+    "local_label_bearing_runners": [
+      "training_code/run_evaluation_Llama-rearc_with_ttt.py",
+      "training_code/run_evaluation_Llama-rearc_without_ttt.py"
+    ],
+    "contamination_training_path": "training_code/run_finetuning_Nemo-full.py",
+    "model_loader_path": "training_code/model_tools.py",
+    "required_local_challenge_suffix": "arc-agi_evaluation_challenges.json",
+    "required_local_solution_suffix": "arc-agi_evaluation_solutions.json"
+  },
+  "prior_reports": {
+    "checkpoint_integrity": {
+      "path": "reports/architects-2024/20260806-4bit-checkpoint-integrity/run.json",
+      "sha256": "6cf23296baf789502b990be884e0420898b067ba49e041dfade1396c0a5ef8f3",
+      "scope": "checkpoint-download-integrity-only",
+      "status": "passed",
+      "repo_id": "da-fr/Mistral-NeMo-Minitron-8B-ARChitects-Full-bnb-4bit",
+      "revision": "6de719999a213e717fe339fb5a29177ddc4310d9",
+      "file_count": 9,
+      "total_bytes": 3790920477,
+      "model_file": {
+        "path": "model.safetensors",
+        "bytes": 3790909677,
+        "sha256": "96ae74f8955c5bf3e84d5732494525d13076410710a060641893359db13300c5"
+      },
+      "notice_file": {
+        "path": "NOTICE",
+        "bytes": 588,
+        "sha256": "13167b3e366cf2cf314c8d6b934791d34496183cd1ab594ebb23d128c9bb7f62"
+      },
+      "model_card_file": {
+        "path": "README.md",
+        "bytes": 2357,
+        "sha256": "9c1f7dbd70693d145f0324b1d4a4ec671b40f220eaf36aaff62776a350f992fb"
+      }
+    },
+    "resource_preflight": {
+      "path": "reports/architects-2024/20260806-forward-preflight-gpu-occupied/run.json",
+      "sha256": "3c1ca104f4f5317404196308e515f2e42f7161be63f45395e7df2be93aff74c6",
+      "status": "blocked",
+      "minimum_free_vram_bytes": 10737418240,
+      "observed_free_vram_bytes": 5335154688
+    }
+  },
+  "licenses": {
+    "code": {
+      "path": "LICENSE.txt",
+      "identifier": "Apache-2.0",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    "model": {
+      "identifier": "NVIDIA Open Model License",
+      "notice_bound_from_integrity_report": true,
+      "redistribution_review_status": "blocked-separate-review-required"
+    }
+  },
+  "runtime_policy": {
+    "checkpoint_local_only_required": true,
+    "trust_remote_code_required": false,
+    "pickle_cache_allowed": false,
+    "historical_dependency_stack": "Unsloth/PyTorch-2.4-era",
+    "local_dependency_stack": "Transformers-4.44.2/bitsandbytes-0.44.1/accelerate-0.34.2/PyTorch-2.13.0+cu126",
+    "minimum_free_vram_bytes": 10737418240
+  },
+  "benchmark_policy": {
+    "arc_agi_1": "training-contaminated-ineligible-for-clean-main-board",
+    "arc_agi_2": "potential-new-transfer-after-challenge-only-adapter-and-all-runtime-gates"
+  },
+  "controls": {
+    "network_allowed": false,
+    "gpu_allowed": false,
+    "upstream_import_allowed": false,
+    "upstream_execution_allowed": false,
+    "arc_solution_byte_read_allowed": false,
+    "checkpoint_byte_read_allowed": false,
+    "pickle_cache_byte_read_allowed": false,
+    "solver_execution_allowed": false,
+    "prediction_allowed": false
+  }
+}

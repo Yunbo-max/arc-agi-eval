@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "method_id": "compressarc",
+  "config_id": "compressarc-cpu-dev-smoke-v1",
+  "claim_scope": "reduced compatibility-deviant source-level CPU solver-prediction smoke with a trusted-code A/B hidden-label firewall; not a benchmark or paper reproduction",
+  "dataset_id": "arc-training-known-overlap-excluded",
+  "split": "dev-audit",
+  "task_id": "3c9b0459",
+  "frozen_runtime_directory": "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1",
+  "expected_frozen_manifest_sha256": "9e396158507ce136d4455e133f09c32a225e8f8a2f9071a5d62955e8e308ba2c",
+  "expected_frozen_run_sha256": "3a7d019d212bdeb2c7fb4909cad88c9a210d04dda694f5b2228e523bb5e2071b",
+  "expected_challenge_sha256": "9fb838b74e287bb9fd223822f2e287a07df58ab9ea0e29daaaf1ea2093c7e6ab",
+  "expected_solution_sha256": "45e9e459a02935f6906a55ff6e0e2b0679881d8b1b0f8b0d6b259cbbdf22223f",
+  "source_task_path": "third_party/arc-agi-1/data/training/3c9b0459.json",
+  "expected_source_task_sha256": "5f71ebc352e3d8264efe8d10ce7eb0605ffe38fb4b6f94d359e091624af6f826",
+  "representative_order_index": 59,
+  "representative_cluster_id": "8f535a4a685dacdc61379af5698009658b8c103e673414586677fffe0d89b8ee",
+  "label_free_selection": {
+    "policy": "second-smallest frozen representative by visible shape metadata, excluding the task already used by the ARC_NCA strict smoke",
+    "train_pair_count": 4,
+    "test_input_count": 1,
+    "train_input_shapes": [[3, 3], [3, 3], [3, 3], [3, 3]],
+    "train_output_shapes": [[3, 3], [3, 3], [3, 3], [3, 3]],
+    "test_input_shapes": [[3, 3]],
+    "visible_colors": [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  },
+  "analyst_test_label_exposure": false,
+  "analyst_exposure_detail": "The task was selected only from the frozen challenge and representative metadata. The task-specific scoring payload has not been inspected by the analyst. Public labels remain addressable elsewhere in the shared workspace, so this is a trusted-code boundary rather than OS-enforced label inaccessibility.",
+  "performance_tuning_from_test_labels": false,
+  "upstream": {
+    "repository": "https://github.com/iliao2345/CompressARC",
+    "revision": "83a22218024d46273eb32b769a906340202ffb4d",
+    "repository_path": "external/CompressARC",
+    "expected_full_tree_sha256": "31b3401856689e20a8ecd56196c05e28f6196accfdfb8ed69185050b83abf204",
+    "expected_full_file_count": 24,
+    "safe_file_allowlist": [
+      "LICENSE",
+      "README.md",
+      "arc_compressor.py",
+      "initializers.py",
+      "layers.py",
+      "multitensor_systems.py",
+      "preprocessing.py",
+      "requirements.txt",
+      "solution_selection.py",
+      "train.py",
+      "visualization.py"
+    ],
+    "expected_safe_tree_sha256": "d89f1b1fbc8a2567e8f62bacc6b88abb510f7c6bec5c3230bfa1aa7297fecb7d",
+    "expected_safe_file_count": 11,
+    "expected_arc_compressor_sha256": "7a89e502c1106f419dc34374aea858fa4182eb605ecbf9a473ca47da655a97ce",
+    "expected_portable_arc_compressor_sha256": "dc57fa3bea5a8a30352fdcf5ea76dda73ce41fc71972eac389be52c7cbdd90d1",
+    "license_path": "external/CompressARC/LICENSE",
+    "expected_license_sha256": "e8cba0a855993f6f45590547ae79d1ffd92ba7d695bfbc0e2375fecc29289037"
+  },
+  "adapter": {
+    "kind": "hash-locked upstream source execution with one in-memory device-default substitution",
+    "upstream_location": "arc_compressor.py:11",
+    "semantic_device_change": "replace exactly one module-level torch.set_default_device('cuda') call with torch.set_default_device('cpu') before compilation",
+    "upstream_default": "cuda",
+    "execution_device": "cpu",
+    "staging_policy": "allowlisted source-only tree; bundled datasets, solutions, scoring.py, and entrypoint scripts are absent",
+    "code_trust_class": "trusted_locked",
+    "os_isolation_claimed": false
+  },
+  "optimization": {
+    "steps": 2,
+    "learning_rate": 0.01,
+    "beta_1": 0.5,
+    "beta_2": 0.9
+  },
+  "attempt_budget": {
+    "top_k": 2,
+    "timeout_seconds_per_process": 300,
+    "max_retries": 0,
+    "max_candidates": 2,
+    "api_call_cap": 0,
+    "cost_cap_usd": 0
+  },
+  "determinism": {
+    "seed": 0,
+    "threads": 1,
+    "python_hash_seed": 0,
+    "torch_deterministic_algorithms": true,
+    "replay_count": 2
+  },
+  "expected_environment": {
+    "python_path": ".venvs/compressarc/bin/python",
+    "python": "3.10.12",
+    "torch": "2.13.0+cu126",
+    "numpy": "2.2.6",
+    "matplotlib": "3.10.0",
+    "tqdm": "4.70.0",
+    "cuda_visible_devices": ""
+  },
+  "compatibility_deviations": {
+    "upstream_requirements": {
+      "torch": "2.5.1",
+      "numpy": "2.2.2",
+      "matplotlib": "3.10.0",
+      "tqdm": "4.66.6"
+    },
+    "observed_environment": {
+      "torch": "2.13.0+cu126",
+      "numpy": "2.2.6",
+      "matplotlib": "3.10.0",
+      "tqdm": "4.70.0"
+    },
+    "parity_effect": "The smoke establishes source-path execution and firewall mechanics only; it does not establish upstream environment, GPU, benchmark, or paper parity."
+  },
+  "hidden_label_mutation": {
+    "kind": "color_shift_mod_10",
+    "offset": 1
+  },
+  "pre_run_contract": {
+    "strict_runtime_passed": 1,
+    "admitted_configuration_count": 0,
+    "performance_eligible_count": 0,
+    "locked_public_solver_run": false
+  },
+  "public_execution_authorized": false
+}

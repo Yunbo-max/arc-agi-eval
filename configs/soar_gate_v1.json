@@ -1,0 +1,429 @@
+{
+  "schema_version": 1,
+  "config_id": "soar-source-artifact-dataset-label-api-code-resource-gate-v1",
+  "method_id": "soar",
+  "scope": "source-artifact-dataset-label-api-code-resource-gate-audit-only",
+  "counted_toward_smoke": false,
+  "config_read_policy": {
+    "canonical_path": "configs/soar_gate_v1.json",
+    "alternate_paths_allowed": false
+  },
+  "static_audit_support": {
+    "path": "scripts/audit_batch_c_static_gates.py",
+    "sha256": "8860877257cf2864ddf8304fdef407d76de72339b6aba9d47391db5a57c7626e"
+  },
+  "source_lock": {
+    "path": "configs/source_locks.json",
+    "sha256": "a785b89743dc06c1296dbfa9691081035bd062ae7f97c5d80c9cfbb38f76a5b4"
+  },
+  "source_lock_entry": {
+    "url": "https://github.com/flowersteam/SOAR",
+    "branch": "main",
+    "revision": "8ed0890b60b647f4ca8582b30f6dbc2c709ff443",
+    "asset_subpath": "sources/soar"
+  },
+  "expected_blocker_ids": [
+    "bundled-data-provenance-and-versioning",
+    "root-license-scope",
+    "dependency-and-runtime-lock",
+    "model-and-training-artifact-provenance",
+    "pickle-deserialization",
+    "challenge-label-firewall",
+    "test-oracle-selection-and-feedback",
+    "generated-code-isolation",
+    "process-tree-containment",
+    "network-provider-and-cost-control",
+    "native-submission-contract",
+    "resource-envelope",
+    "solver-prediction-and-paper-parity"
+  ],
+  "source": {
+    "repository_path": "/root/arc-paper-assets/sources/soar",
+    "repository_url": "https://github.com/flowersteam/SOAR",
+    "expected_revision": "8ed0890b60b647f4ca8582b30f6dbc2c709ff443",
+    "expected_commit_tree": "5ac7ee959aee24eb8b1b8658a402f4f227f44edb",
+    "expected_shallow_repository": true,
+    "expected_tracked_file_count": 46,
+    "expected_tracked_bytes": 94998756,
+    "git_tree_manifest_sha256": "d37fb4a87fcf3fc3e469a5be89078f4a496e0e6af186479212c099094cd4f1de",
+    "worktree_metadata_sha256": "971835f0cf11377173a892e4035af72760e97f343cd9537bde5a685c6a250d63",
+    "expected_extension_counts": {
+      ".ipynb": 2,
+      ".json": 12,
+      ".md": 3,
+      ".pdf": 1,
+      ".pkl": 1,
+      ".png": 1,
+      ".py": 23,
+      ".sh": 1,
+      ".txt": 1,
+      ".zip": 1
+    },
+    "git_metadata_contract": {
+      "local_config": {
+        "path": ".git/config",
+        "bytes": 305,
+        "sha256": "fae7bc9f6e889a417a6cd56a43e1bf005dc1fb540f89162c2298da1f5bc25466",
+        "mode": "0644"
+      },
+      "head": {
+        "path": ".git/HEAD",
+        "bytes": 41,
+        "sha256": "c09b6265d3b876f1da2c8df6a6dd7a4035daf71a26b4e5b96a2e77173bdff3c5",
+        "mode": "0644"
+      },
+      "shallow": {
+        "path": ".git/shallow",
+        "bytes": 41,
+        "sha256": "c09b6265d3b876f1da2c8df6a6dd7a4035daf71a26b4e5b96a2e77173bdff3c5",
+        "mode": "0644"
+      }
+    },
+    "retained_text": [
+      {"path": "LICENSE.md", "role": "root_license"},
+      {"path": "README.md", "role": "source_documentation"},
+      {"path": "experience/qwen.sh", "role": "experiment_shell_recipe"},
+      {"path": "experience/tuto_expe.md", "role": "experiment_documentation"},
+      {"path": "requirements.txt", "role": "dependency_manifest"},
+      {"path": "setup.py", "role": "packaging_source"},
+      {"path": "soar/__init__.py", "role": "package_marker"},
+      {"path": "soar/api.py", "role": "model_server_and_api_source"},
+      {"path": "soar/grid_formatting.py", "role": "grid_formatting_source"},
+      {"path": "soar/inference/sample_phase.py", "role": "sampling_runner_source"},
+      {"path": "soar/llm_utils.py", "role": "generation_result_and_metric_source"},
+      {"path": "soar/post_process/dedup.py", "role": "postprocess_source"},
+      {"path": "soar/post_process/filtering.py", "role": "postprocess_source"},
+      {"path": "soar/post_process/merge_filter.py", "role": "postprocess_source"},
+      {"path": "soar/post_process/process_repair_for_training.py", "role": "training_data_postprocess_source"},
+      {"path": "soar/post_process/process_sample_for_training.py", "role": "training_data_postprocess_source"},
+      {"path": "soar/preprocess.py", "role": "dataset_loader_source"},
+      {"path": "soar/prompt.py", "role": "prompt_template_source"},
+      {"path": "soar/render.py", "role": "grid_render_source"},
+      {"path": "soar/repair/__init__.py", "role": "package_marker"},
+      {"path": "soar/repair/rex.py", "role": "refinement_algorithm_source"},
+      {"path": "soar/repair/rex_inference.py", "role": "refinement_runner_source"},
+      {"path": "soar/sandbox/__init__.py", "role": "package_marker"},
+      {"path": "soar/sandbox/execute_code.py", "role": "alternate_generated_code_executor_source"},
+      {"path": "soar/sandbox/execute_code_less_safe.py", "role": "active_generated_code_executor_source"},
+      {"path": "soar/training/__init__.py", "role": "package_marker"},
+      {"path": "soar/training/train_unsloth.py", "role": "training_runner_source"},
+      {"path": "soar/training/utils_process_data.py", "role": "training_data_source"}
+    ],
+    "expected_retained_file_count": 28,
+    "expected_retained_bytes": 309288,
+    "retained_manifest_sha256": "0c574ab83118f999c730450684922502a6d8d6159821d94e775ffda47618689b",
+    "metadata_only_paths": [
+      "arc-prize-2024/arc-agi_evaluation_challenges.json",
+      "arc-prize-2024/arc-agi_evaluation_solutions.json",
+      "arc-prize-2024/arc-agi_test_challenges.json",
+      "arc-prize-2024/arc-agi_training_challenges.json",
+      "arc-prize-2024/arc-agi_training_solutions.json",
+      "arc-prize-2024/arc-prize-2024.zip",
+      "arc-prize-2024/sample_submission.json",
+      "arc-prize-2025/arc-agi_evaluation_challenges.json",
+      "arc-prize-2025/arc-agi_evaluation_solutions.json",
+      "arc-prize-2025/arc-agi_test_challenges.json",
+      "arc-prize-2025/arc-agi_training_challenges.json",
+      "arc-prize-2025/arc-agi_training_solutions.json",
+      "arc-prize-2025/sample_submission.json",
+      "docs/image/soar_fig.png",
+      "notebook/inference_visualisation.ipynb",
+      "notebook/vizualisation.ipynb",
+      "paper/SOAR_ICML.pdf",
+      "soar/inference/train_solutions.pkl"
+    ],
+    "expected_metadata_only_file_count": 18,
+    "expected_metadata_only_bytes": 94689468,
+    "opaque_worktree_paths": [],
+    "gitlinks": [],
+    "expected_root_license_paths": ["LICENSE.md"]
+  },
+  "external_metadata": [
+    {
+      "path": "/root/arc-paper-assets/status/soar.json",
+      "sha256": "df34a6907071c4d3b04d9624a63a151f9e01aa2eebd60bdf17a15616a9e135ba",
+      "role": "paper_asset_status",
+      "assertions": {
+        "paper_id": "soar",
+        "assets": {},
+        "created_at": "2026-08-06T03:01:39+00:00",
+        "source": {
+          "path": "/root/arc-paper-assets/sources/soar",
+          "revision": "8ed0890b60b647f4ca8582b30f6dbc2c709ff443",
+          "status": "ready"
+        }
+      }
+    }
+  ],
+  "prior_reports": [
+    {
+      "path": "reports/soar/20260806-locked-source-syntax-audit/run.json",
+      "sha256": "d93dde5427d3477f04cca97985b4d5b1e5cc791e52068362d33b1f38940a1abb",
+      "role": "prior_syntax_report",
+      "assertions": {
+        "method_id": "soar",
+        "status": "passed",
+        "scope": "source-lock-and-python-syntax-only",
+        "source": {
+          "expected_revision": "8ed0890b60b647f4ca8582b30f6dbc2c709ff443",
+          "observed_revision": "8ed0890b60b647f4ca8582b30f6dbc2c709ff443",
+          "python_file_count": 23,
+          "python_bytes": 293036,
+          "python_tree_sha256": "d2789efffa47171f7e24968ce33408b6f5de5d54fb77f84548584a870e38453a",
+          "root_license_files": ["LICENSE.md"]
+        }
+      }
+    },
+    {
+      "path": "reports/soar/20260806-zero-dollar-source-data-smoke/run.json",
+      "sha256": "b1499660cc8c3685940afb2925223917584b194698e99fa8d5c45a08625c5dd3",
+      "role": "prior_fixed_helper_and_challenge_schema_smoke",
+      "assertions": {
+        "method_id": "soar",
+        "status": "passed",
+        "scope": "locked-source, bundled-label-free-challenge, and fixed-helper only",
+        "source": {
+          "expected_revision": "8ed0890b60b647f4ca8582b30f6dbc2c709ff443",
+          "observed_revision": "8ed0890b60b647f4ca8582b30f6dbc2c709ff443"
+        },
+        "controls": {
+          "benchmark_executed": false,
+          "downloads": false,
+          "generated_or_untrusted_code_executed": false,
+          "gpu_requested": false,
+          "model_or_checkpoint_loaded": false,
+          "network_or_api_calls": false,
+          "predictions_generated": false,
+          "test_labels_loaded": false,
+          "training_executed": false
+        },
+        "data_firewall": {
+          "opened_data_paths": ["arc-prize-2024/arc-agi_evaluation_challenges.json"],
+          "solution_paths_opened": [],
+          "task_count": 400,
+          "test_pair_count": 419,
+          "test_output_key_count": 0
+        },
+        "fixed_trusted_code_probe": {
+          "function_called": "convert_to_list",
+          "generated_code_executed": false,
+          "module_path": "soar/preprocess.py",
+          "module_sha256": "ddbb3dfd3ab97862e5b183af2f46cc88449925e188cdc3b1a4e7c50898c56b69"
+        }
+      }
+    }
+  ],
+  "classification_contract": {
+    "classification_year_bucket": "paper_method_2025",
+    "method_paper_year": 2025,
+    "asset_snapshot_year": 2026,
+    "asset_snapshot_created_at": "2026-08-06T03:01:39+00:00",
+    "official_arc_prize_entry_verified_by_bound_gate_evidence": false,
+    "external_official_classification_out_of_scope": true,
+    "readme_score_evidence_class": "qualitative-unverified-upstream-readme-self-report",
+    "claim": "Within this static gate's bound workspace evidence, SOAR is classified in the 2025 paper/method year bucket because the locked README links the ICML 2025 paper and names ARC-AGI-1; the 2024 and 2025 directory names are bundled-data evidence rather than proof of ARC Prize participation, and the 2026 date identifies only the prepared asset snapshot. External official classification is deliberately out of scope for this gate, and the retained README contains no numerical score to reproduce."
+  },
+  "expected_analysis": {
+    "readme_icml_2025_link": true,
+    "readme_arc_agi_1_claim": true,
+    "official_arc_prize_entry_evidence_detected": false,
+    "readme_numeric_score_or_percent_detected": false,
+    "readme_score_claim_is_qualitative_unverified": true,
+    "asset_status_created_year": 2026,
+    "asset_status_total_asset_count": 0,
+    "asset_status_weight_download_deferred": true,
+    "tracked_model_or_checkpoint_file_count": 0,
+    "tracked_pickle_file_count": 1,
+    "tracked_pickle_path": "soar/inference/train_solutions.pkl",
+    "tracked_pickle_bytes": 32874958,
+    "tracked_pickle_blob_oid": "399462d5f74862630e5b6325c45bbd635926e6a8",
+    "root_license_mit": true,
+    "requirements_entries": [
+      "portalocker",
+      "scipy",
+      "tenacity",
+      "matplotlib",
+      "openai",
+      "seaborn",
+      "sentence-transformers",
+      "einops"
+    ],
+    "requirements_entry_count": 8,
+    "unpinned_requirement_count": 8,
+    "dependency_hash_count": 0,
+    "dependency_lock_has_transitive_hash_closure": false,
+    "setup_install_requires_empty": true,
+    "native_loader_challenge_paths": [
+      "arc-agi_evaluation_challenges.json",
+      "arc-agi_test_challenges.json",
+      "arc-agi_training_challenges.json"
+    ],
+    "native_loader_solution_paths": [
+      "arc-agi_evaluation_solutions.json",
+      "arc-agi_training_solutions.json"
+    ],
+    "preprocess_json_load_call_lines": [42, 44, 46, 48, 50],
+    "preprocess_merges_training_ground_truth": true,
+    "preprocess_merges_evaluation_ground_truth": true,
+    "merge_gt_writes_test_output": true,
+    "native_checker_reads_train_output": true,
+    "native_checker_reads_test_output": true,
+    "test_oracle_metric_detected": true,
+    "sample_runner_split_values": ["train", "train_eval", "val"],
+    "sample_runner_heldout_test_split_detected": false,
+    "training_combines_arc1_and_arc2_train_eval_labels": true,
+    "active_less_safe_executor_imports": [
+      {"path": "soar/inference/sample_phase.py", "line": 27},
+      {"path": "soar/repair/rex.py", "line": 5}
+    ],
+    "raw_exec_sites": [
+      {"path": "soar/sandbox/execute_code.py", "line": 147, "active": false, "globals_expression": "exec_globals"},
+      {"path": "soar/sandbox/execute_code_less_safe.py", "line": 95, "active": true, "globals_expression": "globals()"}
+    ],
+    "active_executor_constructs_self_globals": true,
+    "active_executor_exec_uses_self_globals": false,
+    "active_executor_banned_modules": ["os", "shutil", "socket", "subprocess", "sys"],
+    "active_executor_isolation_terms": {
+      "ProcessPoolExecutor": true,
+      "Pool": true,
+      "RLIMIT_AS": true,
+      "seccomp": false,
+      "unshare": false,
+      "setns": false,
+      "chroot": false,
+      "setsid": false,
+      "killpg": false
+    },
+    "api_egress_and_process_sinks": [
+      {"path": "soar/api.py", "line": 35, "call": "execute_shell_command"},
+      {"path": "soar/api.py", "line": 49, "call": "requests.get"},
+      {"path": "soar/api.py", "line": 151, "call": "client.chat.completions.create"},
+      {"path": "soar/api.py", "line": 166, "call": "client.chat.completions.create"},
+      {"path": "soar/api.py", "line": 274, "call": "subprocess.Popen"},
+      {"path": "soar/api.py", "line": 285, "call": "requests.get"}
+    ],
+    "sglang_binds_all_interfaces": true,
+    "vllm_binds_all_interfaces": true,
+    "llm_server_constructor_generates_hello": true,
+    "llm_server_default_max_timeout_seconds": 10800,
+    "llm_server_default_max_workers": 64,
+    "completion_retry_min_seconds": 30,
+    "completion_retry_max_seconds": 600,
+    "pre_request_budget_reservation_detected": false,
+    "shell_recipe_huggingface_download_call_count": 2,
+    "pickle_load_call_count": 13,
+    "pickle_dump_call_count": 8,
+    "import_time_risky_modules": [
+      "soar/post_process/dedup.py",
+      "soar/post_process/merge_filter.py",
+      "soar/post_process/process_repair_for_training.py",
+      "soar/post_process/process_sample_for_training.py",
+      "soar/repair/rex_inference.py",
+      "soar/training/train_unsloth.py"
+    ],
+    "import_time_risky_module_count": 6,
+    "main_guard_modules": ["soar/inference/sample_phase.py"],
+    "sample_native_output_is_pickle": true,
+    "sample_json_dump_call_count": 0,
+    "official_submission_json_writer_detected": false,
+    "sample_selects_n_best_codes": 2,
+    "sample_selection_reads_test_correctness": true,
+    "sample_defaults": {
+      "path_model": "qwen",
+      "n_gpu": 1,
+      "model_len": 30000,
+      "fp8": true,
+      "k": 3000,
+      "bs_inference": 50,
+      "temperature": 1.0,
+      "top_p": 1.0,
+      "min_p": 0.05,
+      "top_k": -1,
+      "max_tokens": -1,
+      "split": "train",
+      "use_fewshot_example": true,
+      "smart_inference": true,
+      "seed": 0,
+      "gpu_mem": 0.9
+    },
+    "rex_defaults": {
+      "path_model": "qwen",
+      "n_gpu": 1,
+      "model_len": 30000,
+      "fp8": true,
+      "temperature": 1.0,
+      "top_p": 1.0,
+      "min_p": 0.05,
+      "top_k": -1,
+      "max_tokens": -1,
+      "split": "train",
+      "sampling_method": "REX",
+      "correctness": "medium",
+      "total_budget": 600,
+      "n_completion": 4,
+      "use_prev_gen": false,
+      "smart_inference": true,
+      "seed": 0,
+      "gpu_mem": 0.9
+    },
+    "readme_model_gpu_guidance": {
+      "up_to_7b_gpu_count": 1,
+      "up_to_14b_gpu_count": 2,
+      "above_14b_gpu_count": 4
+    }
+  },
+  "blockers": [
+    {"id": "bundled-data-provenance-and-versioning", "gate": "dataset_provenance", "detail": "The locked tree bundles ARC-named 2024 and 2025 challenge, solution, sample-submission, and archive leaves, but this metadata-only gate does not establish their canonical provenance, licenses, version mapping, byte-level integrity against an authoritative benchmark snapshot, or cross-version overlap."},
+    {"id": "root-license-scope", "gate": "license_clearance", "detail": "The root MIT text identifies the source license, but it does not by itself clear the bundled ARC data, pickle archive, external Hugging Face data/models, or third-party dependencies."},
+    {"id": "dependency-and-runtime-lock", "gate": "dependency_environment", "detail": "All eight requirements entries are unpinned, setup.py declares no install requirements, and the README additionally requires sglang, Unsloth, PyTorch/CUDA, and related packages without an immutable environment, hashes, transitive closure, SBOM, or license inventory."},
+    {"id": "model-and-training-artifact-provenance", "gate": "artifact_provenance", "detail": "No model or checkpoint is tracked or listed in the prepared asset status, while the README references external training data and multiple 7B-to-123B models without immutable hashes, exact paper configuration, licenses, or a parity binding."},
+    {"id": "pickle-deserialization", "gate": "artifact_deserialization", "detail": "The 32,874,958-byte train_solutions.pkl leaf is metadata-bound only and the retained source contains thirteen pickle.load call sites; its contents, provenance, schema, and safe deserialization boundary are unverified."},
+    {"id": "challenge-label-firewall", "gate": "label_firewall", "detail": "The native loader opens training and evaluation solution JSON files, merges solution values into each task test output, and returns label-bearing training and validation datasets to native sampling, repair, training, and post-processing paths."},
+    {"id": "test-oracle-selection-and-feedback", "gate": "contamination_control", "detail": "Candidate checking requires both train and test outputs, and native metrics, filtering, repair stopping, training-data generation, visualization, and best-code evaluation inspect correct_test_input or expected test output; a held-out challenge process cannot expose those labels."},
+    {"id": "generated-code-isolation", "gate": "code_isolation", "detail": "The active sampling and repair paths import execute_code_less_safe, whose generated-code sink calls exec(code, globals()) rather than the constructed self.globals policy, bypassing its intended builtin and import restrictions."},
+    {"id": "process-tree-containment", "gate": "process_isolation", "detail": "Process pools, per-task timeouts, and RLIMIT_AS are present, but the active executor has no namespace, seccomp, chroot, filesystem, network, device, syscall, or verified recursive process-tree containment boundary."},
+    {"id": "network-provider-and-cost-control", "gate": "network_api_budget", "detail": "The native code launches sglang or vLLM subprocesses bound to 0.0.0.0, issues OpenAI-compatible completion requests and HTTP probes, supports concurrent clients and long retries, and the shell recipe downloads Hugging Face artifacts without fail-closed egress, provider, request, token, or USD controls."},
+    {"id": "native-submission-contract", "gate": "native_benchmark_contract", "detail": "Native sampling and repair persist pickle archives containing model text, code, predictions, and oracle metrics; no canonical challenge-only ARC submission JSON writer, fixed coherent two-attempt policy, or post-inference isolated scorer contract is present."},
+    {"id": "resource-envelope", "gate": "resource_capacity", "detail": "Sampling defaults to 3,000 candidates per task with a 30,000-token model context, FP8 GPU service, and 50-way batches, while REX defaults to a 600-call budget with four completions and the documentation spans 7B-to-123B models; no immutable wall-clock, token, GPU-memory, RSS, storage, process-tree, or host-capacity envelope is bound."},
+    {"id": "solver-prediction-and-paper-parity", "gate": "no_label_solver_prediction", "detail": "The prior smoke validates only a label-free challenge schema and one fixed preprocessing helper; no model, checkpoint, generated program, native solver prediction, strict runtime, accuracy result, official score, or paper-parity run exists."}
+  ],
+  "controls": {
+    "network_allowed": false,
+    "gpu_allowed": false,
+    "upstream_import_allowed": false,
+    "upstream_execution_allowed": false,
+    "upstream_subprocess_allowed": false,
+    "arc_challenge_or_solution_byte_read_allowed": false,
+    "pickle_byte_read_allowed": false,
+    "model_or_checkpoint_byte_read_allowed": false,
+    "model_or_checkpoint_load_allowed": false,
+    "generated_code_execution_allowed": false,
+    "provider_or_api_call_allowed": false,
+    "training_allowed": false,
+    "solver_execution_allowed": false,
+    "prediction_allowed": false
+  },
+  "benchmark_policy": {
+    "arc_agi_1": "blocked-until-canonical-data-challenge-only-loader-artifact-provenance-generated-code-os-isolation-network-resource-and-two-attempt-submission-contract",
+    "arc_agi_2": "blocked-until-canonical-data-cross-version-overlap-separate-training-label-firewall-artifact-runtime-resource-and-two-attempt-submission-contract",
+    "cross_benchmark": "ARC-AGI-1 and ARC-AGI-2 training, validation, checkpoint selection, and reporting must be separated because the native training path combines both versions and the bundled version mapping has not passed a provenance and overlap audit.",
+    "official_arc_prize_entry_within_bound_gate_evidence": "unknown-not-established-by-locked-readme-or-status",
+    "external_official_classification": "out-of-scope-for-this-static-gate"
+  },
+  "prior_evidence_interpretation": {
+    "syntax_audit_status": "passed",
+    "component_smoke_status": "passed",
+    "corrected_scope": "locked-bundled-arc-agi-1-evaluation-challenge-schema-and-fixed-convert-to-list-helper-only",
+    "bundled_label_free_challenge_opened": true,
+    "solution_data_loaded": false,
+    "fixed_preprocessing_helper_exercised": true,
+    "native_dataset_loader_exercised": false,
+    "generated_code_executed": false,
+    "model_or_checkpoint_exercised": false,
+    "training_exercised": false,
+    "solver_prediction_status": "not-run",
+    "strict_runtime_status": "not-run",
+    "performance_evidence": false,
+    "paper_result_reproduced": false
+  }
+}

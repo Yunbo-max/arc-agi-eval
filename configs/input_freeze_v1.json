@@ -1,0 +1,101 @@
+{
+  "bundle_id": "arc-rebench-input-freeze-v1",
+  "code_inventory": {
+    "include_globs": [
+      "arc_agi_eval/**/*.py",
+      "scripts/*.py",
+      "tests/*.py"
+    ],
+    "exclude_path_prefixes": [
+      "reports/",
+      "external/",
+      "third_party/",
+      ".venvs/"
+    ]
+  },
+  "declared_input_files": [
+    {"role": "source-locks", "path": "configs/source_locks.json", "sha256": "a785b89743dc06c1296dbfa9691081035bd062ae7f97c5d80c9cfbb38f76a5b4"},
+    {"role": "artifact-policy", "path": "configs/paper_assets.json", "sha256": "a3024d92480aef3e1dfabea79e787eef6073e2012a5f54425bc709f3661b4918"},
+    {"role": "method-roster", "path": "configs/baselines.json", "sha256": "fdd8ea83dc3e8c53e2b81dca59baee25684b33bc389e31b166c33e0ee1987164"},
+    {"role": "method-eligibility", "path": "configs/method_eligibility.json", "sha256": "3e7168e087ad88d8b3d34d584c5ba68c1da9dd198914de7cc25debd437a2da3f"},
+    {"role": "analysis-plan", "path": "configs/analysis_plan_v1.json", "sha256": "fb1d2b5e634c9165286eeeb205bbf2441603280149fcdae686ac63e5473f22aa"},
+    {"role": "analysis-plan-document", "path": "docs/ANALYSIS_PLAN_V1.md", "sha256": "d368f19afafb41f20ed2a0423c232dfa62651608689fec17cbac13fcdfa8dcd9"},
+    {"role": "benchmark-sources", "path": "configs/benchmark_sources.json", "sha256": "215750c1d9d7bfb070b30d247872bef9098dc4be1df9eb6c92e2af9d60b2ceb8"},
+    {"role": "development-config", "path": "configs/development_partition_v1.json", "sha256": "46e6306b0cccff59412355fd225740626f69bf7c2a1d4ce8c3fc31787c496db8"},
+    {"role": "isoarc-config", "path": "configs/isoarc_fixed64.json", "sha256": "65b4d35e134624fa4895ecd387f85ac1cb796d2b7c4bbe226bb5acfb2b59be3f"},
+    {"role": "runtime-core-config", "path": "configs/challenge_runtime_core_v1.json", "sha256": "de0e52ed5a673e62e5dfa82c75d82b34e1a08c8c75fee30ce252c8b8d71440e6"},
+    {"role": "prospective-method-config", "path": "configs/arc_nca_cpu_dev_smoke_v1.json", "sha256": "483721ed7e4b146a9bf84a9e3a3f33350bd845a64aaca15a45728956ef9d0642"},
+    {"role": "prospective-method-config", "path": "configs/compressarc_cpu_dev_smoke_v1.json", "sha256": "8b65e7fec8c9f628dca01389728712e1a8270ae1dd8be91f4fb39ba17120cbc2"},
+    {"role": "prospective-method-gate-config", "path": "configs/gridcoder2024_gate_v3.json", "sha256": "1f8fc156ff023b43a6b2da9e572219904ed7677ebba7c55beeb09f7a674c6b39"},
+    {"role": "prospective-method-gate-config", "path": "configs/ngpt2d_gate_v1.json", "sha256": "813c6343c233b789cd59fa9faac685927f742509112c3107901495cae9b67824"},
+    {"role": "prospective-method-gate-config", "path": "configs/lpn_gate_v1.json", "sha256": "b0b526dd79f33a0f11a66c9ee817dac7df02542811cd81874cb015e9a209b4ba"},
+    {"role": "prospective-method-gate-config", "path": "configs/architects_2024_gate_v1.json", "sha256": "fd1608bf1118175bb05e2d372ac49ac540ff9b0b975719585ae530b0d6bca591"},
+    {"role": "prospective-method-gate-config", "path": "configs/barc_gate_v1.json", "sha256": "fc68947afcd1466ece3b74bc6e43c34cbbc2c93ebd48d46f2a5f22edb973dc89"},
+    {"role": "prospective-method-gate-config", "path": "configs/batch_c_static_gate_v1.json", "sha256": "88583626e4bf6d25c4fa2dd03f282fbb48dbfece4f007be58ed6c4b29752a8fc"},
+    {"role": "prospective-method-gate-config", "path": "configs/trm_gate_v1.json", "sha256": "f32d76bcfa2579cb4e88c6b4b5e4d2ff04b9d3d74153c282d44f5165376ffa78"},
+    {"role": "prospective-method-runner-manifest", "path": "configs/trm_gate_runner_manifest_v1.json", "sha256": "e5cab9feb0b176e1efcc0e71c73063e3a4e91cf3ebfb190bea7f043c5dd59bd7"},
+    {"role": "prospective-method-gate-config", "path": "configs/soar_gate_v1.json", "sha256": "9e002b67c3cd74d2518309e528c4243dfacae503869af2a26abad3a528247fd3"},
+    {"role": "prospective-method-runner-manifest", "path": "configs/soar_gate_runner_manifest_v1.json", "sha256": "e841e5f579ce6eae221ff986f7c2eefad2575c520693379e8c0e4aeeb6718999"},
+    {"role": "prospective-method-gate-report", "path": "reports/soar/20260806-source-artifact-dataset-label-api-code-resource-gate-v1/run.json", "sha256": "8570f17bf18d758ed32566b2412f26905ce4263b098e4b2133d1c5ae6d0c815f"},
+    {"role": "prospective-method-gate-config", "path": "configs/nvarc_gate_v1.json", "sha256": "b11e93afc9805b846c21ab2eda6af83bd4cf6c1d8446e6cfcd9a23d903bd17cb"},
+    {"role": "prospective-method-runner-manifest", "path": "configs/nvarc_gate_runner_manifest_v1.json", "sha256": "137c1c79dae3f4c00d10a12d4157991149794897860545223d2e11d6294622ae"},
+    {"role": "prospective-method-gate-report", "path": "reports/nvarc/20260806-source-gitlink-artifact-dataset-label-code-resource-gate-v1/run.json", "sha256": "8069e12cbebaffbabf953c991b666d8520290314af266eab804abd3728fc8960"},
+    {"role": "run-schema", "path": "schemas/protocol-v1-run.schema.json", "sha256": "6066b1ff9eb280f6f2046438a765d26a805e85d0a71ffaf17433d93bccef681e"},
+    {"role": "public-data-audit", "path": "reports/e0-benchmark-data/20260806-public-snapshot-integrity-v1/run.json", "sha256": "231bdc7ef4b4cf4247384390b72405dcbe9ad2c642eb178f578d0e9af65a5112"},
+    {"role": "public-challenge-audit", "path": "reports/e0-challenge-data/20260806-locked-public-challenge-trees-draft-retry2/run.json", "sha256": "1e0d09d1bfc6051e90480427fc7f1a209732ed751ad17407967fe6adf51337f0"},
+    {"role": "public-challenge-manifest", "path": "reports/e0-challenge-data/20260806-locked-public-challenge-trees-draft-retry2/manifest.json", "sha256": "93a2e6b1e78f5f102016033b7949527ac8f28e42765a6599855ca356386d11bf"},
+    {"role": "arc1-visible-manifest", "path": "reports/e0-challenge-data/20260806-locked-public-challenge-trees-draft-retry2/data/arc_agi_1/evaluation/MANIFEST", "sha256": "4f9c19130c62a8768273bb3156a701363cd40aeafd1b05cf54675a6894fad705"},
+    {"role": "arc2-visible-manifest", "path": "reports/e0-challenge-data/20260806-locked-public-challenge-trees-draft-retry2/data/arc_agi_2/evaluation/MANIFEST", "sha256": "6015afb3fcf86550fd34436938c02eab9bb69d4fdfedce782c93bb5a054eb31b"},
+    {"role": "development-run", "path": "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1/run.json", "sha256": "3a7d019d212bdeb2c7fb4909cad88c9a210d04dda694f5b2228e523bb5e2071b"},
+    {"role": "development-manifest", "path": "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1/manifest.json", "sha256": "9e396158507ce136d4455e133f09c32a225e8f8a2f9071a5d62955e8e308ba2c"},
+    {"role": "development-visible-manifest", "path": "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1/inference/dev-audit/MANIFEST", "sha256": "10be7f8399890def241dfafff048ea3a50c37cb33d1a3055f7897250dac4409b"},
+    {"role": "isoarc-run", "path": "reports/e0-isoarc/20260806-fixed64-design-v1/run.json", "sha256": "db7fc0286572dcdcb7e910c8b5f7ea404716a4369cb1554dfad35192d6bf8685"},
+    {"role": "isoarc-manifest", "path": "reports/e0-isoarc/20260806-fixed64-design-v1/manifest.json", "sha256": "fb4788d7c060bcacead132a7c061bdbaeed42c1a3d3e0eb4b8dfe81e3e2c8c09"},
+    {"role": "runtime-core-run", "path": "reports/e0-challenge-runtime/20260806-deterministic-baseline-dev-audit-v1/run.json", "sha256": "ff56462cc55502acd38602c81548a4d578e8c4e947ef39a3d1c20ffb8afa40b8"},
+    {"role": "runtime-core-results", "path": "reports/e0-challenge-runtime/20260806-deterministic-baseline-dev-audit-v1/results-summary.json", "sha256": "9a7a87cc58d3d32026d70bf274e410ef271c2f3eb5b0614dc21ee16449b0ce37"},
+    {"role": "method-eligibility-audit", "path": "reports/e0-method-eligibility/20260806-eligibility-trust-audit-retry12/run.json", "sha256": "b0079138258babdba2ff9941722b9e1bc7f96e4ad47a1d3a4da6d870ce409d73"},
+    {"role": "analysis-run", "path": "reports/e0-analysis/20260806-analysis-plan-v1/run.json", "sha256": "849992b3808dd5dbfc9e7da3dcc4053ea0f3cb6566f479f9d781e05a73f1c3c3"},
+    {"role": "analysis-results", "path": "reports/e0-analysis/20260806-analysis-plan-v1/results-summary.json", "sha256": "d5d7800a01765f5c56b50d76e26fef36830ec613d22258147b54c60dd79b83ed"},
+    {"role": "scoring-contract", "path": "reports/e0-scoring/20260806-output-primary-contract/run.json", "sha256": "8c04205e44ffdc5c17796112b803842d68a05744a5db1fc431b101af182dc46c"},
+    {"role": "environment-requirement", "path": "requirements/analysis.txt", "sha256": "4b81b6b6a549771115529e6900b9589835cdbfff0c6acf179aef53d283b744d5"},
+    {"role": "environment-requirement", "path": "requirements/arcmemo-smoke.txt", "sha256": "1e08fbf5e40d3b5b85cefd18dd41117c3738f447da4f5391ad68b18e75c209c9"},
+    {"role": "environment-requirement", "path": "requirements/epang-smoke.txt", "sha256": "6baec4173b1928e4e4c38ff8e3ad5231f652be783cc9099a01398e8b345a28fb"},
+    {"role": "environment-requirement", "path": "requirements/preparation.txt", "sha256": "ed2b4ac93cf1a1cf52776c988dbfb4078698254ef7c36d69b2b291153f97d415"},
+    {"role": "environment-requirement", "path": "requirements/reduced-qwen3.txt", "sha256": "36a5fb664b7d33226c1021e950da3c2b890ab9de592b256cea1a12d79ffa1138"},
+    {"role": "environment-requirement", "path": "requirements/trm-smoke.txt", "sha256": "f65a3b712b40bc7fe091ff867e26c03f4dae4b8a7a15ea1316e2051deda5e2ee"}
+  ],
+  "freeze_status": "frozen-no-admitted-method-configurations",
+  "invalidation_policy": {
+    "method_promotion_requires_new_bundle": true,
+    "any_declared_input_hash_change_requires_new_bundle": true,
+    "any_frozen_code_change_requires_new_bundle": true,
+    "any_task_order_change_requires_new_bundle": true,
+    "any_budget_seed_retry_change_requires_new_bundle": true,
+    "new_bundle_never_overwrites_old_bundle": true
+  },
+  "method_admission": {
+    "expected_entry_count": 24,
+    "expected_legacy_solver_smoke_passed": 2,
+    "expected_strict_runtime_passed": 2,
+    "expected_performance_eligible": 0,
+    "public_method_configurations_admitted": 0,
+    "strict_config_id_required_for_admission": true
+  },
+  "public_task_order": {
+    "domain": "arc-rebench-public-task-order-v1",
+    "seeds": [2026080601, 2026080602, 2026080603],
+    "views": {
+      "arc_agi_1": {
+        "directory": "reports/e0-challenge-data/20260806-locked-public-challenge-trees-draft-retry2/data/arc_agi_1/evaluation",
+        "expected_task_count": 400,
+        "expected_output_denominator": 419
+      },
+      "arc_agi_2": {
+        "directory": "reports/e0-challenge-data/20260806-locked-public-challenge-trees-draft-retry2/data/arc_agi_2/evaluation",
+        "expected_task_count": 120,
+        "expected_output_denominator": 167
+      }
+    }
+  },
+  "schema_version": 1
+}

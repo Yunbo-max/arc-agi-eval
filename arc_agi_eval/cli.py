@@ -8,6 +8,7 @@ from typing import Sequence
 
 from .baseline import default_result_paths, run_baseline
 from .dataset import DatasetError, enumerate_dataset, group_by_split, task_files
+from .firewall import FirewallError, generate_challenge_tree
 from .scoring import PredictionValidationError, score_prediction_file
 from .validation import TaskValidationError, load_task
 
@@ -67,15 +68,17 @@ def _score_command(args: argparse.Namespace) -> int:
     else:
         print(f"top_k: {score.top_k}")
         print(
-            f"task_exact: {score.tasks_exact}/{score.tasks_total} "
-            f"({score.task_exact_accuracy:.6f})"
-        )
-        print(
-            f"output_exact: {score.outputs_exact}/{score.outputs_total} "
+            f"primary_output_exact_pass@{score.top_k}: "
+            f"{score.outputs_exact}/{score.outputs_total} "
             f"({score.output_exact_accuracy:.6f})"
         )
         print(
-            f"cell_accuracy: {score.cells_correct}/{score.cells_total} "
+            f"secondary_strict_task_exact@{score.top_k}: "
+            f"{score.tasks_exact}/{score.tasks_total} "
+            f"({score.task_exact_accuracy:.6f})"
+        )
+        print(
+            f"diagnostic_cell_accuracy: {score.cells_correct}/{score.cells_total} "
             f"({score.cell_accuracy:.6f})"
         )
         print(f"tasks_predicted: {score.tasks_predicted}/{score.tasks_total}")
@@ -104,9 +107,25 @@ def _baseline_command(args: argparse.Namespace) -> int:
         if metadata["score"] is not None:
             result = metadata["score"]
             print(
-                f"task_exact: {result['tasks_exact']}/{result['tasks_total']} "
+                f"primary_output_exact_pass@{result['top_k']}: "
+                f"{result['outputs_exact']}/{result['outputs_total']} "
+                f"({result['output_exact_accuracy']:.6f})"
+            )
+            print(
+                f"secondary_strict_task_exact@{result['top_k']}: "
+                f"{result['tasks_exact']}/{result['tasks_total']} "
                 f"({result['task_exact_accuracy']:.6f})"
             )
+    return 0
+
+
+def _challenge_command(args: argparse.Namespace) -> int:
+    manifest = generate_challenge_tree(args.source, args.destination)
+    if args.json:
+        print(json.dumps(manifest, indent=2, sort_keys=True))
+    else:
+        print(f"generated {manifest['tasks_total']} challenge-only task(s)")
+        print(f"destination: {Path(args.destination).resolve()}")
     return 0
 
 
@@ -163,6 +182,14 @@ def _build_parser() -> argparse.ArgumentParser:
         "--json", action="store_true", help="emit run metadata as JSON"
     )
     baseline_parser.set_defaults(handler=_baseline_command)
+
+    challenge_parser = subparsers.add_parser(
+        "challenge", help="generate a test-label-free ARC task tree"
+    )
+    challenge_parser.add_argument("source", help="labeled split or dataset")
+    challenge_parser.add_argument("destination", help="new or empty output directory")
+    challenge_parser.add_argument("--json", action="store_true", help="emit manifest JSON")
+    challenge_parser.set_defaults(handler=_challenge_command)
     return parser
 
 
@@ -171,6 +198,12 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = parser.parse_args(argv)
     try:
         return args.handler(args)
-    except (DatasetError, PredictionValidationError, TaskValidationError, ValueError) as exc:
+    except (
+        DatasetError,
+        FirewallError,
+        PredictionValidationError,
+        TaskValidationError,
+        ValueError,
+    ) as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 2

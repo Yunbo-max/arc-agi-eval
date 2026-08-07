@@ -1,0 +1,150 @@
+{
+  "schema_version": "0.1.0",
+  "generated_at": "2026-08-06",
+  "protocol_status": "draft-not-frozen",
+  "scope": "Workspace-auditable disclosure of pre-protocol local runs, public-label access, published-result review, and known checkpoint/workflow contamination.",
+  "inventory_scope": "All parseable reports/**/run.json and results/* present at the pre-attestation cutoff, except the explicitly excluded derived control-plane attestation paths below.",
+  "inventory_exclusions": [
+    {
+      "glob": "reports/e0-prior-exposure/**/run.json",
+      "reason": "A disclosure attestation cannot include its own final bytes; prior disclosure attestations are derived control-plane metadata and introduce no solver or label exposure."
+    },
+    {
+      "glob": "reports/e0-protocol/**/run.json",
+      "reason": "Protocol-root attestations are derived solely from already inventoried evidence and are emitted after the exposure cutoff to avoid a circular hash dependency."
+    }
+  ],
+  "evidence_tiers": [
+    "development",
+    "locked_public",
+    "external_private",
+    "historical_published"
+  ],
+  "classification_rules": [
+    {
+      "glob": "reports/e0-overlap/**/run.json",
+      "tier": "historical_published",
+      "reason": "Pre-freeze audit opened public ARC-AGI-1 evaluation and ARC-AGI-2 training labels."
+    },
+    {
+      "glob": "reports/e0-scoring/**/run.json",
+      "tier": "historical_published",
+      "reason": "Pre-freeze scorer audit re-evaluated public-evaluation prediction artifacts."
+    },
+    {
+      "glob": "reports/soar/*source-data-smoke*/run.json",
+      "tier": "historical_published",
+      "reason": "Pre-freeze smoke opened label-free ARC-AGI-1 public-evaluation challenge inputs."
+    },
+    {
+      "glob": "reports/routemoa/*precomputed-scorer-audit*/run.json",
+      "tier": "historical_published",
+      "reason": "Pre-freeze scorer-only audit opened bundled native benchmark labels and stored correctness fields."
+    },
+    {
+      "glob": "reports/e0-benchmark-data/**/run.json",
+      "tier": "historical_published",
+      "reason": "Pre-freeze integrity audit parsed public ARC-AGI test outputs to validate every vendored task schema."
+    },
+    {
+      "glob": "reports/e0-challenge-data/**/run.json",
+      "tier": "historical_published",
+      "reason": "Pre-freeze challenge-tree builder read public labeled sources before emitting label-free execution inputs."
+    },
+    {
+      "glob": "reports/**/run.json",
+      "tier": "development",
+      "reason": "Default for pre-freeze source, component, architecture, training-task, resource, or protocol-development evidence."
+    },
+    {
+      "glob": "results/*",
+      "tier": "historical_published",
+      "reason": "Public-evaluation deterministic-floor artifacts were generated and scored before protocol freeze."
+    }
+  ],
+  "disclosures": [
+    {
+      "id": "arc1-public-labels-locally-accessible",
+      "benchmark_generation": "arc_agi_1",
+      "kind": "public_labels_locally_accessible",
+      "tier": "historical_published",
+      "evidence": ["third_party/SOURCES.md"],
+      "implication": "ARC-AGI-1 public evaluation is not a pristine or researcher-unseen holdout in this workspace."
+    },
+    {
+      "id": "arc2-public-labels-locally-accessible",
+      "benchmark_generation": "arc_agi_2",
+      "kind": "public_labels_locally_accessible",
+      "tier": "historical_published",
+      "evidence": ["third_party/SOURCES.md"],
+      "implication": "ARC-AGI-2 public evaluation is not a pristine or researcher-unseen holdout in this workspace."
+    },
+    {
+      "id": "arc1-deterministic-floor-scored",
+      "benchmark_generation": "arc_agi_1",
+      "kind": "local_public_evaluation_scored_before_freeze",
+      "tier": "historical_published",
+      "evidence": ["results/arc-agi-1-evaluation-baseline-run.json"],
+      "implication": "The deterministic floor is historical local public evidence, not a locked-public protocol-v1 result."
+    },
+    {
+      "id": "arc2-deterministic-floor-scored",
+      "benchmark_generation": "arc_agi_2",
+      "kind": "local_public_evaluation_scored_before_freeze",
+      "tier": "historical_published",
+      "evidence": ["results/arc-agi-2-evaluation-baseline-run.json"],
+      "implication": "The deterministic floor is historical local public evidence, not a locked-public protocol-v1 result."
+    },
+    {
+      "id": "arc1-eval-arc2-train-overlap-audited",
+      "benchmark_generation": "cross_generation",
+      "kind": "public_labels_used_for_overlap_audit",
+      "tier": "historical_published",
+      "evidence": ["reports/e0-overlap/20260806-arc1-eval-vs-arc2-train-retry1/run.json"],
+      "implication": "ARC-AGI-2-training exposure makes 376 ARC-AGI-1 evaluation IDs contamination-aware unless excluded before method selection."
+    },
+    {
+      "id": "architects-arc1-training-contamination-documented",
+      "benchmark_generation": "arc_agi_1",
+      "kind": "checkpoint_documented_training_exposure",
+      "tier": "historical_published",
+      "evidence": ["reports/architects-2024/20260806-forward-preflight-gpu-occupied/run.json"],
+      "implication": "The audited ARChitects checkpoint is ineligible for a clean ARC-AGI-1 main-board claim."
+    },
+    {
+      "id": "nvarc-public-arc2-validation-documented",
+      "benchmark_generation": "arc_agi_2",
+      "kind": "upstream_public_evaluation_used_for_selection",
+      "tier": "historical_published",
+      "evidence": [
+        "reports/nvarc/20260806-zero-dollar-component-source-smoke/run.json",
+        "reports/nvarc/20260806-source-gitlink-artifact-dataset-label-code-resource-gate-v1/run.json"
+      ],
+      "implication": "The released workflow's public ARC-AGI-2 validation path is transductive and cannot support a clean held-out public score."
+    },
+    {
+      "id": "published-method-results-reviewed-for-census",
+      "benchmark_generation": "mixed",
+      "kind": "published_aggregate_results_reviewed",
+      "tier": "historical_published",
+      "evidence": ["docs/REPRODUCTION_MATRIX.md", "configs/baselines.json"],
+      "implication": "The method census was constructed with published papers, result summaries, and public repository claims already visible."
+    }
+  ],
+  "leaderboard_submissions": {
+    "workspace_record_count": 0,
+    "records": [],
+    "completeness_boundary": "No leaderboard-submission artifact was found or declared in this workspace inventory; this is not proof about activity outside the workspace."
+  },
+  "external_private_evaluation": {
+    "workspace_record_count": 0,
+    "records": [],
+    "completeness_boundary": "No external-private task, label, prediction, or submission receipt is represented in the current workspace evidence."
+  },
+  "limitations": [
+    "This disclosure is exhaustive for in-scope parseable reports/**/run.json and results/* files present at the pre-attestation cutoff; the two declared derived control-plane globs are excluded from the inventory digest.",
+    "It cannot reconstruct unrecorded human browsing, external accounts, deleted files, or activity outside this workspace.",
+    "A future in-scope run changes the inventory digest and requires a new immutable audit report before protocol freeze; excluded control-plane attestations do not.",
+    "Public labels being locally accessible prevents a pristine-holdout claim even when a process-level label firewall is used."
+  ]
+}

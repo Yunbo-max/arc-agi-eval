@@ -6,6 +6,14 @@
   venue cycle must be selected before protocol freeze
 - Scope: experimental protocol only; this document makes no empirical claim
 
+Operational status: this design draft is superseded by
+[`ANALYSIS_PLAN_V1.md`](ANALYSIS_PLAN_V1.md) and the current
+[`EXECUTION_BATCHES.md`](EXECUTION_BATCHES.md); it is retained as design
+history. The current protocol remains draft-not-frozen because process-tree
+resource accounting is pending, and locked-public execution is unauthorized.
+CompressARC and ARC_NCA now have reduced method-specific strict runtime
+promotions, but neither is performance-eligible.
+
 ## 1. Paper thesis
 
 The paper must not be framed as a leaderboard assembled from incomparable
@@ -957,7 +965,7 @@ estimated, published-only, and exploratory results without reading raw logs.
 - multiple method/transform comparisons require correction;
 - seed and temporal API variance may be expensive to estimate.
 
-## 19. Immediate execution sequence
+## 19. Historical immediate execution sequence (superseded)
 
 The next actions are ordered by information value, not method popularity:
 

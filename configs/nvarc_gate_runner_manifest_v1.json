@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "manifest_id": "nvarc-gate-runner-manifest-v1",
+  "method_id": "nvarc",
+  "member_count": 5,
+  "members": [
+    {"role": "launcher", "path": "scripts/launch_batch_d_static_gate.py", "bytes": 16022, "sha256": "385d3f26fd9cf35a67f6e3bd2a15059a0db7faff6cf2cb3e3036931aeceff347"},
+    {"role": "auditor", "path": "scripts/audit_batch_d_static_gates.py", "bytes": 93513, "sha256": "d5557b71deb4a9f2b9cc664b3a821f2e95a498719a5cfc029f1bb102917bc0f5"},
+    {"role": "support", "path": "scripts/audit_batch_c_static_gates.py", "bytes": 96445, "sha256": "8860877257cf2864ddf8304fdef407d76de72339b6aba9d47391db5a57c7626e"},
+    {"role": "config", "path": "configs/nvarc_gate_v1.json", "bytes": 24648, "sha256": "b11e93afc9805b846c21ab2eda6af83bd4cf6c1d8446e6cfcd9a23d903bd17cb", "canonical_sha256": "f2766a0fdd049bb951d19951c46751ceb3979be17c4c94ad3871503a5a11365f"},
+    {"role": "source_lock", "path": "configs/source_locks.json", "bytes": 3994, "sha256": "a785b89743dc06c1296dbfa9691081035bd062ae7f97c5d80c9cfbb38f76a5b4"}
+  ],
+  "members_sha256": "777d6d09be3fe83196be86264ae7cec5639acceee8dfdb003c13e2ccd634e0a4"
+}

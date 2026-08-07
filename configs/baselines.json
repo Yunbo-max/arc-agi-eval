@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-08-04",
+  "generated_at": "2026-08-06T19:46:20Z",
   "scope": "Source audit plus tracked execution status; paper benchmark and full-reproduction claims remain separate.",
   "target_hardware": {
     "gpu": "NVIDIA RTX 5090",
@@ -71,7 +71,7 @@
     "public_candidate_count": 19,
     "partial_complex_count": 1,
     "unavailable_blocked_count": 4,
-    "smoke_passed_count": 1,
+    "smoke_passed_count": 19,
     "benchmark_passed_count": 0,
     "full_reproduction_passed_count": 0
   },
@@ -96,21 +96,82 @@
       },
       "environment": {
         "python": "3.10",
-        "stack": ["PyTorch 2.4", "FlashAttention", "alignment-handbook", "vLLM 0.6.0 or 0.5.4"],
+        "stack": [
+          "PyTorch 2.4",
+          "FlashAttention",
+          "alignment-handbook",
+          "vLLM 0.6.0 or 0.5.4"
+        ],
         "notes": "Induction and transduction use different vLLM versions."
       },
       "estimates": {
-        "smoke": {"disk_gib": [1, 5], "vram_gib": [0, 8], "runtime_hours": [0.5, 2]},
-        "benchmark": {"disk_gib": [18, 35], "vram_gib": [18, 30], "runtime_hours": [6, 24]},
-        "full": {"disk_gib": [100, null], "vram_gib": [32, null], "runtime_hours": [72, null]}
+        "smoke": {
+          "disk_gib": [
+            1,
+            5
+          ],
+          "vram_gib": [
+            0,
+            8
+          ],
+          "runtime_hours": [
+            0.5,
+            2
+          ]
+        },
+        "benchmark": {
+          "disk_gib": [
+            18,
+            35
+          ],
+          "vram_gib": [
+            18,
+            30
+          ],
+          "runtime_hours": [
+            6,
+            24
+          ]
+        },
+        "full": {
+          "disk_gib": [
+            100,
+            null
+          ],
+          "vram_gib": [
+            32,
+            null
+          ],
+          "runtime_hours": [
+            72,
+            null
+          ]
+        }
       },
-      "priority": {"phase": 2, "order": 8},
+      "priority": {
+        "phase": 2,
+        "order": 8
+      },
       "reproduction": {
-        "smoke": {"status": "not_started", "feasibility": "feasible"},
-        "benchmark": {"status": "not_started", "feasibility": "tight"},
-        "full": {"status": "not_started", "feasibility": "blocked"}
+        "smoke": {
+          "status": "passed",
+          "feasibility": "feasible",
+          "evidence": "reports/barc/20260806-barc-seed-smoke-recheck/run.json",
+          "scope": "bundled-seed-generator-and-program-only"
+        },
+        "benchmark": {
+          "status": "not_started",
+          "feasibility": "tight"
+        },
+        "full": {
+          "status": "not_started",
+          "feasibility": "blocked"
+        }
       },
-      "blockers": ["Paper-scale fine-tuning uses an eight-process ZeRO-3 recipe.", "Full model and dataset footprint exceeds available storage."]
+      "blockers": [
+        "Paper-scale fine-tuning uses an eight-process ZeRO-3 recipe.",
+        "Full model and dataset footprint exceeds available storage."
+      ]
     },
     {
       "id": "lpn",
@@ -132,21 +193,80 @@
       },
       "environment": {
         "python": "unspecified",
-        "stack": ["JAX", "Hydra"],
+        "stack": [
+          "JAX",
+          "Hydra"
+        ],
         "notes": "A TPU setup script is provided upstream."
       },
       "estimates": {
-        "smoke": {"disk_gib": [1, 3], "vram_gib": [4, 12], "runtime_hours": [0.5, 2]},
-        "benchmark": {"disk_gib": [10, 30], "vram_gib": [24, 32], "runtime_hours": [24, 96]},
-        "full": {"disk_gib": [41, null], "vram_gib": [32, null], "runtime_hours": [96, null]}
+        "smoke": {
+          "disk_gib": [
+            1,
+            3
+          ],
+          "vram_gib": [
+            4,
+            12
+          ],
+          "runtime_hours": [
+            0.5,
+            2
+          ]
+        },
+        "benchmark": {
+          "disk_gib": [
+            10,
+            30
+          ],
+          "vram_gib": [
+            24,
+            32
+          ],
+          "runtime_hours": [
+            24,
+            96
+          ]
+        },
+        "full": {
+          "disk_gib": [
+            41,
+            null
+          ],
+          "vram_gib": [
+            32,
+            null
+          ],
+          "runtime_hours": [
+            96,
+            null
+          ]
+        }
       },
-      "priority": {"phase": 1, "order": 6},
+      "priority": {
+        "phase": 1,
+        "order": 6
+      },
       "reproduction": {
-        "smoke": {"status": "not_started", "feasibility": "likely"},
-        "benchmark": {"status": "not_started", "feasibility": "reduced_only"},
-        "full": {"status": "not_started", "feasibility": "blocked"}
+        "smoke": {
+          "status": "passed",
+          "feasibility": "likely",
+          "evidence": "reports/lpn/20260806-official-tests-architecture-smoke/run.json",
+          "scope": "architecture-only"
+        },
+        "benchmark": {
+          "status": "not_started",
+          "feasibility": "reduced_only"
+        },
+        "full": {
+          "status": "not_started",
+          "feasibility": "blocked"
+        }
       },
-      "blockers": ["No paper checkpoint is advertised.", "Published accelerator topology is not matched by one RTX 5090."]
+      "blockers": [
+        "No paper checkpoint is advertised.",
+        "Published accelerator topology is not matched by one RTX 5090."
+      ]
     },
     {
       "id": "architects-2024",
@@ -168,21 +288,81 @@
       },
       "environment": {
         "python": "unspecified",
-        "stack": ["Unsloth", "PyTorch", "diskcache"],
+        "stack": [
+          "Unsloth",
+          "PyTorch",
+          "diskcache"
+        ],
         "notes": "The historical 2024 package/CUDA combination should be isolated."
       },
       "estimates": {
-        "smoke": {"disk_gib": [10, 20], "vram_gib": [12, 20], "runtime_hours": [0.5, 2]},
-        "benchmark": {"disk_gib": [18, 30], "vram_gib": [20, 32], "runtime_hours": [6, 12]},
-        "full": {"disk_gib": [30, 60], "vram_gib": [24, 80], "runtime_hours": [24, 96]}
+        "smoke": {
+          "disk_gib": [
+            10,
+            20
+          ],
+          "vram_gib": [
+            12,
+            20
+          ],
+          "runtime_hours": [
+            0.5,
+            2
+          ]
+        },
+        "benchmark": {
+          "disk_gib": [
+            18,
+            30
+          ],
+          "vram_gib": [
+            20,
+            32
+          ],
+          "runtime_hours": [
+            6,
+            12
+          ]
+        },
+        "full": {
+          "disk_gib": [
+            30,
+            60
+          ],
+          "vram_gib": [
+            24,
+            80
+          ],
+          "runtime_hours": [
+            24,
+            96
+          ]
+        }
       },
-      "priority": {"phase": 2, "order": 7},
+      "priority": {
+        "phase": 2,
+        "order": 7
+      },
       "reproduction": {
-        "smoke": {"status": "not_started", "feasibility": "feasible"},
-        "benchmark": {"status": "not_started", "feasibility": "tight"},
-        "full": {"status": "not_started", "feasibility": "reduced_only"}
+        "smoke": {
+          "status": "passed",
+          "feasibility": "likely",
+          "evidence": "reports/architects-2024/20260806-4bit-forward-preflight-lower-threshold4/run.json",
+          "scope": "published-4bit-checkpoint-one-token-forward"
+        },
+        "benchmark": {
+          "status": "not_started",
+          "feasibility": "tight"
+        },
+        "full": {
+          "status": "not_started",
+          "feasibility": "reduced_only"
+        }
       },
-      "blockers": ["Full retraining is storage-sensitive.", "Exact historical dependency resolution may require repair."]
+      "blockers": [
+        "Full retraining is storage-sensitive.",
+        "Exact historical dependency resolution may require repair."
+      ]
     },
     {
       "id": "gridcoder2024",
@@ -204,21 +384,80 @@
       },
       "environment": {
         "python": "unspecified",
-        "stack": ["PyTorch", "ARC_gym"],
+        "stack": [
+          "PyTorch",
+          "ARC_gym"
+        ],
         "notes": "No complete pinned environment is published."
       },
       "estimates": {
-        "smoke": {"disk_gib": [1, 3], "vram_gib": [4, 12], "runtime_hours": [0.25, 1]},
-        "benchmark": {"disk_gib": [2, 10], "vram_gib": [8, 24], "runtime_hours": [1, 24]},
-        "full": {"disk_gib": [10, 40], "vram_gib": [24, 32], "runtime_hours": [24, 168]}
+        "smoke": {
+          "disk_gib": [
+            1,
+            3
+          ],
+          "vram_gib": [
+            4,
+            12
+          ],
+          "runtime_hours": [
+            0.25,
+            1
+          ]
+        },
+        "benchmark": {
+          "disk_gib": [
+            2,
+            10
+          ],
+          "vram_gib": [
+            8,
+            24
+          ],
+          "runtime_hours": [
+            1,
+            24
+          ]
+        },
+        "full": {
+          "disk_gib": [
+            10,
+            40
+          ],
+          "vram_gib": [
+            24,
+            32
+          ],
+          "runtime_hours": [
+            24,
+            168
+          ]
+        }
       },
-      "priority": {"phase": 1, "order": 4},
+      "priority": {
+        "phase": 1,
+        "order": 4
+      },
       "reproduction": {
-        "smoke": {"status": "not_started", "feasibility": "feasible"},
-        "benchmark": {"status": "not_started", "feasibility": "likely"},
-        "full": {"status": "not_started", "feasibility": "unknown"}
+        "smoke": {
+          "status": "passed",
+          "feasibility": "feasible",
+          "evidence": "reports/gridcoder2024/20260806-architecture-forward-smoke/run.json",
+          "scope": "architecture-only"
+        },
+        "benchmark": {
+          "status": "not_started",
+          "feasibility": "likely"
+        },
+        "full": {
+          "status": "not_started",
+          "feasibility": "unknown"
+        }
       },
-      "blockers": ["The evaluator runs one named task at a time.", "Paper experiments cover a declared DSL-solvable subset rather than all ARC tasks."]
+      "blockers": [
+        "The evaluator runs one named task at a time.",
+        "Paper experiments cover a declared DSL-solvable subset rather than all ARC tasks."
+      ]
     },
     {
       "id": "2d-ngpt",
@@ -240,21 +479,82 @@
       },
       "environment": {
         "python": "NGC 24.09 container default",
-        "stack": ["NVIDIA PyTorch NGC 24.09", "NumPy", "einops", "rotary-embedding-torch"],
+        "stack": [
+          "NVIDIA PyTorch NGC 24.09",
+          "NumPy",
+          "einops",
+          "rotary-embedding-torch"
+        ],
         "notes": "Upstream documents the container rather than a fully pinned pip lock."
       },
       "estimates": {
-        "smoke": {"disk_gib": [1, 5], "vram_gib": [8, 16], "runtime_hours": [1, 6]},
-        "benchmark": {"disk_gib": [5, 20], "vram_gib": [24, 32], "runtime_hours": [6, 24]},
-        "full": {"disk_gib": [20, 80], "vram_gib": [32, null], "runtime_hours": [24, 168]}
+        "smoke": {
+          "disk_gib": [
+            1,
+            5
+          ],
+          "vram_gib": [
+            8,
+            16
+          ],
+          "runtime_hours": [
+            1,
+            6
+          ]
+        },
+        "benchmark": {
+          "disk_gib": [
+            5,
+            20
+          ],
+          "vram_gib": [
+            24,
+            32
+          ],
+          "runtime_hours": [
+            6,
+            24
+          ]
+        },
+        "full": {
+          "disk_gib": [
+            20,
+            80
+          ],
+          "vram_gib": [
+            32,
+            null
+          ],
+          "runtime_hours": [
+            24,
+            168
+          ]
+        }
       },
-      "priority": {"phase": 1, "order": 5},
+      "priority": {
+        "phase": 1,
+        "order": 5
+      },
       "reproduction": {
-        "smoke": {"status": "not_started", "feasibility": "likely"},
-        "benchmark": {"status": "not_started", "feasibility": "tight"},
-        "full": {"status": "not_started", "feasibility": "reduced_only"}
+        "smoke": {
+          "status": "passed",
+          "feasibility": "likely",
+          "evidence": "reports/2d-ngpt/20260806-large-architecture-forward-smoke/run.json",
+          "scope": "architecture_only"
+        },
+        "benchmark": {
+          "status": "not_started",
+          "feasibility": "tight"
+        },
+        "full": {
+          "status": "not_started",
+          "feasibility": "reduced_only"
+        }
       },
-      "blockers": ["Training duration is not specified.", "re-ARC generation and training data may exceed local storage."]
+      "blockers": [
+        "Training duration is not specified.",
+        "re-ARC generation and training data may exceed local storage."
+      ]
     },
     {
       "id": "tiny-recursive-models",
@@ -277,21 +577,82 @@
       },
       "environment": {
         "python": "3.10",
-        "stack": ["CUDA 12.6", "PyTorch nightly", "adam-atan2", "Hydra"],
+        "stack": [
+          "CUDA 12.6",
+          "PyTorch nightly",
+          "adam-atan2",
+          "Hydra"
+        ],
         "notes": "Repository is archived and read-only."
       },
       "estimates": {
-        "smoke": {"disk_gib": [0.5, 3], "vram_gib": [4, 12], "runtime_hours": [0.5, 2]},
-        "benchmark": {"disk_gib": [15, 35], "vram_gib": [24, 32], "runtime_hours": [24, 96]},
-        "full": {"disk_gib": [50, 150], "vram_gib": [32, null], "runtime_hours": [72, null]}
+        "smoke": {
+          "disk_gib": [
+            0.5,
+            3
+          ],
+          "vram_gib": [
+            4,
+            12
+          ],
+          "runtime_hours": [
+            0.5,
+            2
+          ]
+        },
+        "benchmark": {
+          "disk_gib": [
+            15,
+            35
+          ],
+          "vram_gib": [
+            24,
+            32
+          ],
+          "runtime_hours": [
+            24,
+            96
+          ]
+        },
+        "full": {
+          "disk_gib": [
+            50,
+            150
+          ],
+          "vram_gib": [
+            32,
+            null
+          ],
+          "runtime_hours": [
+            72,
+            null
+          ]
+        }
       },
-      "priority": {"phase": 3, "order": 12},
+      "priority": {
+        "phase": 3,
+        "order": 12
+      },
       "reproduction": {
-        "smoke": {"status": "not_started", "feasibility": "feasible"},
-        "benchmark": {"status": "not_started", "feasibility": "reduced_only"},
-        "full": {"status": "not_started", "feasibility": "blocked"}
+        "smoke": {
+          "status": "passed",
+          "feasibility": "feasible",
+          "evidence": "reports/tiny-recursive-models/20260806-cpu-architecture-forward-smoke-retry5/run.json",
+          "scope": "architecture_only"
+        },
+        "benchmark": {
+          "status": "not_started",
+          "feasibility": "reduced_only"
+        },
+        "full": {
+          "status": "not_started",
+          "feasibility": "blocked"
+        }
       },
-      "blockers": ["ARC runs are reported at about three days on four H100s.", "No paper checkpoint is advertised."]
+      "blockers": [
+        "ARC runs are reported at about three days on four H100s.",
+        "No paper checkpoint is advertised."
+      ]
     },
     {
       "id": "soar",
@@ -313,21 +674,81 @@
       },
       "environment": {
         "python": "3.11",
-        "stack": ["SGLang >=0.4.7", "Unsloth", "PyTorch CUDA 12.1"],
+        "stack": [
+          "SGLang >=0.4.7",
+          "Unsloth",
+          "PyTorch CUDA 12.1"
+        ],
         "notes": "Inference and training use separate environments."
       },
       "estimates": {
-        "smoke": {"disk_gib": [16, 25], "vram_gib": [16, 28], "runtime_hours": [1, 4]},
-        "benchmark": {"disk_gib": [25, 41], "vram_gib": [24, 32], "runtime_hours": [24, 72]},
-        "full": {"disk_gib": [500, null], "vram_gib": [32, null], "runtime_hours": [168, null]}
+        "smoke": {
+          "disk_gib": [
+            16,
+            25
+          ],
+          "vram_gib": [
+            16,
+            28
+          ],
+          "runtime_hours": [
+            1,
+            4
+          ]
+        },
+        "benchmark": {
+          "disk_gib": [
+            25,
+            41
+          ],
+          "vram_gib": [
+            24,
+            32
+          ],
+          "runtime_hours": [
+            24,
+            72
+          ]
+        },
+        "full": {
+          "disk_gib": [
+            500,
+            null
+          ],
+          "vram_gib": [
+            32,
+            null
+          ],
+          "runtime_hours": [
+            168,
+            null
+          ]
+        }
       },
-      "priority": {"phase": 3, "order": 13},
+      "priority": {
+        "phase": 3,
+        "order": 13
+      },
       "reproduction": {
-        "smoke": {"status": "not_started", "feasibility": "tight"},
-        "benchmark": {"status": "not_started", "feasibility": "reduced_only"},
-        "full": {"status": "not_started", "feasibility": "blocked"}
+        "smoke": {
+          "status": "passed",
+          "feasibility": "tight",
+          "evidence": "reports/soar/20260806-continuation-zero-dollar-source-data-smoke-run-01/run.json",
+          "scope": "locked-source, bundled-label-free-challenge, and fixed-helper only"
+        },
+        "benchmark": {
+          "status": "not_started",
+          "feasibility": "reduced_only"
+        },
+        "full": {
+          "status": "not_started",
+          "feasibility": "blocked"
+        }
       },
-      "blockers": ["Smallest model plus useful data is storage-tight.", "Full evolutionary training and larger models require substantially more compute."]
+      "blockers": [
+        "Smallest model plus useful data is storage-tight.",
+        "Full evolutionary training and larger models require substantially more compute."
+      ]
     },
     {
       "id": "compressarc",
@@ -349,21 +770,79 @@
       },
       "environment": {
         "python": "unspecified",
-        "stack": ["PyTorch", "requirements.txt"],
+        "stack": [
+          "PyTorch",
+          "requirements.txt"
+        ],
         "notes": "Upstream reports about 20 minutes per task on an RTX 4070."
       },
       "estimates": {
-        "smoke": {"disk_gib": [0.2, 2], "vram_gib": [2, 8], "runtime_hours": [0.3, 1]},
-        "benchmark": {"disk_gib": [2, 10], "vram_gib": [8, 20], "runtime_hours": [48, 168]},
-        "full": {"disk_gib": [5, 20], "vram_gib": [8, 24], "runtime_hours": [96, 336]}
+        "smoke": {
+          "disk_gib": [
+            0.2,
+            2
+          ],
+          "vram_gib": [
+            2,
+            8
+          ],
+          "runtime_hours": [
+            0.3,
+            1
+          ]
+        },
+        "benchmark": {
+          "disk_gib": [
+            2,
+            10
+          ],
+          "vram_gib": [
+            8,
+            20
+          ],
+          "runtime_hours": [
+            48,
+            168
+          ]
+        },
+        "full": {
+          "disk_gib": [
+            5,
+            20
+          ],
+          "vram_gib": [
+            8,
+            24
+          ],
+          "runtime_hours": [
+            96,
+            336
+          ]
+        }
       },
-      "priority": {"phase": 1, "order": 1},
+      "priority": {
+        "phase": 1,
+        "order": 1
+      },
       "reproduction": {
-        "smoke": {"status": "passed", "feasibility": "feasible"},
-        "benchmark": {"status": "not_started", "feasibility": "feasible"},
-        "full": {"status": "not_started", "feasibility": "likely"}
+        "smoke": {
+          "status": "passed",
+          "feasibility": "feasible",
+          "evidence": "reports/compressarc/20260806-cpu-dev-3c9b0459-strict-v1/run.json",
+          "scope": "cpu-dev-smoke"
+        },
+        "benchmark": {
+          "status": "not_started",
+          "feasibility": "feasible"
+        },
+        "full": {
+          "status": "not_started",
+          "feasibility": "likely"
+        }
       },
-      "blockers": ["A full split is long because every task receives independent training."]
+      "blockers": [
+        "A full split is long because every task receives independent training."
+      ]
     },
     {
       "id": "arc-vsa-2025",
@@ -385,21 +864,82 @@
       },
       "environment": {
         "python": "unspecified",
-        "stack": ["PyTorch", "nengo-spa", "NumPy", "SciPy", "scikit-learn", "scikit-image"],
+        "stack": [
+          "PyTorch",
+          "nengo-spa",
+          "NumPy",
+          "SciPy",
+          "scikit-learn",
+          "scikit-image"
+        ],
         "notes": "Requirements are unpinned."
       },
       "estimates": {
-        "smoke": {"disk_gib": [0.2, 2], "vram_gib": [0, 8], "runtime_hours": [0.5, 2]},
-        "benchmark": {"disk_gib": [2, 8], "vram_gib": [4, 16], "runtime_hours": [24, 72]},
-        "full": {"disk_gib": [5, 20], "vram_gib": [8, 24], "runtime_hours": [48, 168]}
+        "smoke": {
+          "disk_gib": [
+            0.2,
+            2
+          ],
+          "vram_gib": [
+            0,
+            8
+          ],
+          "runtime_hours": [
+            0.5,
+            2
+          ]
+        },
+        "benchmark": {
+          "disk_gib": [
+            2,
+            8
+          ],
+          "vram_gib": [
+            4,
+            16
+          ],
+          "runtime_hours": [
+            24,
+            72
+          ]
+        },
+        "full": {
+          "disk_gib": [
+            5,
+            20
+          ],
+          "vram_gib": [
+            8,
+            24
+          ],
+          "runtime_hours": [
+            48,
+            168
+          ]
+        }
       },
-      "priority": {"phase": 1, "order": 2},
+      "priority": {
+        "phase": 1,
+        "order": 2
+      },
       "reproduction": {
-        "smoke": {"status": "blocked", "feasibility": "blocked"},
-        "benchmark": {"status": "blocked", "feasibility": "blocked"},
-        "full": {"status": "blocked", "feasibility": "blocked"}
+        "smoke": {
+          "status": "blocked",
+          "feasibility": "blocked"
+        },
+        "benchmark": {
+          "status": "blocked",
+          "feasibility": "blocked"
+        },
+        "full": {
+          "status": "blocked",
+          "feasibility": "blocked"
+        }
       },
-      "blockers": ["The released solver imports an unavailable and unidentified sspspace implementation.", "No end-to-end local command or resource report is documented."]
+      "blockers": [
+        "The released solver imports an unavailable and unidentified sspspace implementation.",
+        "No end-to-end local command or resource report is documented."
+      ]
     },
     {
       "id": "arc-lang-public",
@@ -421,21 +961,81 @@
       },
       "environment": {
         "python": "3.12+",
-        "stack": ["uv", "asyncio", "provider SDKs"],
+        "stack": [
+          "uv",
+          "asyncio",
+          "provider SDKs"
+        ],
         "notes": "MAX_CONCURRENCY is required; Postgres is optional."
       },
       "estimates": {
-        "smoke": {"disk_gib": [0.2, 1], "vram_gib": [0, 0], "runtime_hours": [0.5, 2]},
-        "benchmark": {"disk_gib": [1, 5], "vram_gib": [0, 0], "runtime_hours": [6, 48]},
-        "full": {"disk_gib": [1, 5], "vram_gib": [0, 0], "runtime_hours": [24, null]}
+        "smoke": {
+          "disk_gib": [
+            0.2,
+            1
+          ],
+          "vram_gib": [
+            0,
+            0
+          ],
+          "runtime_hours": [
+            0.5,
+            2
+          ]
+        },
+        "benchmark": {
+          "disk_gib": [
+            1,
+            5
+          ],
+          "vram_gib": [
+            0,
+            0
+          ],
+          "runtime_hours": [
+            6,
+            48
+          ]
+        },
+        "full": {
+          "disk_gib": [
+            1,
+            5
+          ],
+          "vram_gib": [
+            0,
+            0
+          ],
+          "runtime_hours": [
+            24,
+            null
+          ]
+        }
       },
-      "priority": {"phase": 2, "order": 9},
+      "priority": {
+        "phase": 2,
+        "order": 9
+      },
       "reproduction": {
-        "smoke": {"status": "not_started", "feasibility": "feasible"},
-        "benchmark": {"status": "not_started", "feasibility": "likely"},
-        "full": {"status": "not_started", "feasibility": "blocked"}
+        "smoke": {
+          "status": "passed",
+          "feasibility": "feasible",
+          "evidence": "reports/arc-lang-public/20260806-continuation-zero-dollar-import-smoke-run-09/run.json",
+          "scope": "zero-dollar-import-config-challenge-parser"
+        },
+        "benchmark": {
+          "status": "not_started",
+          "feasibility": "likely"
+        },
+        "full": {
+          "status": "not_started",
+          "feasibility": "blocked"
+        }
       },
-      "blockers": ["API quota and spend are unresolved.", "Mutable proprietary model snapshots prevent strict parity."]
+      "blockers": [
+        "API quota and spend are unresolved.",
+        "Mutable proprietary model snapshots prevent strict parity."
+      ]
     },
     {
       "id": "epang-arc-agi",
@@ -457,21 +1057,81 @@
       },
       "environment": {
         "python": "3.11",
-        "stack": ["requirements_py311.txt", "provider SDKs", "optional Docker"],
+        "stack": [
+          "requirements_py311.txt",
+          "provider SDKs",
+          "optional Docker"
+        ],
         "notes": "Only credentials for the selected provider are required."
       },
       "estimates": {
-        "smoke": {"disk_gib": [0.2, 1], "vram_gib": [0, 0], "runtime_hours": [0.5, 2]},
-        "benchmark": {"disk_gib": [1, 5], "vram_gib": [0, 0], "runtime_hours": [2, 24]},
-        "full": {"disk_gib": [1, 5], "vram_gib": [0, 0], "runtime_hours": [24, null]}
+        "smoke": {
+          "disk_gib": [
+            0.2,
+            1
+          ],
+          "vram_gib": [
+            0,
+            0
+          ],
+          "runtime_hours": [
+            0.5,
+            2
+          ]
+        },
+        "benchmark": {
+          "disk_gib": [
+            1,
+            5
+          ],
+          "vram_gib": [
+            0,
+            0
+          ],
+          "runtime_hours": [
+            2,
+            24
+          ]
+        },
+        "full": {
+          "disk_gib": [
+            1,
+            5
+          ],
+          "vram_gib": [
+            0,
+            0
+          ],
+          "runtime_hours": [
+            24,
+            null
+          ]
+        }
       },
-      "priority": {"phase": 2, "order": 10},
+      "priority": {
+        "phase": 2,
+        "order": 10
+      },
       "reproduction": {
-        "smoke": {"status": "not_started", "feasibility": "feasible"},
-        "benchmark": {"status": "not_started", "feasibility": "likely"},
-        "full": {"status": "not_started", "feasibility": "blocked"}
+        "smoke": {
+          "status": "passed",
+          "feasibility": "feasible",
+          "evidence": "reports/epang-arc-agi/20260806-continuation-zero-dollar-component-smoke-run-03/run.json",
+          "scope": "zero-dollar-data-model-and-trusted-executor"
+        },
+        "benchmark": {
+          "status": "not_started",
+          "feasibility": "likely"
+        },
+        "full": {
+          "status": "not_started",
+          "feasibility": "blocked"
+        }
       },
-      "blockers": ["Reported runs depend on paid frontier APIs.", "Library ordering and provider model drift affect results."]
+      "blockers": [
+        "Reported runs depend on paid frontier APIs.",
+        "Library ordering and provider model drift affect results."
+      ]
     },
     {
       "id": "arc-nca",
@@ -493,21 +1153,80 @@
       },
       "environment": {
         "python": "unspecified",
-        "stack": ["Jupyter", "PyTorch"],
+        "stack": [
+          "Jupyter",
+          "PyTorch"
+        ],
         "notes": "Code hard-codes cuda:0 and package versions are not pinned."
       },
       "estimates": {
-        "smoke": {"disk_gib": [0.2, 2], "vram_gib": [2, 8], "runtime_hours": [0.5, 2]},
-        "benchmark": {"disk_gib": [2, 10], "vram_gib": [8, 24], "runtime_hours": [24, 72]},
-        "full": {"disk_gib": [5, 20], "vram_gib": [8, 24], "runtime_hours": [72, 336]}
+        "smoke": {
+          "disk_gib": [
+            0.2,
+            2
+          ],
+          "vram_gib": [
+            2,
+            8
+          ],
+          "runtime_hours": [
+            0.5,
+            2
+          ]
+        },
+        "benchmark": {
+          "disk_gib": [
+            2,
+            10
+          ],
+          "vram_gib": [
+            8,
+            24
+          ],
+          "runtime_hours": [
+            24,
+            72
+          ]
+        },
+        "full": {
+          "disk_gib": [
+            5,
+            20
+          ],
+          "vram_gib": [
+            8,
+            24
+          ],
+          "runtime_hours": [
+            72,
+            336
+          ]
+        }
       },
-      "priority": {"phase": 1, "order": 3},
+      "priority": {
+        "phase": 1,
+        "order": 3
+      },
       "reproduction": {
-        "smoke": {"status": "not_started", "feasibility": "likely"},
-        "benchmark": {"status": "not_started", "feasibility": "likely"},
-        "full": {"status": "not_started", "feasibility": "unknown"}
+        "smoke": {
+          "status": "passed",
+          "feasibility": "likely",
+          "evidence": "reports/arc-nca/20260806-cpu-dev-6150a2bd-strict-v1/run.json",
+          "scope": "cpu-dev-smoke"
+        },
+        "benchmark": {
+          "status": "not_started",
+          "feasibility": "likely"
+        },
+        "full": {
+          "status": "not_started",
+          "feasibility": "unknown"
+        }
       },
-      "blockers": ["No requirements file or single benchmark entry point exists.", "Notebook parameters and environment need reconstruction."]
+      "blockers": [
+        "No requirements file or single benchmark entry point exists.",
+        "Notebook parameters and environment need reconstruction."
+      ]
     },
     {
       "id": "arcmemo",
@@ -529,21 +1248,81 @@
       },
       "environment": {
         "python": "3.11",
-        "stack": ["Hydra", "requirements.txt", "provider SDKs"],
+        "stack": [
+          "Hydra",
+          "requirements.txt",
+          "provider SDKs"
+        ],
         "notes": "Reported examples use o4-mini and GPT-4.1."
       },
       "estimates": {
-        "smoke": {"disk_gib": [0.2, 2], "vram_gib": [0, 0], "runtime_hours": [1, 4]},
-        "benchmark": {"disk_gib": [1, 5], "vram_gib": [0, 0], "runtime_hours": [24, 168]},
-        "full": {"disk_gib": [1, 10], "vram_gib": [0, 0], "runtime_hours": [168, null]}
+        "smoke": {
+          "disk_gib": [
+            0.2,
+            2
+          ],
+          "vram_gib": [
+            0,
+            0
+          ],
+          "runtime_hours": [
+            1,
+            4
+          ]
+        },
+        "benchmark": {
+          "disk_gib": [
+            1,
+            5
+          ],
+          "vram_gib": [
+            0,
+            0
+          ],
+          "runtime_hours": [
+            24,
+            168
+          ]
+        },
+        "full": {
+          "disk_gib": [
+            1,
+            10
+          ],
+          "vram_gib": [
+            0,
+            0
+          ],
+          "runtime_hours": [
+            168,
+            null
+          ]
+        }
       },
-      "priority": {"phase": 2, "order": 11},
+      "priority": {
+        "phase": 2,
+        "order": 11
+      },
       "reproduction": {
-        "smoke": {"status": "not_started", "feasibility": "feasible"},
-        "benchmark": {"status": "not_started", "feasibility": "likely"},
-        "full": {"status": "not_started", "feasibility": "blocked"}
+        "smoke": {
+          "status": "passed",
+          "feasibility": "feasible",
+          "evidence": "reports/arcmemo/20260806-continuation-zero-dollar-dry-run-run-05/run.json",
+          "scope": "native-fixed-memory-zero-dollar-dry-run"
+        },
+        "benchmark": {
+          "status": "not_started",
+          "feasibility": "likely"
+        },
+        "full": {
+          "status": "not_started",
+          "feasibility": "blocked"
+        }
       },
-      "blockers": ["Proprietary model snapshots and rollout spend are not fixed.", "Continual-memory ordering must be pinned."]
+      "blockers": [
+        "Proprietary model snapshots and rollout spend are not fixed.",
+        "Continual-memory ordering must be pinned."
+      ]
     },
     {
       "id": "nvarc",
@@ -565,21 +1344,81 @@
       },
       "environment": {
         "python": "multiple component-specific environments",
-        "stack": ["ARChitects/Unsloth", "TinyRecursiveModels", "re-ARC"],
+        "stack": [
+          "ARChitects/Unsloth",
+          "TinyRecursiveModels",
+          "re-ARC"
+        ],
         "notes": "No single unified environment covers the full ensemble."
       },
       "estimates": {
-        "smoke": {"disk_gib": [2, 10], "vram_gib": [8, 20], "runtime_hours": [1, 4]},
-        "benchmark": {"disk_gib": [20, 41], "vram_gib": [24, 32], "runtime_hours": [24, 96]},
-        "full": {"disk_gib": [100, null], "vram_gib": [32, null], "runtime_hours": [168, null]}
+        "smoke": {
+          "disk_gib": [
+            2,
+            10
+          ],
+          "vram_gib": [
+            8,
+            20
+          ],
+          "runtime_hours": [
+            1,
+            4
+          ]
+        },
+        "benchmark": {
+          "disk_gib": [
+            20,
+            41
+          ],
+          "vram_gib": [
+            24,
+            32
+          ],
+          "runtime_hours": [
+            24,
+            96
+          ]
+        },
+        "full": {
+          "disk_gib": [
+            100,
+            null
+          ],
+          "vram_gib": [
+            32,
+            null
+          ],
+          "runtime_hours": [
+            168,
+            null
+          ]
+        }
       },
-      "priority": {"phase": 3, "order": 14},
+      "priority": {
+        "phase": 3,
+        "order": 14
+      },
       "reproduction": {
-        "smoke": {"status": "not_started", "feasibility": "likely"},
-        "benchmark": {"status": "not_started", "feasibility": "reduced_only"},
-        "full": {"status": "not_started", "feasibility": "blocked"}
+        "smoke": {
+          "status": "passed",
+          "feasibility": "likely",
+          "evidence": "reports/nvarc/20260806-continuation-zero-dollar-component-source-smoke-run-01/run.json",
+          "scope": "locked source, component wiring/config, and fixed trusted helper only"
+        },
+        "benchmark": {
+          "status": "not_started",
+          "feasibility": "reduced_only"
+        },
+        "full": {
+          "status": "not_started",
+          "feasibility": "blocked"
+        }
       },
-      "blockers": ["The 3.2M augmented corpus and full ensemble exceed 41 GiB.", "Several independently complex systems and external Kaggle assets must be coordinated."]
+      "blockers": [
+        "The 3.2M augmented corpus and full ensemble exceed 41 GiB.",
+        "Several independently complex systems and external Kaggle assets must be coordinated."
+      ]
     },
     {
       "id": "latentmas",
@@ -601,21 +1440,80 @@
       },
       "environment": {
         "python": "3.10",
-        "stack": ["Transformers", "optional vLLM"],
+        "stack": [
+          "Transformers",
+          "optional vLLM"
+        ],
         "notes": "Official results should use HF path; hybrid vLLM path recommends two GPUs."
       },
       "estimates": {
-        "smoke": {"disk_gib": [10, 20], "vram_gib": [10, 20], "runtime_hours": [1, 3]},
-        "benchmark": {"disk_gib": [15, 35], "vram_gib": [18, 32], "runtime_hours": [6, 48]},
-        "full": {"disk_gib": [35, 80], "vram_gib": [32, null], "runtime_hours": [24, 120]}
+        "smoke": {
+          "disk_gib": [
+            10,
+            20
+          ],
+          "vram_gib": [
+            10,
+            20
+          ],
+          "runtime_hours": [
+            1,
+            3
+          ]
+        },
+        "benchmark": {
+          "disk_gib": [
+            15,
+            35
+          ],
+          "vram_gib": [
+            18,
+            32
+          ],
+          "runtime_hours": [
+            6,
+            48
+          ]
+        },
+        "full": {
+          "disk_gib": [
+            35,
+            80
+          ],
+          "vram_gib": [
+            32,
+            null
+          ],
+          "runtime_hours": [
+            24,
+            120
+          ]
+        }
       },
-      "priority": {"phase": 3, "order": 16},
+      "priority": {
+        "phase": 3,
+        "order": 16
+      },
       "reproduction": {
-        "smoke": {"status": "not_started", "feasibility": "feasible"},
-        "benchmark": {"status": "not_started", "feasibility": "reduced_only"},
-        "full": {"status": "not_started", "feasibility": "blocked"}
+        "smoke": {
+          "status": "passed",
+          "feasibility": "feasible",
+          "evidence": "reports/latentmas/20260806-continuation-native-prompt-schema-smoke-run-01/run.json",
+          "scope": "native-ai2-arc-prompt-and-agent-schema-only"
+        },
+        "benchmark": {
+          "status": "not_started",
+          "feasibility": "reduced_only"
+        },
+        "full": {
+          "status": "not_started",
+          "feasibility": "blocked"
+        }
       },
-      "blockers": ["Official 14B hybrid path recommends two GPUs.", "One-GPU 4B/8B runs are reduced configurations."]
+      "blockers": [
+        "Official 14B hybrid path recommends two GPUs.",
+        "One-GPU 4B/8B runs are reduced configurations."
+      ]
     },
     {
       "id": "agent-primitives",
@@ -637,21 +1535,62 @@
       },
       "environment": {
         "python": "3.10",
-        "stack": ["Transformers", "PyTorch", "HF backbone"],
+        "stack": [
+          "Transformers",
+          "PyTorch",
+          "HF backbone"
+        ],
         "notes": "Requirements are provided."
       },
       "estimates": {
-        "smoke": {"disk_gib": [10, 20], "vram_gib": [12, 24], "runtime_hours": [1, 3]},
-        "benchmark": {"disk_gib": null, "vram_gib": null, "runtime_hours": null},
-        "full": {"disk_gib": null, "vram_gib": null, "runtime_hours": null}
+        "smoke": {
+          "disk_gib": [
+            10,
+            20
+          ],
+          "vram_gib": [
+            12,
+            24
+          ],
+          "runtime_hours": [
+            1,
+            3
+          ]
+        },
+        "benchmark": {
+          "disk_gib": null,
+          "vram_gib": null,
+          "runtime_hours": null
+        },
+        "full": {
+          "disk_gib": null,
+          "vram_gib": null,
+          "runtime_hours": null
+        }
       },
-      "priority": {"phase": 3, "order": 17},
+      "priority": {
+        "phase": 3,
+        "order": 17
+      },
       "reproduction": {
-        "smoke": {"status": "not_started", "feasibility": "unknown"},
-        "benchmark": {"status": "blocked", "feasibility": "blocked"},
-        "full": {"status": "blocked", "feasibility": "blocked"}
+        "smoke": {
+          "status": "passed",
+          "feasibility": "unknown",
+          "evidence": "reports/agent-primitives/20260806-continuation-static-config-schema-smoke-run-01/run.json",
+          "scope": "generic-mas-config-and-organizer-schema-only"
+        },
+        "benchmark": {
+          "status": "blocked",
+          "feasibility": "blocked"
+        },
+        "full": {
+          "status": "blocked",
+          "feasibility": "blocked"
+        }
       },
-      "blockers": ["README states that the end-to-end demo and detailed experiment pipelines are forthcoming."]
+      "blockers": [
+        "README states that the end-to-end demo and detailed experiment pipelines are forthcoming."
+      ]
     },
     {
       "id": "graphplanner",
@@ -673,21 +1612,74 @@
       },
       "environment": {
         "python": "3.10+",
-        "stack": ["PyTorch", "PyTorch Geometric", "torch-scatter", "Transformers", "OpenAI SDK"],
+        "stack": [
+          "PyTorch",
+          "PyTorch Geometric",
+          "torch-scatter",
+          "Transformers",
+          "OpenAI SDK"
+        ],
         "notes": "Documented CUDA extension wheels target an older PyTorch/CUDA stack."
       },
       "estimates": {
-        "smoke": {"disk_gib": [1, 5], "vram_gib": [2, 8], "runtime_hours": [1, 4]},
-        "benchmark": {"disk_gib": [2, 10], "vram_gib": [4, 16], "runtime_hours": [24, 96]},
-        "full": {"disk_gib": null, "vram_gib": null, "runtime_hours": null}
+        "smoke": {
+          "disk_gib": [
+            1,
+            5
+          ],
+          "vram_gib": [
+            2,
+            8
+          ],
+          "runtime_hours": [
+            1,
+            4
+          ]
+        },
+        "benchmark": {
+          "disk_gib": [
+            2,
+            10
+          ],
+          "vram_gib": [
+            4,
+            16
+          ],
+          "runtime_hours": [
+            24,
+            96
+          ]
+        },
+        "full": {
+          "disk_gib": null,
+          "vram_gib": null,
+          "runtime_hours": null
+        }
       },
-      "priority": {"phase": 3, "order": 18},
+      "priority": {
+        "phase": 3,
+        "order": 18
+      },
       "reproduction": {
-        "smoke": {"status": "not_started", "feasibility": "likely"},
-        "benchmark": {"status": "not_started", "feasibility": "reduced_only"},
-        "full": {"status": "blocked", "feasibility": "blocked"}
+        "smoke": {
+          "status": "passed",
+          "feasibility": "likely",
+          "evidence": "reports/graphplanner/20260806-zero-dollar-schema-smoke/run.json",
+          "scope": "zero-dollar-bundled-router-data-schema-and-prompt-component"
+        },
+        "benchmark": {
+          "status": "not_started",
+          "feasibility": "reduced_only"
+        },
+        "full": {
+          "status": "blocked",
+          "feasibility": "blocked"
+        }
       },
-      "blockers": ["NVIDIA NIM access and exact interaction histories are required.", "No trained router checkpoint is advertised."]
+      "blockers": [
+        "NVIDIA NIM access and exact interaction histories are required.",
+        "No trained router checkpoint is advertised."
+      ]
     },
     {
       "id": "routemoa",
@@ -709,21 +1701,89 @@
       },
       "environment": {
         "python": "3.10",
-        "stack": ["Linux x86_64", "LMDeploy", "OpenCompass", "OpenAI-compatible services"],
+        "stack": [
+          "Linux x86_64",
+          "LMDeploy",
+          "OpenCompass",
+          "OpenAI-compatible services"
+        ],
         "notes": "Local and large API pools are separate workflows."
       },
       "estimates": {
-        "smoke": {"disk_gib": [1, 5], "vram_gib": [0, 8], "runtime_hours": [1, 4]},
-        "benchmark": {"disk_gib": [2, 10], "vram_gib": [0, 12], "runtime_hours": [24, 96]},
-        "full": {"disk_gib": [100, null], "vram_gib": [350, null], "runtime_hours": [24, null]}
+        "smoke": {
+          "disk_gib": [
+            1,
+            5
+          ],
+          "vram_gib": [
+            0,
+            8
+          ],
+          "runtime_hours": [
+            1,
+            4
+          ]
+        },
+        "benchmark": {
+          "disk_gib": [
+            2,
+            10
+          ],
+          "vram_gib": [
+            0,
+            12
+          ],
+          "runtime_hours": [
+            24,
+            96
+          ]
+        },
+        "full": {
+          "disk_gib": [
+            100,
+            null
+          ],
+          "vram_gib": [
+            350,
+            null
+          ],
+          "runtime_hours": [
+            24,
+            null
+          ]
+        }
       },
-      "priority": {"phase": 3, "order": 19},
+      "priority": {
+        "phase": 3,
+        "order": 19
+      },
       "reproduction": {
-        "smoke": {"status": "not_started", "feasibility": "feasible"},
-        "benchmark": {"status": "not_started", "feasibility": "reduced_only"},
-        "full": {"status": "blocked", "feasibility": "blocked"}
+        "smoke": {
+          "status": "passed",
+          "feasibility": "feasible",
+          "evidence": "reports/routemoa/20260806-routing-routemoa-smoke-recheck/run.json",
+          "scope": "zero-dollar-precomputed-results-integrity-and-stored-score-aggregation-only"
+        },
+        "benchmark": {
+          "status": "not_started",
+          "feasibility": "reduced_only"
+        },
+        "full": {
+          "status": "blocked",
+          "feasibility": "blocked"
+        }
       },
-      "blockers": ["Local paper setup used five A800 80 GiB GPUs.", "Large-pool reproduction requires several paid APIs and an API judge."]
+      "auxiliary_evidence": [
+        {
+          "status": "passed",
+          "evidence": "reports/routemoa/20260806-routing-routemoa-smoke-recheck/run.json",
+          "scope": "zero-dollar-precomputed-results-integrity-and-stored-score-aggregation-only"
+        }
+      ],
+      "blockers": [
+        "Local paper setup used five A800 80 GiB GPUs.",
+        "Large-pool reproduction requires several paid APIs and an API judge."
+      ]
     },
     {
       "id": "maca",
@@ -745,21 +1805,65 @@
       },
       "environment": {
         "python": "unspecified",
-        "stack": ["PyTorch", "Transformers", "sentence-transformers", "verl", "OpenAI SDK"],
+        "stack": [
+          "PyTorch",
+          "Transformers",
+          "sentence-transformers",
+          "verl",
+          "OpenAI SDK"
+        ],
         "notes": "README contains only the project title."
       },
       "estimates": {
-        "smoke": {"disk_gib": [1, 5], "vram_gib": [0, 16], "runtime_hours": [1, 4]},
-        "benchmark": {"disk_gib": null, "vram_gib": null, "runtime_hours": null},
-        "full": {"disk_gib": null, "vram_gib": null, "runtime_hours": null}
+        "smoke": {
+          "disk_gib": [
+            1,
+            5
+          ],
+          "vram_gib": [
+            0,
+            16
+          ],
+          "runtime_hours": [
+            1,
+            4
+          ]
+        },
+        "benchmark": {
+          "disk_gib": null,
+          "vram_gib": null,
+          "runtime_hours": null
+        },
+        "full": {
+          "disk_gib": null,
+          "vram_gib": null,
+          "runtime_hours": null
+        }
       },
-      "priority": {"phase": 3, "order": 20},
+      "priority": {
+        "phase": 3,
+        "order": 20
+      },
       "reproduction": {
-        "smoke": {"status": "not_started", "feasibility": "unknown"},
-        "benchmark": {"status": "blocked", "feasibility": "blocked"},
-        "full": {"status": "blocked", "feasibility": "blocked"}
+        "smoke": {
+          "status": "passed",
+          "feasibility": "unknown",
+          "evidence": "reports/maca/20260806-zero-dollar-graphspec-component-smoke/run.json",
+          "scope": "zero-dollar-graphspec-random-weight-cpu-component-only"
+        },
+        "benchmark": {
+          "status": "blocked",
+          "feasibility": "blocked"
+        },
+        "full": {
+          "status": "blocked",
+          "feasibility": "blocked"
+        }
       },
-      "blockers": ["No documented command, expected output, model, checkpoint, or hardware budget is published.", "GRPO/VERL training requirements are unknown."]
+      "blockers": [
+        "No documented command, expected output, model, checkpoint, or hardware budget is published.",
+        "GRPO/VERL training requirements are unknown."
+      ]
     },
     {
       "id": "marc",
@@ -781,21 +1885,81 @@
       },
       "environment": {
         "python": "3.10",
-        "stack": ["custom torchtune fork", "PyTorch/torchao nightly cu121", "two custom vLLM forks"],
+        "stack": [
+          "custom torchtune fork",
+          "PyTorch/torchao nightly cu121",
+          "two custom vLLM forks"
+        ],
         "notes": "Training and inference require separate incompatible environments and one documented manual patch."
       },
       "estimates": {
-        "smoke": {"disk_gib": [20, 35], "vram_gib": [20, 32], "runtime_hours": [2, 6]},
-        "benchmark": {"disk_gib": [25, 41], "vram_gib": [24, 32], "runtime_hours": [24, 168]},
-        "full": {"disk_gib": [41, null], "vram_gib": [32, null], "runtime_hours": [72, null]}
+        "smoke": {
+          "disk_gib": [
+            20,
+            35
+          ],
+          "vram_gib": [
+            20,
+            32
+          ],
+          "runtime_hours": [
+            2,
+            6
+          ]
+        },
+        "benchmark": {
+          "disk_gib": [
+            25,
+            41
+          ],
+          "vram_gib": [
+            24,
+            32
+          ],
+          "runtime_hours": [
+            24,
+            168
+          ]
+        },
+        "full": {
+          "disk_gib": [
+            41,
+            null
+          ],
+          "vram_gib": [
+            32,
+            null
+          ],
+          "runtime_hours": [
+            72,
+            null
+          ]
+        }
       },
-      "priority": {"phase": 3, "order": 15},
+      "priority": {
+        "phase": 3,
+        "order": 15
+      },
       "reproduction": {
-        "smoke": {"status": "not_started", "feasibility": "tight"},
-        "benchmark": {"status": "not_started", "feasibility": "reduced_only"},
-        "full": {"status": "not_started", "feasibility": "blocked"}
+        "smoke": {
+          "status": "passed",
+          "feasibility": "tight",
+          "evidence": "reports/marc/20260806-continuation-zero-cost-arc-components-smoke-run-01/run.json",
+          "scope": "arc-native-task-submission-and-voting-component"
+        },
+        "benchmark": {
+          "status": "not_started",
+          "feasibility": "reduced_only"
+        },
+        "full": {
+          "status": "not_started",
+          "feasibility": "blocked"
+        }
       },
-      "blockers": ["Upstream warns that repository cleanup is still in progress.", "Incompatible training/inference stacks and model caches exceed the practical storage budget."]
+      "blockers": [
+        "Upstream warns that repository cleanup is still in progress.",
+        "Incompatible training/inference stacks and model caches exceed the practical storage budget."
+      ]
     },
     {
       "id": "omni-arc",
@@ -815,19 +1979,49 @@
         "api": "unknown",
         "notes": "A solution write-up is available, but no verified public runnable repository was found."
       },
-      "environment": {"python": null, "stack": [], "notes": "Unknown."},
+      "environment": {
+        "python": null,
+        "stack": [],
+        "notes": "Unknown."
+      },
       "estimates": {
-        "smoke": {"disk_gib": null, "vram_gib": null, "runtime_hours": null},
-        "benchmark": {"disk_gib": null, "vram_gib": null, "runtime_hours": null},
-        "full": {"disk_gib": null, "vram_gib": null, "runtime_hours": null}
+        "smoke": {
+          "disk_gib": null,
+          "vram_gib": null,
+          "runtime_hours": null
+        },
+        "benchmark": {
+          "disk_gib": null,
+          "vram_gib": null,
+          "runtime_hours": null
+        },
+        "full": {
+          "disk_gib": null,
+          "vram_gib": null,
+          "runtime_hours": null
+        }
       },
-      "priority": {"phase": 4, "order": 21},
+      "priority": {
+        "phase": 4,
+        "order": 21
+      },
       "reproduction": {
-        "smoke": {"status": "blocked", "feasibility": "blocked"},
-        "benchmark": {"status": "blocked", "feasibility": "blocked"},
-        "full": {"status": "blocked", "feasibility": "blocked"}
+        "smoke": {
+          "status": "blocked",
+          "feasibility": "blocked"
+        },
+        "benchmark": {
+          "status": "blocked",
+          "feasibility": "blocked"
+        },
+        "full": {
+          "status": "blocked",
+          "feasibility": "blocked"
+        }
       },
-      "blockers": ["No verified public implementation or default branch."]
+      "blockers": [
+        "No verified public implementation or default branch."
+      ]
     },
     {
       "id": "mini-arc-transformer",
@@ -847,19 +2041,49 @@
         "api": "unknown",
         "notes": "The paper is public, but the audited transformer implementation is not."
       },
-      "environment": {"python": null, "stack": [], "notes": "Unknown."},
+      "environment": {
+        "python": null,
+        "stack": [],
+        "notes": "Unknown."
+      },
       "estimates": {
-        "smoke": {"disk_gib": null, "vram_gib": null, "runtime_hours": null},
-        "benchmark": {"disk_gib": null, "vram_gib": null, "runtime_hours": null},
-        "full": {"disk_gib": null, "vram_gib": null, "runtime_hours": null}
+        "smoke": {
+          "disk_gib": null,
+          "vram_gib": null,
+          "runtime_hours": null
+        },
+        "benchmark": {
+          "disk_gib": null,
+          "vram_gib": null,
+          "runtime_hours": null
+        },
+        "full": {
+          "disk_gib": null,
+          "vram_gib": null,
+          "runtime_hours": null
+        }
       },
-      "priority": {"phase": 4, "order": 22},
+      "priority": {
+        "phase": 4,
+        "order": 22
+      },
       "reproduction": {
-        "smoke": {"status": "blocked", "feasibility": "blocked"},
-        "benchmark": {"status": "blocked", "feasibility": "blocked"},
-        "full": {"status": "blocked", "feasibility": "blocked"}
+        "smoke": {
+          "status": "blocked",
+          "feasibility": "blocked"
+        },
+        "benchmark": {
+          "status": "blocked",
+          "feasibility": "blocked"
+        },
+        "full": {
+          "status": "blocked",
+          "feasibility": "blocked"
+        }
       },
-      "blockers": ["No verified public implementation or default branch."]
+      "blockers": [
+        "No verified public implementation or default branch."
+      ]
     },
     {
       "id": "neuromas",
@@ -879,19 +2103,49 @@
         "api": "unknown",
         "notes": "No public implementation was verified."
       },
-      "environment": {"python": null, "stack": [], "notes": "Unknown."},
+      "environment": {
+        "python": null,
+        "stack": [],
+        "notes": "Unknown."
+      },
       "estimates": {
-        "smoke": {"disk_gib": null, "vram_gib": null, "runtime_hours": null},
-        "benchmark": {"disk_gib": null, "vram_gib": null, "runtime_hours": null},
-        "full": {"disk_gib": null, "vram_gib": null, "runtime_hours": null}
+        "smoke": {
+          "disk_gib": null,
+          "vram_gib": null,
+          "runtime_hours": null
+        },
+        "benchmark": {
+          "disk_gib": null,
+          "vram_gib": null,
+          "runtime_hours": null
+        },
+        "full": {
+          "disk_gib": null,
+          "vram_gib": null,
+          "runtime_hours": null
+        }
       },
-      "priority": {"phase": 4, "order": 23},
+      "priority": {
+        "phase": 4,
+        "order": 23
+      },
       "reproduction": {
-        "smoke": {"status": "blocked", "feasibility": "blocked"},
-        "benchmark": {"status": "blocked", "feasibility": "blocked"},
-        "full": {"status": "blocked", "feasibility": "blocked"}
+        "smoke": {
+          "status": "blocked",
+          "feasibility": "blocked"
+        },
+        "benchmark": {
+          "status": "blocked",
+          "feasibility": "blocked"
+        },
+        "full": {
+          "status": "blocked",
+          "feasibility": "blocked"
+        }
       },
-      "blockers": ["No verified public implementation or default branch."]
+      "blockers": [
+        "No verified public implementation or default branch."
+      ]
     },
     {
       "id": "rem-moa",
@@ -911,19 +2165,49 @@
         "api": "unknown",
         "notes": "No public implementation was verified."
       },
-      "environment": {"python": null, "stack": [], "notes": "Unknown."},
+      "environment": {
+        "python": null,
+        "stack": [],
+        "notes": "Unknown."
+      },
       "estimates": {
-        "smoke": {"disk_gib": null, "vram_gib": null, "runtime_hours": null},
-        "benchmark": {"disk_gib": null, "vram_gib": null, "runtime_hours": null},
-        "full": {"disk_gib": null, "vram_gib": null, "runtime_hours": null}
+        "smoke": {
+          "disk_gib": null,
+          "vram_gib": null,
+          "runtime_hours": null
+        },
+        "benchmark": {
+          "disk_gib": null,
+          "vram_gib": null,
+          "runtime_hours": null
+        },
+        "full": {
+          "disk_gib": null,
+          "vram_gib": null,
+          "runtime_hours": null
+        }
       },
-      "priority": {"phase": 4, "order": 24},
+      "priority": {
+        "phase": 4,
+        "order": 24
+      },
       "reproduction": {
-        "smoke": {"status": "blocked", "feasibility": "blocked"},
-        "benchmark": {"status": "blocked", "feasibility": "blocked"},
-        "full": {"status": "blocked", "feasibility": "blocked"}
+        "smoke": {
+          "status": "blocked",
+          "feasibility": "blocked"
+        },
+        "benchmark": {
+          "status": "blocked",
+          "feasibility": "blocked"
+        },
+        "full": {
+          "status": "blocked",
+          "feasibility": "blocked"
+        }
       },
-      "blockers": ["No verified public implementation or default branch."]
+      "blockers": [
+        "No verified public implementation or default branch."
+      ]
     }
   ]
 }

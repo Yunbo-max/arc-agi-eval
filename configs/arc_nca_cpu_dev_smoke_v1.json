@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "method_id": "arc-nca",
+  "config_id": "arc-nca-cpu-dev-smoke-v1",
+  "claim_scope": "reduced method-specific CPU solver-prediction smoke with an A/B hidden-label firewall; not a benchmark or paper reproduction",
+  "dataset_id": "arc-training-known-overlap-excluded",
+  "split": "dev-audit",
+  "task_id": "6150a2bd",
+  "frozen_runtime_directory": "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1",
+  "expected_frozen_manifest_sha256": "9e396158507ce136d4455e133f09c32a225e8f8a2f9071a5d62955e8e308ba2c",
+  "expected_frozen_run_sha256": "3a7d019d212bdeb2c7fb4909cad88c9a210d04dda694f5b2228e523bb5e2071b",
+  "expected_challenge_sha256": "6df8e97e027e51284c2d74756777e7daba3615980230c4897ebc55ac7485022c",
+  "expected_solution_sha256": "f75604f8d856fe4917058e328f25662a3ea0c497864863d1d7395088354ad687",
+  "source_task_path": "third_party/arc-agi-1/data/training/6150a2bd.json",
+  "expected_source_task_sha256": "ee8fb3115ca58c61089bb04e81459735b0cedf5707077cb435dc371f88df7f66",
+  "representative_order_index": 15,
+  "representative_cluster_id": "19a8a4c76d7413e0e8d36ed45d65a91ddced6627e40cf17d204861ecb84078fd",
+  "analyst_test_label_exposure": true,
+  "analyst_exposure_detail": "The public training-task answer became visible during pre-run metadata inspection after task selection. This run is frozen as a mechanism/firewall smoke only; its score must not drive configuration changes or a performance claim.",
+  "performance_tuning_from_test_labels": false,
+  "upstream": {
+    "repository": "https://github.com/etimush/ARC_NCA",
+    "revision": "25d522bc766f9ddaebbf7dad63f58790fe7aa884",
+    "repository_path": "external/ARC_NCA",
+    "expected_tree_sha256": "e395596464a706693c07e975fac84b6afd4a96c718859c82933414da9edef73d",
+    "expected_file_count": 11,
+    "expected_nca_source_sha256": "84795b1534362962e4ded7c976e3a8f242ff8da05c2f57b42b93deffd9a8ba2b",
+    "expected_arc_utils_sha256": "819a0748626b7278e8444b3b444a1b46bcc40cc1c6dad0dd4c4d6d8bf05f7670",
+    "license_path": "external/ARC_NCA/LICENSE",
+    "expected_license_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  "adapter": {
+    "kind": "device-portable copy of upstream CA architecture",
+    "upstream_location": "NCA.py:271-299",
+    "semantic_device_change": "allocate the stochastic update mask on x.device instead of hard-coded cuda:0",
+    "device": "cpu",
+    "channels": 50,
+    "hidden_channels": 264,
+    "gene_size": 25,
+    "color_count": 10,
+    "expected_parameter_count": 312264
+  },
+  "optimization": {
+    "steps": 2,
+    "rollout_steps": 32,
+    "pool_size": 8,
+    "batch_size": 2,
+    "learning_rate": 0.001,
+    "noise_level": 0.2,
+    "update_rate": 0.5
+  },
+  "attempt_budget": {
+    "top_k": 2,
+    "timeout_seconds_per_process": 300,
+    "max_retries": 0,
+    "max_candidates": 2,
+    "api_call_cap": 0,
+    "cost_cap_usd": 0
+  },
+  "determinism": {
+    "seed": 0,
+    "threads": 1,
+    "python_hash_seed": 0,
+    "torch_deterministic_algorithms": true,
+    "replay_count": 2
+  },
+  "expected_environment": {
+    "python": "3.10.12",
+    "torch": "2.13.0+cu126",
+    "numpy": "2.2.6",
+    "cuda_visible_devices": ""
+  },
+  "hidden_label_mutation": {
+    "kind": "color_shift_mod_10",
+    "offset": 1
+  },
+  "public_execution_authorized": false
+}

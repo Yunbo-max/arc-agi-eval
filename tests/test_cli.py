@@ -47,6 +47,31 @@ class CliTests(unittest.TestCase):
             run = json.loads(metadata.read_text(encoding="utf-8"))
             self.assertEqual(run["tasks_total"], 1)
             self.assertEqual(run["score"]["outputs_exact"], 1)
+            self.assertIn("primary_output_exact_pass@2", output.getvalue())
+            self.assertEqual(
+                run["score"]["metric_contract"]["primary"]["name"],
+                "output_exact_pass_at_k",
+            )
+
+    def test_score_command_prints_primary_before_secondary(self) -> None:
+        output = io.StringIO()
+        with redirect_stdout(output):
+            status = main(
+                [
+                    "score",
+                    str(FIXTURES / "predictions.json"),
+                    str(FIXTURES / "data" / "evaluation"),
+                ]
+            )
+        self.assertEqual(status, 0)
+        lines = output.getvalue().splitlines()
+        primary_index = next(
+            index for index, line in enumerate(lines) if line.startswith("primary_")
+        )
+        secondary_index = next(
+            index for index, line in enumerate(lines) if line.startswith("secondary_")
+        )
+        self.assertLess(primary_index, secondary_index)
 
 
 if __name__ == "__main__":

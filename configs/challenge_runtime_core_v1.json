@@ -1,0 +1,23 @@
+{
+  "config_id": "challenge-runtime-core-v1",
+  "dataset_id": "arc-training-known-overlap-excluded",
+  "expected_frozen_manifest_sha256": "9e396158507ce136d4455e133f09c32a225e8f8a2f9071a5d62955e8e308ba2c",
+  "expected_frozen_run_sha256": "3a7d019d212bdeb2c7fb4909cad88c9a210d04dda694f5b2228e523bb5e2071b",
+  "expected_task_count": 94,
+  "expected_test_output_denominator": 97,
+  "frozen_runtime_directory": "reports/e0-development-split/20260806-frozen-known-overlap-excluded-dev-audit-v1",
+  "hidden_label_mutation": {
+    "description": "replace every test-output color c with (c + 1) mod 10",
+    "kind": "color_shift_mod_10",
+    "offset": 1
+  },
+  "max_candidates": 2,
+  "max_retries": 0,
+  "method_id": "deterministic-floor-runtime-core",
+  "process_timeout_seconds": 120,
+  "schema_version": 1,
+  "seed": 20260806,
+  "solver": "arc_agi_eval.deterministic_baseline",
+  "split": "dev-audit",
+  "top_k": 2
+}

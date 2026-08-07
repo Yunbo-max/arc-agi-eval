@@ -1,0 +1,177 @@
+{
+  "analysis_environment": {
+    "requirements_path": "requirements/analysis.txt",
+    "cluster_model": "independence-working-correlation logistic GEE with base-task sandwich covariance",
+    "fallback": "two-sided base-task paired sign-flip randomization test",
+    "fallback_triggers": [
+      "complete_or_quasi_separation",
+      "rank_deficient_design",
+      "non_convergence_at_100_iterations",
+      "information_condition_number_above_1e12",
+      "singular_or_nonfinite_sandwich_covariance"
+    ]
+  },
+  "campaign_cap": {
+    "api_spend_cap_usd": 0,
+    "api_execution_authorized": false,
+    "curve_budget_seconds_per_task": [30, 120, 300, 900],
+    "diagnostic_configuration_cap": 4,
+    "exclusive_accelerator_required": true,
+    "full_public_evaluations_per_admitted_config": 1,
+    "headline_configuration_cap": 6,
+    "local_gpu_hour_cap_including_contingency": 1500,
+    "main_budget_seconds_per_task": 300,
+    "minimum_free_disk_reserve_gib": 20,
+    "public_execution_authorized_before_all_required_gates_pass": false,
+    "stochastic_seed_count": 3,
+    "deterministic_replay_count": 2
+  },
+  "confidence_intervals": {
+    "cluster_unit": "base_task",
+    "confidence_level": 0.95,
+    "deterministic_seed": 20260806,
+    "method": "base-task percentile bootstrap",
+    "resamples": 10000,
+    "variants_outputs_budgets_and_seeds_stay_with_base_task": true
+  },
+  "data_and_missingness": {
+    "arc_agi_1_and_2_reported_separately": true,
+    "human_prediction_correction": "prohibited",
+    "infrastructure_rerun_rule": "one adjudicated rerun only under a blinded pre-outcome rule; preserve the failed run",
+    "malformed_missing_timeout_oom_after_frozen_retries": "incorrect_in_declared_denominator",
+    "public_analysis_label": "prespecified_locked_public_not_confirmatory",
+    "private_analysis_label": "confirmatory_only_if_previously_unseen_and_procedure_frozen"
+  },
+  "expired_cycle_audit": {
+    "abstract_deadline": "2026-05-04 AoE",
+    "author_notification": "2026-09-24 AoE",
+    "full_paper_deadline": "2026-05-06 AoE",
+    "official_url": "https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets",
+    "status_as_of_2026-08-06": "closed_to_new_submissions",
+    "submission_portal_opened": "2026-04-15",
+    "venue": "NeurIPS 2026 Evaluations & Datasets"
+  },
+  "freeze_boundary": {
+    "frozen_at_utc": "2026-08-06T00:00:00Z",
+    "new_protocol_locked_public_method_scores_inspected_before_freeze": 0,
+    "prior_public_label_exposure_exists": true,
+    "prior_exposure_manifest": "reports/e0-prior-exposure/20260806-workspace-disclosure-draft-retry1/run.json",
+    "scope": "scientific estimands, hypothesis tests, multiplicity, fallback triggers, missingness, campaign cap, and target venue cycle"
+  },
+  "freeze_status": "frozen-v1",
+  "hypotheses": [
+    {
+      "id": "h1-budget-interaction",
+      "status": "prespecified_conditional_on_two_or_more_eligible_configurations",
+      "estimand": "configuration-by-centered-log-online-budget interaction in output exact pass@2",
+      "primary_test": "omnibus clustered Wald test over interaction coefficients",
+      "followups": "configuration-specific slopes only after the omnibus survives the primary Holm family"
+    },
+    {
+      "id": "h2-isomorphism-interaction",
+      "status": "prespecified_conditional_on_one_or_more_eligible_configurations",
+      "estimand": "transformation and configuration-by-transformation effects in output exact pass@2",
+      "primary_test": "omnibus clustered Wald test over transformation and interaction coefficients",
+      "followups": "paired original-versus-transformed contrasts only after the omnibus survives the primary Holm family"
+    },
+    {
+      "id": "h3-family-portfolio",
+      "status": "declared_infeasible_for_protocol_v1_at_freeze",
+      "reason": "zero methods have strict runtime promotion and no same-family pair is eligible",
+      "estimand": "paired difference between frozen cross-family and same-family two-attempt portfolios at equal total online compute",
+      "post_outcome_repair_prohibited": true
+    }
+  ],
+  "metrics": {
+    "diagnostic": "micro_cell_accuracy",
+    "primary": "output_exact_pass_at_k",
+    "secondary": "strict_task_exact_pass_at_k",
+    "top_k": 2,
+    "primary_denominator_policy": "all_declared_test_outputs"
+  },
+  "multiplicity": {
+    "alpha": 0.05,
+    "primary_family": [
+      "h1-budget-interaction",
+      "h2-isomorphism-interaction",
+      "h3-family-portfolio"
+    ],
+    "primary_adjustment": "Holm",
+    "followup_adjustment": "Holm within each surviving hypothesis",
+    "fixed_budget_pairwise_family": "separate_secondary_Holm_family",
+    "two_sided": true
+  },
+  "optional_external_milestone": {
+    "competition_submission_deadline": "2026-11-02",
+    "high_score_required_for_paper_eligibility": false,
+    "official_urls": [
+      "https://arcprize.org/competitions/2026",
+      "https://arcprize.org/competitions/2026/paper",
+      "https://arcprize.org/competitions/2026/arc-agi-2"
+    ],
+    "paper_deadline": "2026-11-08",
+    "program": "ARC Prize 2026 Paper Prize",
+    "requires_linked_kaggle_code_submission": true,
+    "results_date": "2026-12-04",
+    "role": "optional competition and external-evaluation milestone; not the frozen archival venue"
+  },
+  "plan_id": "arc-rebench-analysis-plan-v1",
+  "power_simulation": {
+    "alpha": 0.05,
+    "baseline_probability": 0.2,
+    "discordance_probability": 0.2,
+    "effect_grid": [0.04, 0.06, 0.08, 0.1, 0.12, 0.14, 0.16, 0.18, 0.2],
+    "method": "exact paired binary fallback simulation",
+    "seed": 20260806,
+    "simulations_per_cell": 2000,
+    "target_power": 0.8,
+    "task_counts": [64, 120, 400],
+    "uses_locked_public_outcomes": false,
+    "uses_only_prespecified_synthetic_development_assumptions": true
+  },
+  "schema_version": 1,
+  "venue_freeze": {
+    "abstract_deadline": null,
+    "allowed_post_freeze_updates": [
+      "official URLs and retrieval hashes",
+      "abstract and full-paper dates",
+      "submission portal",
+      "format and page limits",
+      "review anonymity and artifact-hosting compliance",
+      "author-profile registration and presentation requirements"
+    ],
+    "deadline_policy": "No 2027 deadline is inferred from a prior cycle; dates remain null until published by NeurIPS.",
+    "deadline_timezone": null,
+    "forbidden_post_freeze_updates": [
+      "estimands",
+      "hypotheses and multiplicity hierarchy",
+      "dataset splits or task roster",
+      "method eligibility",
+      "budgets or campaign cap",
+      "stopping rules",
+      "missingness and retry policy",
+      "metric definitions",
+      "analysis changes selected after observing locked-public scores"
+    ],
+    "frozen_as_of": "2026-08-06",
+    "full_paper_deadline": null,
+    "official_2027_author_cfp_status": "not_published_as_of_2026-08-06",
+    "official_2027_author_cfp_url": null,
+    "official_cycle_evidence_url": "https://neurips.cc/Conferences/2026/CallForCompetitions",
+    "planning_policy_baseline_cycle": 2026,
+    "planning_policy_baseline_urls": [
+      "https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets",
+      "https://neurips.cc/Conferences/2026/EvaluationsDatasetsFAQ",
+      "https://neurips.cc/Conferences/2026/MainTrackHandbook",
+      "https://neurips.cc/public/guides/PaperChecklist"
+    ],
+    "policy_recheck_trigger": "publication of the official NeurIPS 2027 E&D CFP, FAQ, template, dates, or applicable handbook",
+    "scope_fit": "auditable evaluation protocol plus empirical reproduction, stress-testing, and comparison rather than a new ARC solver",
+    "submission_portal_url": null,
+    "target_cycle": 2027,
+    "target_status": "cycle_frozen_pre_cfp",
+    "target_track": "Evaluations & Datasets",
+    "target_venue": "NeurIPS",
+    "track_unavailable_rule": "If the official 2027 E&D CFP is absent or materially excludes this work, block the venue gate and require a prospective protocol amendment; never silently substitute a venue after outcomes are observed."
+  }
+}

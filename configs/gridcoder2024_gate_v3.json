@@ -1,0 +1,151 @@
+{
+  "schema_version": 3,
+  "config_id": "gridcoder2024-source-dependency-label-artifact-gate-v3",
+  "method_id": "gridcoder2024",
+  "scope": "source-dependency-label-artifact-gate-audit-only",
+  "counted_toward_smoke": false,
+  "expected_blocker_ids": [
+    "upstream-provenance",
+    "source-license",
+    "dependency-api-and-data",
+    "checkpoint-provenance",
+    "label-firewall",
+    "cpu-entrypoint",
+    "benchmark-coverage"
+  ],
+  "source": {
+    "repository_url": "https://github.com/SimonOuellette35/GridCoder2024",
+    "expected_revision": "bf6136e5f57029dcbbb85242b8ffd8a1a241bb5f",
+    "source_lock_path": "configs/source_locks.json",
+    "source_lock_sha256": "a785b89743dc06c1296dbfa9691081035bd062ae7f97c5d80c9cfbb38f76a5b4",
+    "local_snapshot": "external/GridCoder2024",
+    "prepared_checkout": "/usr/paper-assets/arc/sources/gridcoder2024",
+    "expected_python_file_count": 28,
+    "expected_python_bytes": 1572950,
+    "expected_python_tree_sha256": "a7a8aed37e1f82a93ade2706f5b9fe0d83aee6c6a8d593d9bd5fcb1289038bba",
+    "expected_clean_file_count": 29,
+    "expected_clean_tree_sha256": "132e77cab78a4d5606a39e1084d3a1c7608ae3c2321f4899811157e3f4402966",
+    "expected_root_tracked_file_count": 29,
+    "expected_tracked_paths": [
+      "Hodel_primitives_atomic.py",
+      "Hodel_primitives_atomicV2.py",
+      "Hodel_primitives_atomicV3.py",
+      "Hodel_primitives_full_trainingV2.py",
+      "README.md",
+      "datasets/__init__.py",
+      "datasets/generators/merge_split_generator_atomic.py",
+      "datasets/generators/object_recombiner_generator.py",
+      "datasets/generators/object_selector_generator.py",
+      "datasets/generators/tiling_generator_atomic.py",
+      "datasets/generators/trivial_objectness_generator.py",
+      "datasets/generators/windowing_generator.py",
+      "datasets/similarity_dataset_p_star_atomic.py",
+      "datasets/task_generator.py",
+      "generate_training_data_full.py",
+      "model/LVM.py",
+      "model/heuristic.py",
+      "search/p_star.py",
+      "search/p_star_muzero.py",
+      "search/p_star_superposition.py",
+      "search/program_interpreter.py",
+      "search/program_interpreter_V3.py",
+      "test_gridcoder.py",
+      "train_full.py",
+      "utils/grid_utils.py",
+      "utils/heuristics.py",
+      "utils/program_path_utils.py",
+      "utils/sequence_utils.py",
+      "utils/validation_utils.py"
+    ],
+    "expected_root_license_files": [],
+    "expected_independent_git_checkout": false,
+    "expected_prepared_checkout_present": false,
+    "expected_revision_object_present_in_root_git": false,
+    "critical_files": [
+      {"path": "README.md", "sha256": "6a682b5f7e7480aaba2722b363b0d83eb9bcfe82cf82cce8dc753de35e5c846d"},
+      {"path": "test_gridcoder.py", "sha256": "03d0184a29b05ad954352d4e7458b6dd633bcc846bad3c5c31e64dfac9553704"},
+      {"path": "model/LVM.py", "sha256": "1c0a62b1db78c53baf0b4f8132e5f10f60317c00d2e2def56d7e7ead0c889300"},
+      {"path": "search/p_star_superposition.py", "sha256": "ee12cf75ae2a2894353379a431a04631f6098407587fbaf7773b8385f968dbdb"},
+      {"path": "search/program_interpreter_V3.py", "sha256": "525baacdc53307a059633d48ceec5c75a996ec91b5a5e3f4c3579f6b6f7f2a8a"},
+      {"path": "Hodel_primitives_atomicV3.py", "sha256": "65b27578006affa10b89d5d20a882ba0d1f3dc3b7c47d02d844b86ee66944809"},
+      {"path": "train_full.py", "sha256": "44200c626b4ff88bb46f7dfcf0192debd2e65d2ca964a9cf60c177ba402cb425"},
+      {"path": "generate_training_data_full.py", "sha256": "d12ebb9524487fde258867570aaab5f9e65c36d5dced08f1ead46b10b9691521"}
+    ]
+  },
+  "arc_gym": {
+    "repository_url": "https://github.com/SimonOuellette35/ARC_gym",
+    "local_checkout": "external/ARC_gym",
+    "expected_revision": "740b443a955cdb31ee8209ee4d74af87b027926e",
+    "expected_python_file_count": 7,
+    "expected_python_bytes": 338647,
+    "expected_python_tree_sha256": "4cd46a5db2181537910f6b8b9108bb7296cf6135e9921a91cc70c3d2283b5c09",
+    "expected_tracked_paths": [
+      "arc_evaluation_dataset.py",
+      "dataset.py",
+      "grid_sampling/grid_sampler.py",
+      "grid_sampling/object_grid_generation.py",
+      "utils/object_detector.py",
+      "utils/tokenization.py",
+      "utils/visualization.py"
+    ],
+    "expected_root_license_files": [],
+    "critical_files": [
+      {"path": "ARC_gym/arc_evaluation_dataset.py", "sha256": "736d329fb46f6ecb357733b7a1c67a6c1db64abb2023fe4444d8583c98e14781"},
+      {"path": "ARC_gym/dataset.py", "sha256": "fa4166427c659616d9ef835770d60520ea064769db1c7b966e9864c15cdc8938"},
+      {"path": "README.md", "sha256": "9473ec2bf4be8e55e28f242ff0f514fc44c842ef9c3f0fc54fd579ceded761dc"},
+      {"path": "pyproject.toml", "sha256": "0ade1261313fb504f0ebc4515b59b6370f624b644a8b0b22b324d13d0d533df6"},
+      {"path": "requirements.txt", "sha256": "04313147eaab23ce2ce9558350a954693a6ee425ae34222c9ed3a721e34d519c"}
+    ],
+    "required_runner_modules": [
+      "ARC_gym/utils/graphs.py",
+      "ARC_gym/utils/batching.py"
+    ],
+    "expected_missing_runner_modules": [
+      "ARC_gym/utils/graphs.py",
+      "ARC_gym/utils/batching.py"
+    ],
+    "expected_source_lock_entry_present": false
+  },
+  "checkpoint": {
+    "filename": "model_full.pth",
+    "unverified_prior_remote_metadata": {
+      "reported_uncompressed_bytes": 1809563648,
+      "reported_license": "CC0 model bundle",
+      "reverified_by_this_audit": false
+    },
+    "known_local_paths": [
+      "external/GridCoder2024/model_full.pth",
+      "/usr/paper-assets/arc/sources/gridcoder2024/model_full.pth",
+      "/usr/paper-assets/arc/checkpoints/gridcoder2024/model_full.pth",
+      "/model/gridcoder2024/model_full.pth"
+    ],
+    "expected_present_count": 0
+  },
+  "coverage": {
+    "expected_readme_task_count": 49,
+    "expected_readme_success_count": 33,
+    "expected_readme_failure_count": 16,
+    "native_benchmark": "arc_agi_1",
+    "scope": "declared-dsl-solvable-subset"
+  },
+  "data": {
+    "default_evaluation_directory": "external/GridCoder2024/ARC/data/evaluation",
+    "expected_default_evaluation_directory_present": false
+  },
+  "prior_architecture_evidence": {
+    "run_path": "reports/gridcoder2024/20260806-architecture-forward-smoke/run.json",
+    "run_sha256": "1d4d5a742a1a5747941c2ebdae87350371cab8aa10f9118cdb5ae90dff70fc69",
+    "runner_path": "scripts/smoke_gridcoder.py",
+    "runner_sha256": "a9669aa5350f17c70ce702b7bbae40140be23ff6a66934281ffb74b9bfe9659c"
+  },
+  "controls": {
+    "network_allowed": false,
+    "gpu_allowed": false,
+    "arc_data_allowed": false,
+    "checkpoint_byte_read_allowed": false,
+    "checkpoint_load_allowed": false,
+    "upstream_import_allowed": false,
+    "upstream_execution_allowed": false,
+    "solver_execution_allowed": false
+  }
+}

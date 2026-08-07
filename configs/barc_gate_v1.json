@@ -1,0 +1,307 @@
+{
+  "schema_version": 1,
+  "config_id": "barc-source-artifact-label-resource-gate-v1",
+  "method_id": "barc",
+  "scope": "source-artifact-label-resource-gate-audit-only",
+  "counted_toward_smoke": false,
+  "config_read_policy": {
+    "canonical_path": "configs/barc_gate_v1.json",
+    "alternate_paths_allowed": false
+  },
+  "expected_blocker_ids": [
+    "root-license",
+    "base-artifact-provenance",
+    "lora-artifact-provenance",
+    "safe-offline-model-load",
+    "label-firewall",
+    "dependency-lock",
+    "single-gpu-capacity",
+    "solver-prediction-and-parity-contract"
+  ],
+  "source_lock": {
+    "path": "configs/source_locks.json",
+    "sha256": "a785b89743dc06c1296dbfa9691081035bd062ae7f97c5d80c9cfbb38f76a5b4",
+    "entry": {
+      "url": "https://github.com/xu3kev/BARC",
+      "branch": "master",
+      "revision": "a7b51a6b1ff969da3a78a71c533b6d79a93966e7",
+      "asset_subpath": "sources/barc"
+    }
+  },
+  "source": {
+    "repository_path": "/root/arc-paper-assets/sources/barc",
+    "repository_url": "https://github.com/xu3kev/BARC",
+    "expected_revision": "a7b51a6b1ff969da3a78a71c533b6d79a93966e7",
+    "expected_commit_tree": "55ea72e3290ef7d3ec0ebed3554a9a60b83110ad",
+    "expected_tracked_file_count": 1477,
+    "expected_tracked_bytes": 61938237,
+    "git_tree_listing_sha256": "8f075066aad62340d1eea64a8987509776a2da96d267e703659bb7bd9e45447e",
+    "closed_inventory_metadata_sha256": "9a11fdd5c1b59c921e779b9e19938faaac365ef49d45184c79e75b666fad5428",
+    "git_metadata_contract": {
+      "local_config": {
+        "path": ".git/config",
+        "bytes": 304,
+        "sha256": "b99b39f2e5e40142bc7030ddf55ad6db560d560360a7879a7ab3e04b521d8f6f",
+        "mode": "0644"
+      },
+      "head": {
+        "path": ".git/HEAD",
+        "bytes": 41,
+        "sha256": "5f2f32d25df3807c3450a68f58322cd74b01ddc8aa9b88004418ba30fd95384c",
+        "mode": "0644"
+      },
+      "required_absent_paths": [
+        ".git/commondir",
+        ".git/gitdir",
+        ".git/config.worktree",
+        ".git/info/attributes",
+        ".git/objects/info/alternates",
+        ".git/objects/info/http-alternates"
+      ],
+      "allowed_commands": [
+        [
+          "rev-parse",
+          "--verify",
+          "a7b51a6b1ff969da3a78a71c533b6d79a93966e7"
+        ],
+        [
+          "rev-parse",
+          "--verify",
+          "a7b51a6b1ff969da3a78a71c533b6d79a93966e7^{tree}"
+        ],
+        [
+          "ls-tree",
+          "-rz",
+          "--full-tree",
+          "a7b51a6b1ff969da3a78a71c533b6d79a93966e7"
+        ]
+      ],
+      "timeout_seconds": 10.0,
+      "stdout_max_bytes": 524288,
+      "stderr_max_bytes": 16384,
+      "lazy_fetch_disabled": true,
+      "terminal_prompt_disabled": true,
+      "isolated_git_dir_required": true
+    },
+    "expected_extension_counts": {
+      "<none>": 2,
+      ".cfg": 1,
+      ".gitignore": 2,
+      ".json": 524,
+      ".jsonl": 4,
+      ".md": 8,
+      ".mdx": 1,
+      ".png": 350,
+      ".py": 567,
+      ".sh": 2,
+      ".slurm": 1,
+      ".txt": 1,
+      ".yaml": 13,
+      ".yml": 1
+    },
+    "opaque_directories": [
+      ".git"
+    ],
+    "expected_unknown_entry_count": 0,
+    "ignored_metadata_only": [
+      {
+        "path": "seeds/__pycache__/00d62c1b.cpython-310.pyc",
+        "bytes": 1266,
+        "mode": "0644"
+      },
+      {
+        "path": "seeds/__pycache__/common.cpython-310.pyc",
+        "bytes": 48016,
+        "mode": "0644"
+      }
+    ],
+    "retained_text": [
+      {
+        "path": "README.md",
+        "bytes": 8277,
+        "sha256": "31b908958051e5aba32fb7567d8f010dc256aa865fde8f0ed12a176976726d7a",
+        "blob_oid": "f51bd0d769e9d71cfc5bf54ad1373bb7e34fa952",
+        "role": "source_documentation"
+      },
+      {
+        "path": "data_processing/test-time-finetune/gen_transduction_only_formatted.py",
+        "bytes": 13014,
+        "sha256": "3bbe9b12541136c2023a81a937fdb7564009500fe15706a08b857e10ad43ad48",
+        "blob_oid": "a7738412cb31f3fe0f8188200da1fd9475a6b732",
+        "role": "source_python"
+      },
+      {
+        "path": "data_processing/test-time-finetune/get_pseudo_eval_task.py",
+        "bytes": 877,
+        "sha256": "809cd28b71cdb9dbe52c82d27a79f36c735727b91e2fa3dc466f7d2a453fb2a0",
+        "blob_oid": "c33ec08d29ddc137861e24c7cfdccd7ccaa990a7",
+        "role": "source_python"
+      },
+      {
+        "path": "eval_code_samples.py",
+        "bytes": 12616,
+        "sha256": "f1e8045665d34bb508e96eaafa10dde5085ab2ec7cc12c192f6f5f0a29886a39",
+        "blob_oid": "7e52accb0e70cb9554082231a6977db020aff0b2",
+        "role": "source_python"
+      },
+      {
+        "path": "evaluation.py",
+        "bytes": 8319,
+        "sha256": "dd360cf0ddce9ac6a23ad1f7b625e97619de9ef057832e983e68edff7174854a",
+        "blob_oid": "2dbfa05af6bd8c1029518a5cf42d63adde88683d",
+        "role": "source_python"
+      },
+      {
+        "path": "execution.py",
+        "bytes": 8684,
+        "sha256": "2cea9364815db7fab59167e3aa7a29365180e5a99c941b46baf1d52c414c35ed",
+        "blob_oid": "5cc26a1772fbbb904073b839b51d3fbd4d43a56c",
+        "role": "source_python"
+      },
+      {
+        "path": "finetune/alignment-handbook/LICENSE",
+        "bytes": 11357,
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "blob_oid": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "role": "vendored_license"
+      },
+      {
+        "path": "finetune/alignment-handbook/recipes/barc/transduction_config_testtime-finetune_engineer_heavy_model.yaml",
+        "bytes": 6358,
+        "sha256": "48df6c9496b260e2d5f4c633a9485501d51438722ac6500692206592fd226b32",
+        "blob_oid": "4b21bcddae866fc9f8b0e7c01feb93efbb227dff",
+        "role": "artifact_recipe"
+      },
+      {
+        "path": "finetune/inference/vllm_inference.py",
+        "bytes": 5625,
+        "sha256": "4d3d68cdef2aad39605fe34dbefa3ead9e30fb11da590ad7ae1f2259fa03cd09",
+        "blob_oid": "550b973f02f604bdf07f69367a6b92b8a74ecea4",
+        "role": "source_python"
+      },
+      {
+        "path": "finetune/inference/vllm_inference_transduction_concept_arc.py",
+        "bytes": 4432,
+        "sha256": "39f7cf18e8898829335979c1300f1df4c5b6cdbc90afeb53aa7ff5e273933553",
+        "blob_oid": "c918013bd09353324143e326367359a690e4fe21",
+        "role": "source_python"
+      },
+      {
+        "path": "finetune/inference/vllm_inference_transduction_evaluation.py",
+        "bytes": 4324,
+        "sha256": "3a2531cdc1b45fe777268a653c5075d84a1d6b4fa2120fbb75bd4bcbdcc1504d",
+        "blob_oid": "324480b24d6cf07ae3979577a80e9ea4f9f6be7b",
+        "role": "source_python"
+      },
+      {
+        "path": "finetune/inference/vllm_transduction_reranking.py",
+        "bytes": 20866,
+        "sha256": "c79cad3e7be93c0ea3d5d4247f9404571309aa01c965db508e1678e9e862a3a1",
+        "blob_oid": "6fe228c7942fe5dc6bc2f2d1ec983f7e0fef560e",
+        "role": "source_python"
+      },
+      {
+        "path": "requirements.txt",
+        "bytes": 62,
+        "sha256": "22638aef196bfab6b4a91aed5bef9d45282621f719f05672a17e4fb43a248e36",
+        "blob_oid": "a9011638f883149faf17ea0099d94d94d0a3b84d",
+        "role": "dependency_manifest"
+      }
+    ]
+  },
+  "metadata_only_policy": {
+    "never_read_suffixes": [
+      ".json",
+      ".jsonl",
+      ".pkl",
+      ".pickle",
+      ".pyc",
+      ".png",
+      ".safetensors",
+      ".bin",
+      ".pt",
+      ".pth",
+      ".ckpt",
+      ".gguf"
+    ],
+    "arc_or_label_bundle_bytes_read_allowed": false,
+    "pickle_bytes_read_allowed": false,
+    "model_weight_bytes_read_allowed": false,
+    "ignored_pyc_bytes_read_allowed": false
+  },
+  "license": {
+    "root_candidates": [
+      "LICENSE",
+      "LICENSE.md",
+      "LICENSE.txt",
+      "COPYING",
+      "NOTICE"
+    ],
+    "expected_root_license_count": 0,
+    "vendored_path": "finetune/alignment-handbook/LICENSE",
+    "vendored_identifier": "Apache-2.0",
+    "vendored_scope_only": true
+  },
+  "artifacts": {
+    "base_models": [
+      {
+        "repo_id": "barc0/Llama-3.1-ARC-Heavy-Induction-8B",
+        "planning_size_gib": 14.97
+      },
+      {
+        "repo_id": "barc0/Llama-3.1-ARC-Heavy-Transduction-8B",
+        "planning_size_gib": 14.97
+      },
+      {
+        "repo_id": "barc0/Llama-3.1-ARC-Potpourri-Induction-8B",
+        "planning_size_gib": 14.97
+      },
+      {
+        "repo_id": "barc0/Llama-3.1-ARC-Potpourri-Transduction-8B",
+        "planning_size_gib": 14.97
+      }
+    ],
+    "lora_adapters": [
+      "barc0/engineer1-heavy-barc-llama3.1-8b-instruct-lora64-testtime-finetuning",
+      "barc0/heavy-barc-llama3.1-8b-instruct-lora64-testtime-finetuning"
+    ],
+    "expected_local_weight_file_count": 0,
+    "remote_revision_required": true,
+    "manifest_required": true,
+    "sha256_required": true,
+    "artifact_license_required": true
+  },
+  "dependency_contract": {
+    "requirements_path": "requirements.txt",
+    "expected_requirements_lines": [
+      "git+https://github.com/xu3kev/arc-py.git",
+      "orjsonl",
+      "func-timeout"
+    ],
+    "induction_vllm_version": "0.6.0",
+    "transduction_vllm_version": "0.5.4",
+    "full_training_processes": 8,
+    "lockfile_required": true
+  },
+  "resource_contract": {
+    "target_gpu": "RTX 3090",
+    "target_gpu_vram_gib": 24,
+    "minimum_free_vram_gib": 10,
+    "single_base_planning_size_gib": 14.97,
+    "four_base_planning_size_gib": 59.88,
+    "minimum_free_disk_gib_for_selected_base": 32,
+    "paper_training_processes": 8
+  },
+  "controls": {
+    "network_allowed": false,
+    "gpu_allowed": false,
+    "upstream_import_allowed": false,
+    "upstream_execution_allowed": false,
+    "arc_or_label_bundle_byte_read_allowed": false,
+    "pickle_byte_read_allowed": false,
+    "model_weight_byte_read_allowed": false,
+    "pyc_byte_read_allowed": false,
+    "generated_code_execution_allowed": false,
+    "solver_prediction_allowed": false
+  }
+}

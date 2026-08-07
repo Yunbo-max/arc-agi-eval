@@ -1,0 +1,27 @@
+# Upstream ArcMemo requirements, de-duplicated for the zero-dollar dry-run.
+# The upstream llmplus Git dependency is unpinned; this audit fixes the exact
+# revision observed on 2026-08-06. PyPI versions are captured after resolution
+# in each run record and do not constitute paper environment parity.
+orjson
+arckit
+numpy
+pandas
+datasets
+tqdm
+openai
+diskcache
+tiktoken
+tenacity
+python-dotenv
+arc-py @ git+https://github.com/xu3kev/arc-py.git@bdad42e595c395decac6e40d9b96c33e7d52656f
+drawsvg
+pillow
+ipython
+psutil
+func_timeout
+hydra-core
+omegaconf
+PyYAML
+chromadb
+llmplus @ git+https://github.com/matt-seb-ho/llm_wrapper.git@7c3f1747517ef9ab879e0b30352ad4627e63473d
+Pebble

@@ -29,8 +29,41 @@ class Score:
     cells_correct: int
     cell_accuracy: float
 
-    def as_dict(self) -> dict[str, int | float]:
-        return asdict(self)
+    def metric_contract(self) -> dict[str, object]:
+        """Describe metric roles without removing legacy flat score fields."""
+
+        return {
+            "primary": {
+                "name": "output_exact_pass_at_k",
+                "top_k": self.top_k,
+                "numerator": self.outputs_exact,
+                "denominator": self.outputs_total,
+                "value": self.output_exact_accuracy,
+                "denominator_policy": "all_declared_test_outputs",
+            },
+            "secondary": {
+                "strict_task_exact_pass_at_k": {
+                    "top_k": self.top_k,
+                    "numerator": self.tasks_exact,
+                    "denominator": self.tasks_total,
+                    "value": self.task_exact_accuracy,
+                    "denominator_policy": "all_declared_tasks",
+                },
+                "micro_cell_accuracy": {
+                    "top_k": self.top_k,
+                    "numerator": self.cells_correct,
+                    "denominator": self.cells_total,
+                    "value": self.cell_accuracy,
+                    "role": "diagnostic_only",
+                },
+            },
+        }
+
+    def as_dict(self) -> dict[str, object]:
+        payload: dict[str, object] = asdict(self)
+        payload["score_schema_version"] = 2
+        payload["metric_contract"] = self.metric_contract()
+        return payload
 
 
 def _cell_matches(candidate: Grid, expected: Grid) -> int:
